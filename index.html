@@ -700,6 +700,7 @@
   </div>
 </div>
 
+
 <div class="sec-nav">
   <div class="sec-nav-inner">
     <a href="#s01" class="sec-nav-link active"><span class="sec-nav-n">01</span> Problem Framing</a>
@@ -721,108 +722,57 @@
     </div>
     <h2 class="sec-title">Assumption to brief</h2>
     <div class="sec-body">
-      <p>To understand what's going on, I extracted the product owner's assumption, gathered user feedback, and mapped out an assumed engagement funnel.</p>
+      <p>Johnny Bravo (PO) shared his assumption, user feedback, and engagement data with me. Here's what I found.</p>
     </div>
 
     <div class="funnel-card">
       <div class="funnel-hd">
-        <div class="funnel-title">Assumed engagement funnel <span style="font-size:11px; font-weight:600; background:rgba(200,120,0,0.1); color:#c87800; border:1px solid rgba(200,120,0,0.2); padding:2px 9px; border-radius:10px; vertical-align:middle; margin-left:8px; font-family:var(--font-sans); letter-spacing:0">Illustrative</span></div>
+        <div class="funnel-title">Johnny Bravo's engagement funnel <span style="font-size:11px; font-weight:600; background:rgba(200,120,0,0.1); color:#c87800; border:1px solid rgba(200,120,0,0.2); padding:2px 9px; border-radius:10px; vertical-align:middle; margin-left:8px; font-family:var(--font-sans); letter-spacing:0">Illustrative</span></div>
         <div class="funnel-src">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
       </div>
       <div id="funnel"></div>
     </div>
 
     <div class="assumption">
-      <div class="assumption-lbl">Product owner assumption</div>
-      <div class="assumption-text">"Users don't trust the recommendations."</div>
+      <div class="assumption-lbl">
+        <img src="johnny-bravo.webp" alt="Johnny Bravo" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);border:1.5px solid rgba(0,82,255,0.2);">
+        Johnny Bravo · Product Owner
+      </div>
+      <div class="assumption-text">"Whoa, mama! Users don't trust the recommendations."</div>
     </div>
+
 
     <div class="sec-body">
-      <p>This could be accurate. But it could also be masking three entirely different explanations — each pointing to a different design solution.</p>
-    </div>
-
-    <div class="alt-grid">
-      <div class="alt-card dim">
-        <div class="alt-n">ALT 01</div>
-        <div class="alt-title">Relevance failure</div>
-        <div class="alt-body">Recommendations are simply bad. Users aren't skeptical — the suggestions don't apply to their financial situation at all.</div>
-        <span class="pill pill-muted">↳ Needs data to rule out</span>
-      </div>
-      <div class="alt-card dim">
-        <div class="alt-n">ALT 02</div>
-        <div class="alt-title">Timing failure</div>
-        <div class="alt-body">Right recommendation, wrong moment. A subscription switch nudge at 9am on a commute gets ignored regardless of trust level.</div>
-        <span class="pill pill-muted">↳ Needs data to rule out</span>
-      </div>
-      <div class="alt-card hi">
-        <div class="alt-n">ALT 03</div>
-        <div class="alt-title">Trust failure</div>
-        <div class="alt-body">Users reach the card, read it, and don't act because the AI's reasoning is invisible. "I don't know why it's telling me this."</div>
-        <span class="pill pill-blue">↳ Confirmed by qualitative</span>
-      </div>
-    </div>
-
-    <div class="sec-body">
-      <p>User interviews provide the confirming signal. The specific language people reach for — "I don't know why it's telling me this" and "what if it's wrong?" — maps directly to transparency and uncertainty anxiety. These are trust failure patterns, not relevance or timing complaints.</p>
+      <p>Johnny Bravo and I ran user interviews and collected some feedback.</p>
     </div>
 
     <div class="quote-grid">
-      <div class="quote-card">
-        <div class="quote-text">"I don't know why it's telling me this. Like, what data is it even looking at?"</div>
-        <div class="quote-src">User interview · Segment B · financially aware · 3 weeks on app</div>
+      <div class="quote-card" style="border-left:3px solid #0052ff; background:rgba(0,82,255,0.04);">
+        <div class="quote-text">"It's asking me to switch my snack subscription. Like, okay, but <strong>I don't even see how it knows</strong> what I actually use."</div>
+        <div class="quote-src"><img src="shaggy.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Shaggy Rogers</div>
       </div>
-      <div class="quote-card">
-        <div class="quote-text">"What if it's wrong? I'm not going to switch my phone plan because an app told me to."</div>
-        <div class="quote-src">User interview · Segment A · avoidant · 6 weeks on app</div>
+      <div class="quote-card" style="border-left:3px solid #c83030; background:rgba(200,48,48,0.04);">
+        <div class="quote-text">"It says I can optimise my beauty bill payments. Maybe. But <strong>what data is it even using?</strong> It just tells me to act."</div>
+        <div class="quote-src"><img src="daphne.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Daphne Blake</div>
       </div>
-    </div>
-
-    <div class="sec-body" style="margin-top:40px;">
-      <p>The brief states overall engagement is under 8%. Working from that single number, the funnel above is illustrative — constructed to reason about where drop-off is most likely to occur, not sourced from Amplitude. The shape of the funnel is what matters: it surfaces stage three as the design-relevant failure point.</p>
+      <div class="quote-card" style="border-left:3px solid #c87800; background:rgba(200,120,0,0.04);">
+        <div class="quote-text">"It wants me to set a savings goal. I get it, but <strong>I need a reason before I trust this.</strong> Where's the plan?"</div>
+        <div class="quote-src"><img src="fred.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Fred Jones</div>
+      </div>
+      <div class="quote-card" style="border-left:3px solid #1a6e40; background:rgba(26,110,64,0.04);">
+        <div class="quote-text">"It flagged an unusual charge in my account. Could be right. But <strong>I need to see the evidence</strong> — the logic just isn't there."</div>
+        <div class="quote-src"><img src="velma.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Velma Dinkley</div>
+      </div>
+      <div class="quote-card" style="border-left:3px solid #8b5cf6; background:rgba(139,92,246,0.04);">
+        <div class="quote-text">"Scooby-Dooby-Doo! <strong>Why is the app telling me to stop buying Scooby Snacks?!</strong>"</div>
+        <div class="quote-src"><img src="scooby.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Scooby-Doo</div>
+      </div>
     </div>
 
     <div class="sec-body">
-      <p>The first drop — sent to opened — is assumed to be large but expected. Notification abandonment in this range is typical for fintech push campaigns. Users haven't seen the product yet; this is a copy problem, not a design one.</p>
-      <p>The assumed critical failure is stage three: card viewed to CTA tapped. If users are making it this far — opening the app, finding the card, reading it — something on the card itself is failing to convert a willing reader into an actor. That is the primary design surface, and it aligns with what qualitative interviews confirm.</p>
+      <p>The Mystery Machine gang all use Claro and know what it's suggesting. Not one of them acted on it.</p>
     </div>
 
-    <div class="ps">
-      <div class="ps-lbl">Verified problem statement</div>
-      <div class="ps-text">
-        Users reach the recommendation card, read it, and don't act — because the card fails to provide <strong>enough visible reasoning</strong> to overcome natural skepticism about AI making decisions about their money.
-      </div>
-    </div>
-
-    <div class="impl-list">
-      <div class="impl-item">
-        <div class="impl-num"><i data-feather="eye"></i></div>
-        <div>
-          <div class="impl-title">Reasoning must be visible by default</div>
-          <div class="impl-body">Not tucked behind a "why?" tap. The first thing a user reads should be the data that generated the recommendation — not just the recommendation itself.</div>
-        </div>
-      </div>
-      <div class="impl-item">
-        <div class="impl-num"><i data-feather="bar-chart-2"></i></div>
-        <div>
-          <div class="impl-title">Confidence must be qualitative, not numerical</div>
-          <div class="impl-body">Showing "87% confidence" increases anxiety, not trust. Users need a human signal — "based on 6 months of spending data" lands better than a percentage score.</div>
-        </div>
-      </div>
-      <div class="impl-item">
-        <div class="impl-num"><i data-feather="message-circle"></i></div>
-        <div>
-          <div class="impl-title">Dispute must be a first-class action</div>
-          <div class="impl-body">Users who disagree currently have nowhere to go. A dead end at disagreement kills trust further. The AI must appear teachable, not authoritative.</div>
-        </div>
-      </div>
-      <div class="impl-item">
-        <div class="impl-num"><i data-feather="trending-up"></i></div>
-        <div>
-          <div class="impl-title">Trust compounds across interactions</div>
-          <div class="impl-body">A user who acts on one recommendation and sees a good outcome is far more likely to act on the next. The card must close the feedback loop visibly over time.</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- 02 Concept Exploration -->
@@ -1280,8 +1230,8 @@ const stages = [
   { label: 'Notification sent',   icon: 'send',          users: 100000, pct: 100, drop: null,  bg: '#0052ff', txt: '#fff' },
   { label: 'Notification opened', icon: 'bell',          users: 42000,  pct: 42,  drop: '42%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
   { label: 'Card viewed',         icon: 'eye',           users: 28000,  pct: 28,  drop: '67%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
-  { label: 'CTA tapped',          icon: 'mouse-pointer', users: 12000,  pct: 12,  drop: '43%', bg: '#c83030', txt: '#0a0b0d' },
-  { label: 'Action completed',    icon: 'check-circle',  users: 8000,   pct: 8,   drop: '67%', bg: '#1a6e40', txt: '#0a0b0d' },
+  { label: 'CTA tapped',          icon: 'mouse-pointer', users: 12000,  pct: 12,  drop: '43%', bg: '#f4b0b0', txt: '#0a0b0d' },
+  { label: 'Action completed',    icon: 'check-circle',  users: 8000,   pct: 8,   drop: '67%', bg: '#a8d5b8', txt: '#0a0b0d' },
 ];
 
 const container = document.getElementById('funnel');
@@ -1329,28 +1279,32 @@ stages.forEach((s, i) => {
 
 feather.replace();
 
-// Smooth scroll with offset for sticky nav + sec-nav
-document.querySelectorAll('.sec-nav-link').forEach(link => {
+// Active section nav highlight
+const secLinks = document.querySelectorAll('.sec-nav-link');
+const sections = ['s01','s02','s03','s04','s05','s06'].map(id => document.getElementById(id));
+const SCROLL_OFFSET = 64 + 48 + 32; // nav + sec-nav + breathing room
+
+function updateActiveNav() {
+  let current = 0;
+  sections.forEach((sec, i) => {
+    if (sec && window.scrollY >= sec.offsetTop - SCROLL_OFFSET - 4) current = i;
+  });
+  secLinks.forEach((l, i) => l.classList.toggle('active', i === current));
+}
+
+// Smooth scroll with offset, set active immediately on click
+document.querySelectorAll('.sec-nav-link').forEach((link, idx) => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
-    const offset = 64 + 48 + 24; // nav + sec-nav + breathing room
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    // Set active state right away
+    secLinks.forEach((l, i) => l.classList.toggle('active', i === idx));
+    const top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
 
-// Active section nav highlight
-const secLinks = document.querySelectorAll('.sec-nav-link');
-const sections = ['s01','s02','s03','s04','s05','s06'].map(id => document.getElementById(id));
-function updateActiveNav() {
-  let current = 0;
-  sections.forEach((sec, i) => {
-    if (sec && window.scrollY >= sec.offsetTop - 120) current = i;
-  });
-  secLinks.forEach((l, i) => l.classList.toggle('active', i === current));
-}
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 updateActiveNav();
 </script>
