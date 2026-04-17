@@ -32,7 +32,7 @@
     --r-pill: 56px;
   }
 
-  html { font-size: 16px; }
+  html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
     background: var(--white);
@@ -455,7 +455,7 @@
   }
   .f-bar-txt { font-family: var(--font-mono); font-size: 12px; font-weight: 500; white-space: nowrap; }
   .f-drop { width: 52px; flex-shrink: 0; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
-  .f-sep { border: none; border-top: 1px dashed var(--border); margin: 4px 0 4px 204px; }
+  .f-sep { display: none; }
 
   /* DROPOFF ANALYSIS */
   .do-grid {
@@ -685,7 +685,7 @@
 <nav>
   <div class="nav-brand">
     <div class="nav-dot"></div>
-    Claro
+    Claro.ai
   </div>
   <div class="nav-right">
     <span class="badge">by Jordy — 17 Apr 2026</span>
@@ -719,9 +719,17 @@
       <span class="sec-num">01</span>
       <span class="sec-tag">Problem Framing &amp; Research</span>
     </div>
-    <h2 class="sec-title">From assumption to design brief</h2>
+    <h2 class="sec-title">Assumption to brief</h2>
     <div class="sec-body">
-      <p>Before designing anything, the brief's core claim needs to be stress-tested. "Users don't trust recommendations" is a conclusion — not a problem statement. Trust is an outcome. Something upstream causes it to break, and different root causes demand completely different design responses.</p>
+      <p>To understand what's going on, I extracted the product owner's assumption, gathered user feedback, and mapped out an assumed engagement funnel.</p>
+    </div>
+
+    <div class="funnel-card">
+      <div class="funnel-hd">
+        <div class="funnel-title">Assumed engagement funnel <span style="font-size:11px; font-weight:600; background:rgba(200,120,0,0.1); color:#c87800; border:1px solid rgba(200,120,0,0.2); padding:2px 9px; border-radius:10px; vertical-align:middle; margin-left:8px; font-family:var(--font-sans); letter-spacing:0">Illustrative</span></div>
+        <div class="funnel-src">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
+      </div>
+      <div id="funnel"></div>
     </div>
 
     <div class="assumption">
@@ -770,15 +778,7 @@
     </div>
 
     <div class="sec-body" style="margin-top:40px;">
-      <p>The brief states overall engagement is under 8%. Working from that single number, the funnel below is illustrative — constructed to reason about where drop-off is most likely to occur, not sourced from Amplitude. The shape of the funnel is what matters: it surfaces stage three as the design-relevant failure point.</p>
-    </div>
-
-    <div class="funnel-card">
-      <div class="funnel-hd">
-        <div class="funnel-title">Assumed engagement funnel <span style="font-size:11px; font-weight:600; background:rgba(200,120,0,0.1); color:#c87800; border:1px solid rgba(200,120,0,0.2); padding:2px 9px; border-radius:10px; vertical-align:middle; margin-left:8px; font-family:var(--font-sans); letter-spacing:0">Illustrative</span></div>
-        <div class="funnel-src">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
-      </div>
-      <div id="funnel"></div>
+      <p>The brief states overall engagement is under 8%. Working from that single number, the funnel above is illustrative — constructed to reason about where drop-off is most likely to occur, not sourced from Amplitude. The shape of the funnel is what matters: it surfaces stage three as the design-relevant failure point.</p>
     </div>
 
     <div class="sec-body">
@@ -1277,11 +1277,11 @@
 
 <script>
 const stages = [
-  { label: 'Notification sent',   users: 100000, pct: 100, drop: null,  bg: '#0052ff', txt: '#fff' },
-  { label: 'Notification opened', users: 42000,  pct: 42,  drop: '42%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
-  { label: 'Card viewed',         users: 28000,  pct: 28,  drop: '67%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
-  { label: 'CTA tapped',          users: 12000,  pct: 12,  drop: '43%', bg: '#c83030', txt: '#fff' },
-  { label: 'Action completed',    users: 8000,   pct: 8,   drop: '67%', bg: '#1a6e40', txt: '#fff' },
+  { label: 'Notification sent',   icon: 'send',          users: 100000, pct: 100, drop: null,  bg: '#0052ff', txt: '#fff' },
+  { label: 'Notification opened', icon: 'bell',          users: 42000,  pct: 42,  drop: '42%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'Card viewed',         icon: 'eye',           users: 28000,  pct: 28,  drop: '67%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'CTA tapped',          icon: 'mouse-pointer', users: 12000,  pct: 12,  drop: '43%', bg: '#c83030', txt: '#0a0b0d' },
+  { label: 'Action completed',    icon: 'check-circle',  users: 8000,   pct: 8,   drop: '67%', bg: '#1a6e40', txt: '#0a0b0d' },
 ];
 
 const container = document.getElementById('funnel');
@@ -1296,7 +1296,7 @@ stages.forEach((s, i) => {
 
   const lbl = document.createElement('div');
   lbl.className = 'f-lbl';
-  lbl.textContent = s.label;
+  lbl.innerHTML = `<i data-feather="${s.icon}" style="width:13px;height:13px;stroke-width:2;vertical-align:-2px;margin-right:5px;"></i>${s.label}`;
 
   const track = document.createElement('div');
   track.className = 'f-track';
@@ -1328,6 +1328,18 @@ stages.forEach((s, i) => {
 });
 
 feather.replace();
+
+// Smooth scroll with offset for sticky nav + sec-nav
+document.querySelectorAll('.sec-nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    const offset = 64 + 48 + 24; // nav + sec-nav + breathing room
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
 
 // Active section nav highlight
 const secLinks = document.querySelectorAll('.sec-nav-link');
