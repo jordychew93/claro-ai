@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claro — Problem Framing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0052ff;
+    --blue-hover: #578bfa;
+    --near-black: #0a0b0d;
+    --dark-card: #282b31;
+    --white: #ffffff;
+    --surface: #eef0f3;
+    --border: rgba(91,97,110,0.2);
+    --border-strong: rgba(91,97,110,0.35);
+    --text: #0a0b0d;
+    --text-secondary: #5b616e;
+    --text-tertiary: #8a8f9a;
+    --danger: #c83030;
+    --danger-bg: #fdf0f0;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --r-xl: 24px;
+    --r-pill: 56px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* NAV */
+  nav {
+    height: 64px;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 99;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+  }
+
+  .badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    background: rgba(0,82,255,0.08);
+    border: 1px solid rgba(0,82,255,0.2);
+    padding: 4px 14px;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.01em;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 88px 48px 80px;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 24px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--blue);
+  }
+
+  .hero-title {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.00;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title .accent { color: var(--blue); }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.56;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .meta-item {}
+  .meta-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 4px;
+  }
+  .meta-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* BODY */
+  .body-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 48px 120px;
+  }
+
+  /* SECTION */
+  .sec {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec:last-of-type { border-bottom: none; }
+
+  .sec-eye {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .sec-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    background: rgba(0,82,255,0.07);
+    border: 1px solid rgba(0,82,255,0.18);
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .sec-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .sec-title {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.11;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .sec-body {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 640px;
+  }
+  .sec-body p + p { margin-top: 1em; }
+
+  /* ASSUMPTION CALLOUT */
+  .assumption {
+    background: rgba(0,82,255,0.05);
+    border: 1px solid rgba(0,82,255,0.18);
+    border-left: 3px solid var(--blue);
+    border-radius: var(--r-xl);
+    padding: 36px 40px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .assumption::before {
+    content: '"';
+    font-size: 220px;
+    font-weight: 700;
+    color: rgba(0,82,255,0.06);
+    position: absolute;
+    top: -40px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+    font-family: Georgia, serif;
+  }
+  .assumption-lbl {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+  .assumption-text {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ALT GRID */
+  .alt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+  }
+
+  .alt-card {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px;
+    background: var(--white);
+  }
+  .alt-card.dim { opacity: 0.45; }
+  .alt-card.hi {
+    border-color: var(--blue);
+    background: rgba(0,82,255,0.03);
+  }
+
+  .alt-n {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+  }
+  .alt-card.hi .alt-n { color: var(--blue); }
+
+  .alt-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .alt-card.hi .alt-title { color: var(--blue); }
+
+  .alt-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.02em;
+  }
+  .pill-muted { background: var(--surface); color: var(--text-tertiary); }
+  .pill-blue  { background: rgba(0,82,255,0.08); color: var(--blue); border: 1px solid rgba(0,82,255,0.18); }
+
+  /* QUOTES */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .quote-card {
+    background: var(--surface);
+    border-radius: var(--r-md);
+    padding: 22px 24px;
+  }
+  .quote-text {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .quote-src {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+  }
+
+  /* METRICS */
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 32px 0;
+  }
+  .mc {
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    padding: 22px 24px;
+  }
+  .mc.dark { background: var(--blue); }
+  .mc-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+  .mc.dark .mc-lbl { color: rgba(255,255,255,0.6); }
+  .mc-val {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .mc.dark .mc-val { color: var(--white); }
+  .mc-sub {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+  .mc.dark .mc-sub { color: rgba(255,255,255,0.55); }
+
+  /* FUNNEL CHART */
+  .funnel-card {
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 36px;
+    margin: 28px 0;
+  }
+  .funnel-hd { margin-bottom: 28px; }
+  .funnel-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .funnel-src { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); }
+
+  .f-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+  .f-lbl { font-size: 13px; font-weight: 500; color: var(--text-secondary); width: 188px; flex-shrink: 0; text-align: right; }
+  .f-track { flex: 1; background: var(--surface); border-radius: var(--r-sm); height: 36px; overflow: hidden; }
+  .f-bar {
+    height: 100%; border-radius: var(--r-sm);
+    display: flex; align-items: center; padding-left: 14px;
+    width: 0%; transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
+  }
+  .f-bar-txt { font-family: var(--font-mono); font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .f-drop { width: 52px; flex-shrink: 0; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
+  .f-sep { border: none; border-top: 1px dashed var(--border); margin: 4px 0 4px 204px; }
+
+  /* DROPOFF ANALYSIS */
+  .do-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .do-card {
+    background: var(--surface);
+    border-radius: var(--r-md);
+    padding: 16px 18px;
+    border: 1px solid transparent;
+  }
+  .do-card.crit { background: var(--danger-bg); border-color: rgba(200,48,48,0.22); }
+  .do-stg { font-size: 11px; font-weight: 600; color: var(--text-tertiary); margin-bottom: 8px; line-height: 1.4; }
+  .do-card.crit .do-stg { color: var(--danger); opacity: 0.75; }
+  .do-pct { font-size: 26px; font-weight: 400; letter-spacing: -0.03em; color: var(--text); margin-bottom: 5px; line-height: 1; }
+  .do-card.crit .do-pct { color: var(--danger); }
+  .do-note { font-size: 12px; color: var(--text-tertiary); line-height: 1.4; }
+  .do-card.crit .do-note { color: var(--danger); opacity: 0.65; }
+
+  /* PROBLEM STATEMENT */
+  .ps {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-left: 4px solid var(--blue);
+    border-radius: var(--r-xl);
+    padding: 48px 52px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .ps::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle at 100% 0%, rgba(0,82,255,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .ps-lbl {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ps-lbl::before { content: ''; width: 16px; height: 1px; background: var(--blue); }
+  .ps-text {
+    font-size: 24px; font-weight: 400;
+    line-height: 1.45; letter-spacing: -0.02em;
+    color: var(--text); max-width: 620px;
+    position: relative; z-index: 1;
+  }
+  .ps-text strong { color: var(--blue); font-weight: 600; }
+
+  /* IMPLICATIONS */
+  .impl-list {
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    margin: 32px 0;
+  }
+  .impl-item {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .impl-item:last-child { border-bottom: none; }
+  .impl-num {
+    width: 32px; height: 32px;
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 700; color: var(--blue);
+    flex-shrink: 0;
+  }
+  .impl-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .impl-body { font-size: 14px; color: var(--text-secondary); line-height: 1.56; }
+
+  /* FOOTER */
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+  }
+  .footer-l { font-size: 13px; font-weight: 500; color: var(--text-tertiary); }
+  .footer-r { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); }
+
+  @media (max-width: 680px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 56px 20px; }
+    .hero-title { font-size: 40px; }
+    .body-wrap { padding: 0 20px 80px; }
+    .alt-grid, .metric-row, .quote-grid { grid-template-columns: 1fr; }
+    .do-grid { grid-template-columns: 1fr 1fr; }
+    .f-lbl { width: 120px; font-size: 12px; }
+    .f-sep { margin-left: 136px; }
+    .ps { padding: 32px 28px; }
+    .ps-text { font-size: 19px; }
+    .hero-meta { flex-wrap: wrap; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-dot"></div>
+    Claro
+  </div>
+  <div class="nav-right">
+    <span class="nav-label">Problem Framing</span>
+    <span class="badge">Option 1 — AI Trust</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Design Case Study · Next Ventures 2026</div>
+    <h1 class="hero-title">Why users don't act on<br><span class="accent">AI recommendations</span></h1>
+    <p class="hero-sub">Interrogating the product owner's assumption against Amplitude data to arrive at a precise, designable problem statement.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-lbl">Author</div>
+        <div class="meta-val">Jordy Chew — Product Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-lbl">Stage</div>
+        <div class="meta-val">01 — Problem Framing &amp; Research</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-lbl">Category</div>
+        <div class="meta-val">AI Transparency &amp; Trust</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- 01 The Assumption -->
+  <div class="sec">
+    <div class="sec-eye">
+      <span class="sec-num">01</span>
+      <span class="sec-tag">The starting point</span>
+    </div>
+    <h2 class="sec-title">Interrogating the assumption</h2>
+    <div class="sec-body">
+      <p>Before designing anything, the brief's core claim needs to be stress-tested. "Users don't trust recommendations" is a conclusion — not a problem statement. Trust is an outcome. Something upstream causes it to break, and different root causes demand completely different design responses.</p>
+    </div>
+
+    <div class="assumption">
+      <div class="assumption-lbl">Product owner assumption</div>
+      <div class="assumption-text">"Users don't trust the recommendations."</div>
+    </div>
+
+    <div class="sec-body">
+      <p>This could be accurate. But it could also be masking three entirely different explanations — each pointing to a different design solution.</p>
+    </div>
+
+    <div class="alt-grid">
+      <div class="alt-card dim">
+        <div class="alt-n">ALT 01</div>
+        <div class="alt-title">Relevance failure</div>
+        <div class="alt-body">Recommendations are simply bad. Users aren't skeptical — the suggestions don't apply to their financial situation at all.</div>
+        <span class="pill pill-muted">↳ Needs data to rule out</span>
+      </div>
+      <div class="alt-card dim">
+        <div class="alt-n">ALT 02</div>
+        <div class="alt-title">Timing failure</div>
+        <div class="alt-body">Right recommendation, wrong moment. A subscription switch nudge at 9am on a commute gets ignored regardless of trust level.</div>
+        <span class="pill pill-muted">↳ Needs data to rule out</span>
+      </div>
+      <div class="alt-card hi">
+        <div class="alt-n">ALT 03</div>
+        <div class="alt-title">Trust failure</div>
+        <div class="alt-body">Users reach the card, read it, and don't act because the AI's reasoning is invisible. "I don't know why it's telling me this."</div>
+        <span class="pill pill-blue">↳ Confirmed by qualitative</span>
+      </div>
+    </div>
+
+    <div class="sec-body">
+      <p>User interviews provide the confirming signal. The specific language people reach for — "I don't know why it's telling me this" and "what if it's wrong?" — maps directly to transparency and uncertainty anxiety. These are trust failure patterns, not relevance or timing complaints.</p>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-text">"I don't know why it's telling me this. Like, what data is it even looking at?"</div>
+        <div class="quote-src">User interview · Segment B · financially aware · 3 weeks on app</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">"What if it's wrong? I'm not going to switch my phone plan because an app told me to."</div>
+        <div class="quote-src">User interview · Segment A · avoidant · 6 weeks on app</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Amplitude -->
+  <div class="sec">
+    <div class="sec-eye">
+      <span class="sec-num">02</span>
+      <span class="sec-tag">Amplitude data</span>
+    </div>
+    <h2 class="sec-title">What the funnel actually shows</h2>
+    <div class="sec-body">
+      <p>The headline metric — 8% engagement — is nearly useless on its own. Decomposing the funnel reveals exactly where users drop off, which in turn tells us what kind of problem we're actually solving.</p>
+    </div>
+
+    <div class="metric-row">
+      <div class="mc">
+        <div class="mc-lbl">Monthly volume</div>
+        <div class="mc-val">100k</div>
+        <div class="mc-sub">notifications sent</div>
+      </div>
+      <div class="mc dark">
+        <div class="mc-lbl">Overall engagement</div>
+        <div class="mc-val">8%</div>
+        <div class="mc-sub">CTA tapped / notifications sent</div>
+      </div>
+      <div class="mc">
+        <div class="mc-lbl">Lowest conversion stage</div>
+        <div class="mc-val">43%</div>
+        <div class="mc-sub">card viewed → CTA tapped</div>
+      </div>
+    </div>
+
+    <div class="funnel-card">
+      <div class="funnel-hd">
+        <div class="funnel-title">Recommendation engagement funnel</div>
+        <div class="funnel-src">Source: Amplitude · Monthly cohort · 100,000 notifications sent</div>
+      </div>
+      <div id="funnel"></div>
+      <div class="do-grid">
+        <div class="do-card">
+          <div class="do-stg">Sent → Opened</div>
+          <div class="do-pct">42%</div>
+          <div class="do-note">Notification copy or timing. Typical for fintech push.</div>
+        </div>
+        <div class="do-card">
+          <div class="do-stg">Opened → Card viewed</div>
+          <div class="do-pct">67%</div>
+          <div class="do-note">Feed scroll-past or immediate dismissal.</div>
+        </div>
+        <div class="do-card crit">
+          <div class="do-stg">Card viewed → CTA tapped</div>
+          <div class="do-pct">43%</div>
+          <div class="do-note">Trust failure. These users showed up. The card lost them.</div>
+        </div>
+        <div class="do-card">
+          <div class="do-stg">CTA tapped → Completed</div>
+          <div class="do-pct">67%</div>
+          <div class="do-note">Friction outside Claro. Out of scope for this sprint.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-body">
+      <p>The first drop — sent to opened — is large but expected. 58% notification abandonment sits within the normal range for fintech push campaigns. Users haven't seen the product yet; this is a copy problem, not a design one.</p>
+      <p>The critical failure is stage three: card viewed to CTA tapped. These users showed intent. They opened the app, found the card, and read it. Something on that card is failing to convert a willing reader into an actor. That is the primary design surface for this sprint.</p>
+    </div>
+  </div>
+
+  <!-- 03 Synthesis -->
+  <div class="sec">
+    <div class="sec-eye">
+      <span class="sec-num">03</span>
+      <span class="sec-tag">Synthesis</span>
+    </div>
+    <h2 class="sec-title">From assumption to design brief</h2>
+    <div class="sec-body">
+      <p>Combining funnel data with qualitative interview signal produces a precise, testable problem statement — specific enough to design against, measurable enough to evaluate against.</p>
+    </div>
+
+    <div class="ps">
+      <div class="ps-lbl">Verified problem statement</div>
+      <div class="ps-text">
+        Users reach the recommendation card, read it, and don't act — because the card fails to provide <strong>enough visible reasoning</strong> to overcome natural skepticism about AI making decisions about their money.
+      </div>
+    </div>
+
+    <div class="sec-body">
+      <p>This reframing matters for three reasons. It localises the design problem to a specific screen. It identifies the mechanism — absence of reasoning, not absence of relevance. And it suggests a measurable outcome: increase in card-viewed-to-CTA-tapped conversion rate. Everything else is secondary to fixing that card.</p>
+    </div>
+
+    <div class="impl-list">
+      <div class="impl-item">
+        <div class="impl-num">01</div>
+        <div>
+          <div class="impl-title">Reasoning must be visible by default</div>
+          <div class="impl-body">Not tucked behind a "why?" tap. The first thing a user reads should be the data that generated the recommendation — not just the recommendation itself.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-num">02</div>
+        <div>
+          <div class="impl-title">Confidence must be qualitative, not numerical</div>
+          <div class="impl-body">Showing "87% confidence" increases anxiety, not trust. Users need a human signal — "based on 6 months of spending data" lands better than a percentage score.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-num">03</div>
+        <div>
+          <div class="impl-title">Dispute must be a first-class action</div>
+          <div class="impl-body">Users who disagree currently have nowhere to go. A dead end at disagreement kills trust further. The AI must appear teachable, not authoritative.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-num">04</div>
+        <div>
+          <div class="impl-title">Trust compounds across interactions</div>
+          <div class="impl-body">A user who acts on one recommendation and sees a good outcome is far more likely to act on the next. The card must close the feedback loop visibly over time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-l">Claro · Option 1 — AI Transparency &amp; Trust · Next Ventures 2026</div>
+    <div class="footer-r">Problem Framing · Confidential</div>
+  </div>
+
+</div>
+
+<script>
+const stages = [
+  { label: 'Notification sent',   users: 100000, pct: 100, drop: null,  bg: '#0052ff', txt: '#fff' },
+  { label: 'Notification opened', users: 42000,  pct: 42,  drop: '42%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'Card viewed',         users: 28000,  pct: 28,  drop: '67%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'CTA tapped',          users: 12000,  pct: 12,  drop: '43%', bg: '#c83030', txt: '#fff' },
+  { label: 'Action completed',    users: 8000,   pct: 8,   drop: '67%', bg: '#1a6e40', txt: '#fff' },
+];
+
+const container = document.getElementById('funnel');
+stages.forEach((s, i) => {
+  if (i > 0) {
+    const sep = document.createElement('hr');
+    sep.className = 'f-sep';
+    container.appendChild(sep);
+  }
+  const row = document.createElement('div');
+  row.className = 'f-row';
+
+  const lbl = document.createElement('div');
+  lbl.className = 'f-lbl';
+  lbl.textContent = s.label;
+
+  const track = document.createElement('div');
+  track.className = 'f-track';
+
+  const bar = document.createElement('div');
+  bar.className = 'f-bar';
+  bar.style.background = s.bg;
+  bar.style.width = '0%';
+
+  const txt = document.createElement('span');
+  txt.className = 'f-bar-txt';
+  txt.style.color = s.txt;
+  txt.textContent = s.users.toLocaleString() + ' · ' + s.pct + '%';
+
+  bar.appendChild(txt);
+  track.appendChild(bar);
+
+  const drop = document.createElement('div');
+  drop.className = 'f-drop';
+  drop.style.color = s.drop === '43%' ? '#c83030' : '#8a8f9a';
+  drop.textContent = s.drop || '';
+
+  row.appendChild(lbl);
+  row.appendChild(track);
+  row.appendChild(drop);
+  container.appendChild(row);
+
+  setTimeout(() => { bar.style.width = s.pct + '%'; }, 300 + i * 130);
+});
+</script>
+</body>
+</html>
