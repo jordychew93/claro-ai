@@ -97,6 +97,52 @@
     letter-spacing: 0.01em;
   }
 
+  /* TIMELINE */
+  .timeline { display: grid; grid-template-columns: 1fr 1fr 1fr; margin: 28px 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; top: 6px; left: calc(16.66% + 7px); right: calc(16.66% + 7px); height: 2px; background: var(--border); z-index: 0; }
+  .tl-phase { display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; z-index: 1; }
+  .tl-node { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--border-strong); background: white; flex-shrink: 0; }
+  .tl-phase.active .tl-node { background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 4px rgba(0,82,255,0.15); }
+  .tl-content { display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; padding: 0 12px; }
+  .tl-time { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); }
+  .tl-phase.active .tl-time { color: var(--blue); }
+  .tl-label { font-size: 14px; font-weight: 600; color: var(--text); }
+  .tl-phase.active .tl-label { color: var(--blue); }
+  .tl-desc { font-size: 12px; color: var(--text-tertiary); line-height: 1.5; }
+
+  /* COMPETITOR RESEARCH */
+  .comp-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 16px; scrollbar-width: none; align-items: flex-start; margin: 28px 0; }
+  .comp-scroll::-webkit-scrollbar { display: none; }
+  .comp-item { flex-shrink: 0; width: 200px; }
+  .comp-frame { background: var(--surface); border: 1px dashed #C4C4C4; border-radius: 20px; aspect-ratio: 390/844; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text-tertiary); padding: 16px; }
+  .comp-frame.has-img { padding: 0; overflow: hidden; }
+  .comp-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 18px; display: block; }
+  .comp-frame-empty { font-family: var(--font-mono); font-size: 11px; text-align: center; color: var(--text-tertiary); }
+  .comp-cap { margin-top: 12px; font-size: 13px; line-height: 1.6; color: var(--text-tertiary); }
+  .comp-cap strong { color: var(--text); font-weight: 500; }
+
+  /* PRIORITIZATION MATRIX */
+  .matrix-card { border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; margin: 40px 0; }
+  .matrix-hd { display: flex; align-items: baseline; gap: 12px; margin-bottom: 28px; }
+  .matrix-title { font-size: 16px; font-weight: 600; color: var(--text); }
+  .matrix-src { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-left: auto; }
+  .matrix-wrap { display: grid; grid-template-columns: 28px 1fr; grid-template-rows: 1fr 28px; gap: 0; height: 380px; }
+  .matrix-y-lbl { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); text-align: center; grid-row: 1; grid-column: 1; }
+  .matrix-x-lbl { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); text-align: center; grid-row: 2; grid-column: 2; display: flex; align-items: center; justify-content: center; }
+  .matrix-plot { position: relative; border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; grid-row: 1; grid-column: 2; }
+  .matrix-plot::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .matrix-plot::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border); }
+  .matrix-zone { position: absolute; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 14px; }
+  .matrix-zone.tl { top: 0; left: 0; color: var(--blue); background: rgba(0,82,255,0.05); width: 50%; height: 50%; }
+  .matrix-zone.tr { top: 0; right: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.015); width: 50%; height: 50%; text-align: right; }
+  .matrix-zone.bl { bottom: 0; left: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.015); width: 50%; height: 50%; }
+  .matrix-zone.br { bottom: 0; right: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.01); width: 50%; height: 50%; text-align: right; }
+  .matrix-dot { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; }
+  .matrix-dot-circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid; flex-shrink: 0; }
+  .matrix-dot-circle.blue { background: rgba(0,82,255,0.15); border-color: var(--blue); }
+  .matrix-dot-circle.grey { background: rgba(91,97,110,0.1); border-color: var(--text-tertiary); }
+  .matrix-dot-lbl { font-size: 11px; font-weight: 500; color: var(--text); background: white; border: 1px solid var(--border); border-radius: var(--r-pill); padding: 3px 10px; white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
   /* HERO */
   .hero {
     background: var(--white);
@@ -670,6 +716,10 @@
     .hero { padding: 56px 20px; }
     .hero-title { font-size: 40px; }
     .body-wrap { padding: 0 20px 80px; }
+    .matrix-card { padding: 20px 12px; }
+    .matrix-y-lbl, .matrix-x-lbl { display: none; }
+    .matrix-wrap { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+    .matrix-plot { grid-row: 1; grid-column: 1; }
     .alt-grid, .metric-row, .quote-grid { grid-template-columns: 1fr; }
     .do-grid { grid-template-columns: 1fr 1fr; }
     .f-lbl { width: 120px; font-size: 12px; }
@@ -696,7 +746,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Next Ventures 2026</div>
     <h1 class="hero-title">Design <span class="accent">case study</span></h1>
-    <p class="hero-sub">I chose Option 1: AI Transparency &amp; Trust.<br>Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
+    <p class="hero-sub">I chose <strong>Option 1</strong>, AI Transparency &amp; Trust.<br>Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
   </div>
 </div>
 
@@ -720,9 +770,9 @@
       <span class="sec-num">01</span>
       <span class="sec-tag">Problem Framing &amp; Research</span>
     </div>
-    <h2 class="sec-title">Assumption to brief</h2>
+    <h2 class="sec-title">Assumption to insight</h2>
     <div class="sec-body">
-      <p>Johnny Bravo (PO) shared his assumption, user feedback, and engagement data with me. Here's what I found.</p>
+      <p>Johnny Bravo (PO) shared his engagement funnel and user feedback with me.</p>
     </div>
 
     <div class="funnel-card">
@@ -771,6 +821,128 @@
 
     <div class="sec-body">
       <p>The Mystery Machine gang all use Claro and know what it's suggesting. Not one of them acted on it.</p>
+      <p>From there, we collected more data, synthesised the findings into key insights, and ran a prioritization exercise to decide where to focus first.</p>
+    </div>
+
+    <div class="matrix-card">
+      <div class="matrix-hd">
+        <div class="matrix-title">Prioritization matrix</div>
+        <div class="matrix-src">From user testing · Impact × Effort</div>
+      </div>
+      <div class="matrix-wrap">
+        <div class="matrix-y-lbl">Impact ↑</div>
+        <div class="matrix-plot">
+          <!-- Quadrant labels -->
+          <div class="matrix-zone tl">Quick wins</div>
+          <div class="matrix-zone tr">Major projects</div>
+          <div class="matrix-zone bl">Fill-ins</div>
+          <div class="matrix-zone br">Deprioritise</div>
+          <!-- Items: left% = effort axis, top% = inverse of impact -->
+          <div class="matrix-dot" style="left:22%;top:18%;">
+            <div class="matrix-dot-circle blue"></div>
+            <div class="matrix-dot-lbl" style="color:var(--blue);border-color:rgba(0,82,255,0.3);">Show reasoning inline</div>
+          </div>
+          <div class="matrix-dot" style="left:38%;top:32%;">
+            <div class="matrix-dot-circle blue"></div>
+            <div class="matrix-dot-lbl" style="color:var(--blue);border-color:rgba(0,82,255,0.3);">Qualitative confidence signal</div>
+          </div>
+          <div class="matrix-dot" style="left:68%;top:22%;">
+            <div class="matrix-dot-circle grey"></div>
+            <div class="matrix-dot-lbl">Dispute / teach-back action</div>
+          </div>
+          <div class="matrix-dot" style="left:80%;top:42%;">
+            <div class="matrix-dot-circle grey"></div>
+            <div class="matrix-dot-lbl">Trust feedback loop</div>
+          </div>
+          <div class="matrix-dot" style="left:28%;top:62%;">
+            <div class="matrix-dot-circle grey"></div>
+            <div class="matrix-dot-lbl">Notification copy</div>
+          </div>
+        </div>
+        <div class="matrix-x-lbl">Effort →</div>
+      </div>
+      <div style="margin-top:20px;">
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;max-width:100%;"><strong style="color:var(--text);">Key insight.</strong> The reasoning and data behind each AI recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals land as quick wins.</p>
+      </div>
+    </div>
+
+    <div class="sec-body">
+      <p>
+        <span style="color:var(--blue);font-weight:600;">Showing reasoning inline</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Quick win</span> — display the data that triggered the recommendation directly on the card, before the CTA. Users shouldn't have to tap "why?" to find out.<br><br>
+        <span style="color:var(--blue);font-weight:600;">Qualitative confidence signals</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Quick win</span> — replace numerical scores like "87% confidence" with human language like "based on 6 months of your spending data." It reduces anxiety and builds trust.<br><br>
+        <span style="font-weight:600;">Notification copy</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Fill-in</span> — improve the push notification language to set better expectations before the user even opens the card.<br><br>
+        <span style="font-weight:600;">Dispute / teach-back action</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Major project</span> — let users flag a recommendation as wrong and teach the AI their preference. High trust impact, but complex to build.<br><br>
+        <span style="font-weight:600;">Trust feedback loop</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Major project</span> — show users the outcome of past recommendations they acted on. Closes the loop, but requires longitudinal data tracking.
+      </p>
+      <div style="margin-top:40px;border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 32px;">
+        <span style="display:block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:4px;">Suggested timeline</span>
+        <div class="timeline">
+          <div class="tl-phase active">
+            <div class="tl-node"></div>
+            <div class="tl-content">
+              <div class="tl-time">Apr 2026</div>
+              <div class="tl-label">Quick wins</div>
+              <div class="tl-desc">Reasoning inline + confidence language</div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-node"></div>
+            <div class="tl-content">
+              <div class="tl-time">Early May 2026</div>
+              <div class="tl-label">Fill-ins</div>
+              <div class="tl-desc">Improve notification copy</div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-node"></div>
+            <div class="tl-content">
+              <div class="tl-time">???</div>
+              <div class="tl-label" style="color:#e53935;">Major projects</div>
+              <div class="tl-desc">Dispute mechanism + trust feedback loop</div>
+              <span style="margin-top:4px;font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--text-tertiary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 8px;display:inline-block;">not always shipped</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-body" style="margin-top:56px;">
+      <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);">Competitor research · via Mobbin</span>
+      <h3 style="font-size:20px;font-weight:700;margin:8px 0 4px;">How others handle AI trust</h3>
+      <p style="margin:0 0 4px;">Patterns from apps that surface AI recommendations — how they explain reasoning, signal confidence, and handle user pushback.</p>
+    </div>
+
+    <div class="comp-scroll">
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Drop screen here</div>
+        </div>
+        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Drop screen here</div>
+        </div>
+        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Drop screen here</div>
+        </div>
+        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Drop screen here</div>
+        </div>
+        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Drop screen here</div>
+        </div>
+        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+      </div>
     </div>
 
   </div>
