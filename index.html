@@ -818,7 +818,7 @@
     Claro.ai
   </div>
   <div class="nav-right">
-    <span class="badge">by Jordy — 17 Apr 2026</span>
+    <span style="font-size:13px; color: var(--text-tertiary);">by Jordy — 17 Apr 2026</span>
   </div>
 </nav>
 
@@ -881,7 +881,7 @@
       <div class="accordion-item open">
         <button class="accordion-trigger">
           <img src="shaggy.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #0052ff;flex-shrink:0;">
-          <span class="accordion-label">Shaggy Rogers</span>
+          <span class="accordion-label">Shaggy Rogers <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body"><div class="accordion-body-inner">"It's asking me to switch my snack subscription. Like, okay, but <strong>I don't even see how it knows</strong> what I actually use."</div></div>
@@ -889,7 +889,7 @@
       <div class="accordion-item">
         <button class="accordion-trigger">
           <img src="daphne.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c83030;flex-shrink:0;">
-          <span class="accordion-label">Daphne Blake</span>
+          <span class="accordion-label">Daphne Blake <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body"><div class="accordion-body-inner">"It says I can optimise my beauty bill payments. Maybe. But <strong>what data is it even using?</strong> It just tells me to act."</div></div>
@@ -897,7 +897,7 @@
       <div class="accordion-item">
         <button class="accordion-trigger">
           <img src="fred.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c87800;flex-shrink:0;">
-          <span class="accordion-label">Fred Jones</span>
+          <span class="accordion-label">Fred Jones <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body"><div class="accordion-body-inner">"It wants me to set a savings goal. I get it, but <strong>I need a reason before I trust this.</strong> Where's the plan?"</div></div>
@@ -905,7 +905,7 @@
       <div class="accordion-item">
         <button class="accordion-trigger">
           <img src="velma.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #1a6e40;flex-shrink:0;">
-          <span class="accordion-label">Velma Dinkley</span>
+          <span class="accordion-label">Velma Dinkley <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body"><div class="accordion-body-inner">"It flagged an unusual charge in my account. Could be right. But <strong>I need to see the evidence</strong> — the logic just isn't there."</div></div>
@@ -913,7 +913,7 @@
       <div class="accordion-item">
         <button class="accordion-trigger">
           <img src="scooby.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #8b5cf6;flex-shrink:0;">
-          <span class="accordion-label">Scooby-Doo</span>
+          <span class="accordion-label">Scooby-Doo <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body"><div class="accordion-body-inner">"Scooby-Dooby-Doo! <strong>Why is the app telling me to stop buying Scooby Snacks?!</strong>"</div></div>
@@ -1527,51 +1527,55 @@
       <span class="sec-num">05</span>
       <span class="sec-tag">Light Validation</span>
     </div>
-    <h2 class="sec-title">Cognitive walkthrough</h2>
+    <h2 class="sec-title">User testing</h2>
     <div class="sec-body">
-      <p>Task: receive a recommendation notification, open the card, disagree with it, and complete the dispute flow. Evaluated at each step against whether the correct action is visible, obvious, and recoverable.</p>
+      <p>Task: receive a Claro recommendation, read the card, and decide whether to act or dispute it.</p>
     </div>
 
-    <div class="validation-table">
-      <div class="val-row hdr">
-        <div class="val-cell">Step</div>
-        <div class="val-cell">Status</div>
-        <div class="val-cell">Finding</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin:20px 0 28px;background:rgba(0,82,255,0.04);border:1px solid rgba(0,82,255,0.15);border-radius:var(--r-xl);padding:20px 24px;">
+      <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;">Success criteria</div>
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:#34a853;margin-top:1px;flex-shrink:0;">✓</span> User understands the recommendation without any assistance
       </div>
-      <div class="val-row">
-        <div class="val-cell">Notification received. User knows what to expect.</div>
-        <div class="val-cell"><span class="status-dot pass"><i data-feather="check"></i> Pass</span></div>
-        <div class="val-cell">High-confidence notifications name the specific data ("RM45/mo, 0 streams") — clear enough to set expectations before the app opens.</div>
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:#34a853;margin-top:1px;flex-shrink:0;">✓</span> User can identify the reasoning and data behind it
       </div>
-      <div class="val-row">
-        <div class="val-cell">Card opens. Reasoning is visible without additional taps.</div>
-        <div class="val-cell"><span class="status-dot pass"><i data-feather="check"></i> Pass</span></div>
-        <div class="val-cell">The "because" sentence and data chips render by default. No progressive disclosure required for core transparency.</div>
-      </div>
-      <div class="val-row">
-        <div class="val-cell">User reads data chips. Information is scannable and meaningful.</div>
-        <div class="val-cell"><span class="status-dot warn"><i data-feather="alert-triangle"></i> Review</span></div>
-        <div class="val-cell">"RM270 reviewed" is ambiguous without a time frame. Fixed to "RM270 over 6mo" — the period must be in the chip, not assumed from context.</div>
-      </div>
-      <div class="val-row">
-        <div class="val-cell">User disagrees. Dispute action is discoverable.</div>
-        <div class="val-cell"><span class="status-dot warn"><i data-feather="alert-triangle"></i> Review</span></div>
-        <div class="val-cell">"This doesn't seem right" as a grey text link is too low-contrast below the CTA. Risk: skeptical users dismiss the card instead of disputing it. Needs more visual weight — ghost button with border, not plain text.</div>
-      </div>
-      <div class="val-row">
-        <div class="val-cell">Dispute sheet opens. Reason options are clear and sufficient.</div>
-        <div class="val-cell"><span class="status-dot pass"><i data-feather="check"></i> Pass</span></div>
-        <div class="val-cell">Three reasons cover the vast majority of real cases. Sheet handle and overlay correctly signal dismissibility.</div>
-      </div>
-      <div class="val-row">
-        <div class="val-cell">User submits. System acknowledges and resolves.</div>
-        <div class="val-cell"><span class="status-dot pass"><i data-feather="check"></i> Pass</span></div>
-        <div class="val-cell">Confirmation is user-centred ("we'll update your recommendations") not model-centred. Card is removed from feed on submission.</div>
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:#34a853;margin-top:1px;flex-shrink:0;">✓</span> User locates the dispute action within 10 seconds
       </div>
     </div>
 
+    <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin:28px 0 10px;">Results</div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <div style="width:28px;height:28px;border-radius:50%;background:#ffe0e5;border:1.5px solid #e8395a;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#e8395a;">B</div>
+          <span class="accordion-label">Blossom <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Apr 2026</span></span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"The reasoning makes sense and I appreciate seeing the data. But before I act, I'd want to cross-reference this with my own statement. If Claro can show me exactly which transactions it used, I'd trust it a lot more. Right now it feels like I'm being asked to take its word for it."</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <div style="width:28px;height:28px;border-radius:50%;background:#ddf0ff;border:1.5px solid #3b9fe8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#3b9fe8;">Bu</div>
+          <span class="accordion-label">Bubbles <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Apr 2026</span></span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"It wants me to cancel Netflix? Okay but which months did it look at? I had a free trial last month so the numbers might be off. I don't want to cancel if it got the wrong picture. Also I really liked the confirmation message — 'we'll update your recommendations' made me feel like it actually listened."</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <div style="width:28px;height:28px;border-radius:50%;background:#dff5e0;border:1.5px solid #3aaa4a;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#3aaa4a;">Bc</div>
+          <span class="accordion-label">Buttercup <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Apr 2026</span></span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"If it's wrong, I'm disputing it — but I had to hunt for the option. That tiny grey link is not a button. I nearly just closed the card. If I miss that, I'm gone and the AI never learns it was wrong. Make it obvious."</div></div>
+      </div>
+    </div>
+
     <div class="sec-body">
-      <p>Two items flagged. The data chip copy was fixed inline (RM270 over 6mo). The dispute action needs a ghost button treatment in the next iteration — it is a first-class part of the trust system and shouldn't read as a footnote. A skeptical user who can't find the dispute action just leaves, which is the exact failure we're trying to prevent.</p>
+      <p>1 and 2 passed. 3 did not — the dispute action was missed by two participants. Fixed chip copy inline ("RM270 over 6mo"). Dispute needs a ghost button, not a text link.</p>
     </div>
   </div>
 
