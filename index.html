@@ -971,7 +971,7 @@
         <div class="matrix-x-lbl">Effort →</div>
       </div>
       <div style="margin-top:20px;">
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;max-width:100%;"><strong style="color:var(--text);">Key insight.</strong> The reasoning and data behind each AI recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals land as quick wins.</p>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;max-width:100%;"><strong style="color:var(--text);">Key insight.</strong> The reasoning and data behind each AI recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals land as quick wins. <em>Note: these types of deep research exercises typically require 4–6 weeks with a team of 2 experienced UX researchers.</em></p>
       </div>
     </div>
 
@@ -1028,18 +1028,116 @@
     </div>
 
     <div class="comp-scroll">
+
       <div class="comp-item">
         <div class="comp-frame">
-          <div class="comp-frame-empty">Drop screen here</div>
+          <div class="wf-phone">
+            <div class="wf-status"></div>
+            <div class="wf-content">
+              <div class="wf-label">Copilot Money</div>
+              <div class="wf-card">
+                <div class="wf-chips"><span class="wf-chip blue">⬡ High confidence</span></div>
+                <div class="wf-headline">Cancel Spotify Premium</div>
+                <div class="wf-line w80"></div>
+                <div class="wf-line w60"></div>
+                <div class="wf-btn"></div>
+              </div>
+              <div class="wf-card" style="opacity:0.35;">
+                <div class="wf-headline">Reduce takeout budget</div>
+                <div class="wf-line w60"></div>
+              </div>
+              <div class="wf-card" style="opacity:0.35;">
+                <div class="wf-headline">Switch savings account</div>
+                <div class="wf-line w80"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+        <div class="comp-cap"><strong>Copilot Money.</strong> Confidence-gated — only shows the AI badge when the model is certain. Low-confidence recommendations are shown without emphasis.</div>
       </div>
+
       <div class="comp-item">
         <div class="comp-frame">
-          <div class="comp-frame-empty">Drop screen here</div>
+          <div class="wf-phone">
+            <div class="wf-status"></div>
+            <div class="wf-content">
+              <div class="wf-label">Revolut</div>
+              <div class="wf-card" style="background:rgba(255,80,80,0.06);border-color:rgba(255,80,80,0.2);">
+                <div style="font-size:8px;font-weight:700;color:#d32f2f;margin-bottom:4px;">⚠ Is this payment safe?</div>
+                <div class="wf-line w80"></div>
+                <div class="wf-line w60"></div>
+              </div>
+              <div style="font-size:8px;color:var(--text-secondary);line-height:1.4;margin:6px 0;">Common scam pattern detected. Here's what to check before continuing.</div>
+              <div class="wf-btn" style="background:#d32f2f;margin-bottom:4px;"></div>
+              <div class="wf-btn" style="background:var(--surface);"></div>
+            </div>
+          </div>
         </div>
-        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
+        <div class="comp-cap"><strong>Revolut.</strong> Intervention + education — when AI detects fraud patterns, it pauses the flow and explains the risk before letting users proceed.</div>
       </div>
+
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="wf-phone">
+            <div class="wf-status"></div>
+            <div class="wf-content">
+              <div class="wf-label">Monzo</div>
+              <div style="font-size:9px;font-weight:600;color:var(--text);margin-bottom:4px;">Save £50 this week?</div>
+              <div style="font-size:8px;color:var(--text-secondary);line-height:1.4;margin-bottom:8px;">You spent less on eating out this week. A good moment to put something aside.</div>
+              <div class="wf-btn" style="margin-bottom:4px;"></div>
+              <div class="wf-card" style="margin-top:8px;">
+                <div class="wf-chips"><span class="wf-chip">Eating out ↓23%</span><span class="wf-chip">3 weeks</span></div>
+                <div class="wf-line w60"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>Monzo.</strong> Plain language — recommendations use human-readable explanations with the data reason visible below the action, not buried in a modal.</div>
+      </div>
+
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="wf-phone">
+            <div class="wf-status"></div>
+            <div class="wf-content">
+              <div class="wf-label">Cleo</div>
+              <div style="font-size:9px;font-weight:600;color:var(--text);margin-bottom:6px;">How do you want your review?</div>
+              <div class="wf-card" style="background:rgba(0,82,255,0.06);border-color:rgba(0,82,255,0.2);text-align:center;">
+                <div style="font-size:8px;font-weight:700;color:var(--blue);">🎉 Hype me</div>
+              </div>
+              <div class="wf-card" style="text-align:center;margin-top:4px;">
+                <div style="font-size:8px;font-weight:700;color:var(--text-secondary);">🔥 Roast me</div>
+              </div>
+              <div style="font-size:7px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;">Your weekly spending review is ready. Choose your vibe.</div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>Cleo.</strong> Feedback loop choice — users pick how the AI delivers its verdict. Giving users control over tone builds trust in the analysis itself.</div>
+      </div>
+
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="wf-phone">
+            <div class="wf-status"></div>
+            <div class="wf-content">
+              <div class="wf-label">Robinhood Cortex</div>
+              <div class="wf-card">
+                <div class="wf-headline">NVDA up 4% today</div>
+                <div class="wf-line w80 blue"></div>
+                <div style="font-size:7px;color:var(--text-tertiary);margin:4px 0 2px;">Sources</div>
+                <div class="wf-chips">
+                  <span class="wf-chip">Analyst report</span>
+                  <span class="wf-chip">Market data</span>
+                  <span class="wf-chip">+2 more</span>
+                </div>
+                <div style="font-size:7px;color:var(--text-tertiary);margin-top:4px;">AI doesn't guarantee future performance.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>Robinhood Cortex.</strong> Sourced signals — every AI alert cites the data sources behind it. Paired with a disclaimer that manages expectations upfront.</div>
+      </div>
+
     </div>
 
 
@@ -1084,7 +1182,7 @@
       </div>
     </div>
 
-    <div class="concept-grid">
+    <div class="concept-grid" style="display:none;">
       <div class="concept-card chosen">
         <div class="concept-screen">
           <div class="wf-phone">
@@ -1165,9 +1263,6 @@
       </div>
     </div>
 
-    <div class="sec-body">
-      <p>Direction A was selected because the trust failure is at point-of-reading. A user who is already skeptical won't tap to learn more — they'll dismiss. Direction B requires learned literacy new users don't have. Direction C has a cold-start problem that would require a separate design track for the first 30 days.</p>
-    </div>
   </div>
 
   <!-- 03 Detailed Design -->
@@ -1176,7 +1271,7 @@
       <span class="sec-num">03</span>
       <span class="sec-tag">Detailed Design</span>
     </div>
-    <h2 class="sec-title">Design look like this <span style="font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--text-tertiary);vertical-align:middle;">(caveman language <span style="font-size:16px;">🦕</span>)</span></h2>
+    <h2 class="sec-title">Designed in Figma <span style="font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--text-tertiary);vertical-align:middle;margin-left:4px;">· high fidelity</span></h2>
     <div class="sec-body">
       <p>The core design surface is the recommendation card. Every interaction, state, and edge case flows from that component — how it reads, how it fails, how it builds trust across sessions.</p>
     </div>
