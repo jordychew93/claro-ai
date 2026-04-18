@@ -927,7 +927,7 @@
               <span style="font-size:15px;flex-shrink:0;">💡</span>
               <div>
                 <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Summary</div>
-                <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">There was an ongoing theme where users had no idea why the app was making a recommendation. It's just asking you to act with your money.</div>
+                <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">It's just asking you to do something with your money. But users have no idea why.</div>
               </div>
             </div>
           </div>
@@ -936,7 +936,7 @@
     </div>
 
     <div class="sec-body">
-      <p>To decide where to focus first, I summarised the user research into a priority matrix.</p>
+      <p>We spoke with some of our data engineers and found that the "Why?" already exists.</p>
     </div>
 
     <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
@@ -986,8 +986,8 @@
       <div style="margin-top:20px;padding:14px 16px;background:rgba(0,82,255,0.05);border:1px solid rgba(0,82,255,0.12);border-radius:12px;display:flex;gap:10px;align-items:flex-start;">
         <span style="font-size:15px;flex-shrink:0;">⛑️</span>
         <div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">After speaking to our data engineers, we found that...</div>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">The data behind each recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals are quick wins.</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Since both reasoning and confidence signals exist...</div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">We can surface that. That's why they are considered quick wins.</div>
         </div>
       </div>
     </div>
@@ -996,6 +996,10 @@
       </div>
     </div>
 
+
+    <div class="sec-body">
+      <p>Hence we can start looking into how competitors are handling reasoning and confidence signals.</p>
+    </div>
 
     <div style="margin-top:56px;">
       <div class="sec-eye">
@@ -1107,54 +1111,32 @@
     </div>
     <h2 class="sec-title">Three directions, one problem</h2>
     <div class="sec-body">
-      <p>Three approaches emerged, each targeting the same root cause from a different angle.</p>
+      <p>Based on relevance to our problem, we picked the top 3 competitor references and generated our own concepts with Claude Design.</p>
     </div>
 
-    <a href="docs/Claro Wireframes _standalone_.html" target="_blank" style="display:flex;flex-direction:column;width:fit-content;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin:28px 0;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-      <div style="background:#f4efe4;padding:16px 24px;display:flex;align-items:center;justify-content:center;">
-        <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:80px;border-radius:6px;flex-shrink:0;">
-          <rect width="1200" height="800" fill="#f4efe4"></rect>
-          <rect x="360" y="180" width="480" height="440" rx="48" fill="none" stroke="#1a1814" stroke-width="8"></rect>
-          <rect x="540" y="192" width="120" height="22" rx="11" fill="#1a1814"></rect>
-          <rect x="420" y="270" width="360" height="36" rx="6" fill="#f6d13a" stroke="#1a1814" stroke-width="4"></rect>
-          <rect x="420" y="340" width="300" height="16" rx="4" fill="#1a1814" opacity="0.25"></rect>
-          <rect x="420" y="370" width="240" height="16" rx="4" fill="#1a1814" opacity="0.25"></rect>
-          <rect x="420" y="420" width="360" height="80" rx="10" fill="#ece5d5" stroke="#1a1814" stroke-width="4"></rect>
-          <rect x="420" y="520" width="360" height="60" rx="10" fill="none" stroke="#1a1814" stroke-width="4" stroke-dasharray="8 6"></rect>
-          <text x="600" y="140" font-family="Caveat, cursive" font-size="56" fill="#1a1814" text-anchor="middle" font-weight="700">Claro — wireframes</text>
-        </svg>
-      </div>
-      <div style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);background:var(--white);">
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">AI Trust Wireframes</div>
-          <div style="font-size:12px;color:var(--text-tertiary);margin-top:2px;">Generated with Claude · 3 concepts explored</div>
-        </div>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-tertiary);flex-shrink:0;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </div>
-    </a>
 
     <div class="comp-scroll">
       <div class="comp-item">
         <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+          <div style="position:relative;"><div style="position:absolute;inset:0;z-index:10;touch-action:none;pointer-events:all;"></div><div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
             <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,72)}catch(e){}"></iframe>
-          </div>
+          </div></div>
         </div>
         <div class="comp-cap"><strong>The Ledger.</strong> Home screen with transaction feed.</div>
       </div>
       <div class="comp-item">
         <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+          <div style="position:relative;"><div style="position:absolute;inset:0;z-index:10;touch-action:none;pointer-events:all;"></div><div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
             <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,987)}catch(e){}"></iframe>
-          </div>
+          </div></div>
         </div>
         <div class="comp-cap"><strong>Today's Three.</strong> The recommendation feed screen.</div>
       </div>
       <div class="comp-item">
         <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+          <div style="position:relative;"><div style="position:absolute;inset:0;z-index:10;touch-action:none;pointer-events:all;"></div><div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
             <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,1903)}catch(e){}"></iframe>
-          </div>
+          </div></div>
         </div>
         <div class="comp-cap"><strong>The Briefing.</strong> Weekly spending summary.</div>
       </div>
