@@ -49,7 +49,7 @@
     padding: 0 48px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -134,6 +134,13 @@
   .comp-frame-empty { font-family: var(--font-mono); font-size: 11px; text-align: center; color: var(--text-tertiary); }
   .comp-cap { margin-top: 12px; font-size: 13px; line-height: 1.6; color: var(--text-tertiary); }
   .comp-cap strong { color: var(--text); font-weight: 500; }
+  .comp-toggle { position: relative; }
+  .comp-toggle .comp-real { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; opacity: 1; transition: opacity 0.2s; }
+  .comp-toggle .comp-wf { opacity: 0; transition: opacity 0.2s; }
+  .comp-toggle:hover .comp-real,
+  .comp-toggle.show-wf .comp-real { opacity: 0; }
+  .comp-toggle:hover .comp-wf,
+  .comp-toggle.show-wf .comp-wf { opacity: 1; }
 
   /* PRIORITIZATION MATRIX */
   .matrix-card { border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; margin: 40px 0; }
@@ -815,10 +822,6 @@
 <body>
 
 <nav>
-  <div class="nav-brand">
-    <div class="nav-dot"></div>
-    Claro.ai
-  </div>
   <div class="nav-right">
     <span style="font-size:13px; color: var(--text-tertiary);">by Jordy — 17 Apr 2026</span>
   </div>
@@ -827,9 +830,9 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Next Ventures 2026</div>
-    <h1 class="hero-title">Design <span class="accent">case study</span></h1>
-    <p class="hero-sub" style="margin-bottom: 12px;">I chose <strong>Option 1: AI Transparency &amp; Trust.</strong></p>
-    <p class="hero-sub">Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
+    <h1 class="hero-title">Hypothetical <span class="accent">case study</span></h1>
+    <p class="hero-sub" style="margin-bottom: 6px;max-width:100%;white-space:nowrap;">Only 8% of users respond to <strong>Claro.ai</strong>'s recommendations.</p>
+    <p style="font-size:13px;color:var(--text-tertiary);font-style:italic;margin:0;">All data and personas are fictional. Don't @ me.</p>
   </div>
 </div>
 
@@ -853,25 +856,7 @@
       <span class="sec-num">01</span>
       <span class="sec-tag">Problem Framing &amp; Research</span>
     </div>
-    <h2 class="sec-title">Users don't trust Claro.ai</h2>
-    <div class="sec-body">
-      <p>Fred Flintstone (PO) put it simply: Claro.ai is like your digital wife asking about your spending.</p>
-    </div>
-
-    <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
-      <div class="accordion-item" style="border-bottom:none;">
-        <button class="accordion-trigger" style="border-radius:var(--r-xl);">
-          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">Fred Flintstone's engagement funnel <span style="font-size:11px;font-weight:600;background:rgba(200,120,0,0.1);color:#c87800;border:1px solid rgba(200,120,0,0.2);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Mock data</span></span>
-          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner" style="color:var(--text);">
-            <div class="funnel-src" style="margin-bottom:20px;">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
-            <div id="funnel"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2 class="sec-title">Assumption: users don't trust its recommendations</h2>
 
     <div class="assumption">
       <div class="assumption-lbl">
@@ -881,15 +866,40 @@
       <div class="assumption-text">"Whoa, mama! Users don't trust the recommendations."</div>
     </div>
 
-
-    <div class="sec-body">
-      <p>Fred Flintstone ran user interviews and collected some feedback.</p>
+    <div class="sec-body" style="margin-bottom:0;">
+      <p>To validate this, we looked at the funnel and some supporting data.</p>
     </div>
 
     <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
       <div class="accordion-item" style="border-bottom:none;">
         <button class="accordion-trigger" style="border-radius:var(--r-xl);">
-          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">User interview feedback <span style="font-size:11px;font-weight:600;background:rgba(0,82,255,0.08);color:var(--blue);border:1px solid rgba(0,82,255,0.2);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">5 mock participants</span></span>
+          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">Engagement funnel <span style="font-size:11px;font-weight:600;background:rgba(200,120,0,0.1);color:#c87800;border:1px solid rgba(200,120,0,0.2);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Hypothetical data</span></span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner" style="color:var(--text);">
+            <div class="funnel-src" style="margin-bottom:20px;">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
+            <div id="funnel"></div>
+            <div style="margin-top:20px;padding:14px 16px;background:rgba(0,82,255,0.05);border:1px solid rgba(0,82,255,0.12);border-radius:12px;display:flex;gap:10px;align-items:flex-start;">
+              <span style="font-size:15px;flex-shrink:0;">💡</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Key insight</div>
+                <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">30% tap but only 8% follow through. The abandonment suggests the app isn't communicating enough for users to commit.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-body" style="margin-bottom:0;">
+      <p>To dig deeper, we ran some user interviews.</p>
+    </div>
+
+    <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
+      <div class="accordion-item" style="border-bottom:none;">
+        <button class="accordion-trigger" style="border-radius:var(--r-xl);">
+          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">User interview feedback <span style="font-size:11px;font-weight:600;background:rgba(0,82,255,0.08);color:var(--blue);border:1px solid rgba(0,82,255,0.2);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Hypothetical sentiments</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body">
@@ -914,19 +924,26 @@
               <img src="images/scooby.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #8b5cf6;flex-shrink:0;margin-top:2px;">
               <div><div style="font-size:13px;font-weight:600;margin-bottom:4px;">Scooby-Doo</div><div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">"Scooby-Dooby-Doo! <strong>Why is the app telling me to stop buying Scooby Snacks?!</strong>"</div></div>
             </div>
+            <div style="padding:14px 16px;background:rgba(0,82,255,0.05);border:1px solid rgba(0,82,255,0.12);border-radius:12px;display:flex;gap:10px;align-items:flex-start;">
+              <span style="font-size:15px;flex-shrink:0;">💡</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Summary</div>
+                <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">There was an ongoing theme where users had no idea why the app was making a recommendation. It's just asking you to act with your money.</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="sec-body">
-      <p>From there, we collected more data, synthesised the findings into key insights, and ran a prioritization exercise to decide where to focus first.</p>
+      <p>To decide where to focus first, I summarised the user research into a priority matrix.</p>
     </div>
 
     <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
       <div class="accordion-item" style="border-bottom:none;">
         <button class="accordion-trigger" style="border-radius:var(--r-xl);">
-          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">Prioritization matrix <span style="font-size:11px;font-weight:600;background:var(--surface);color:var(--text-secondary);border:1px solid var(--border);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Based on mock research</span></span>
+          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">Prioritization matrix <span style="font-size:11px;font-weight:600;background:var(--surface);color:var(--text-secondary);border:1px solid var(--border);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Based on assumptive mapping</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body">
@@ -967,8 +984,12 @@
         </div>
         <div class="matrix-x-lbl">Effort →</div>
       </div>
-      <div style="margin-top:20px;">
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;max-width:100%;"><strong style="color:var(--text);">Key insight.</strong> The reasoning and data behind each AI recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals land as quick wins. <em>Note: these types of deep research exercises typically require 4–6 weeks with a team of 2 experienced UX researchers.</em></p>
+      <div style="margin-top:20px;padding:14px 16px;background:rgba(0,82,255,0.05);border:1px solid rgba(0,82,255,0.12);border-radius:12px;display:flex;gap:10px;align-items:flex-start;">
+        <span style="font-size:15px;flex-shrink:0;">⛑️</span>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">After speaking to our data engineers, we found that...</div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">The data behind each recommendation already exists. It's just not being surfaced to users. That's why showing reasoning inline and qualitative confidence signals are quick wins.</div>
+        </div>
       </div>
     </div>
           </div>
@@ -976,86 +997,20 @@
       </div>
     </div>
 
-    <div style="margin:40px 0 16px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Opportunities identified</div>
-      <div style="font-size:20px;font-weight:600;color:var(--text);letter-spacing:-0.01em;">Five areas to act on</div>
-    </div>
-      <div class="accordion">
-        <div class="accordion-item open">
-          <button class="accordion-trigger">
-            <span class="accordion-label">Showing reasoning inline</span>
-            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;">Quick win</span>
-            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-          </button>
-          <div class="accordion-body"><div class="accordion-body-inner">Display the data that triggered the recommendation directly on the card, before the CTA. Users shouldn't have to tap "why?" to find out.</div></div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            <span class="accordion-label">Qualitative confidence signals</span>
-            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;">Quick win</span>
-            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-          </button>
-          <div class="accordion-body"><div class="accordion-body-inner">Replace numerical scores like "87% confidence" with human language like "based on 6 months of your spending data." It reduces anxiety and builds trust.</div></div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            <span class="accordion-label">Notification copy</span>
-            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 7px;">Fill-in</span>
-            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-          </button>
-          <div class="accordion-body"><div class="accordion-body-inner">Improve the push notification language to set better expectations before the user even opens the card.</div></div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            <span class="accordion-label">Dispute / teach-back action</span>
-            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;">Major project</span>
-            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-          </button>
-          <div class="accordion-body"><div class="accordion-body-inner">Let users flag a recommendation as wrong and teach the AI their preference. High trust impact, but complex to build.</div></div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            <span class="accordion-label">Trust feedback loop</span>
-            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;">Major project</span>
-            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-          </button>
-          <div class="accordion-body"><div class="accordion-body-inner">Show users the outcome of past recommendations they acted on. Closes the loop, but requires longitudinal data tracking.</div></div>
-        </div>
-      </div>
 
-    <div class="sec-body" style="margin-top:56px;">
-      <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);">Competitor research · via Mobbin</span>
-      <h3 style="font-size:20px;font-weight:700;margin:8px 0 4px;">How other apps handle AI confidence</h3>
-      <p style="margin:0 0 4px;">Patterns from apps that surface AI recommendations. How they explain reasoning, signal confidence, and handle user pushback.</p>
+    <div style="margin-top:56px;">
+      <div class="sec-eye">
+        <div class="design-label">Competitor research · via Mobbin</div>
+      </div>
     </div>
 
     <div class="comp-scroll">
 
       <div class="comp-item">
-        <div class="comp-frame">
-          <div class="wf-phone">
-            <div class="wf-status"></div>
-            <div class="wf-content">
-              <div class="wf-label">Copilot Money</div>
-              <div class="wf-card">
-                <div class="wf-chips"><span class="wf-chip blue">⬡ High confidence</span></div>
-                <div class="wf-headline">Cancel Spotify Premium</div>
-                <div class="wf-line w80"></div>
-                <div class="wf-line w60"></div>
-                <div class="wf-btn"></div>
-              </div>
-              <div class="wf-card" style="opacity:0.35;">
-                <div class="wf-headline">Reduce takeout budget</div>
-                <div class="wf-line w60"></div>
-              </div>
-              <div class="wf-card" style="opacity:0.35;">
-                <div class="wf-headline">Switch savings account</div>
-                <div class="wf-line w80"></div>
-              </div>
-            </div>
-          </div>
+        <div class="comp-frame has-img">
+          <img src="images/copilot-money.webp">
         </div>
-        <div class="comp-cap"><strong>Copilot Money.</strong> Confidence-gated. Only shows the AI badge when the model is certain. Low-confidence recommendations are shown without emphasis.</div>
+        <div class="comp-cap"><strong>Copilot Money.</strong> Confidence-gated. Only shows the AI badge when the model is certain. Low-confidence recommendations are shown without emphasis.<br><a href="https://www.youtube.com/watch?v=E0jRwbLKWMk" target="_blank" style="color:var(--blue);text-decoration:none;font-size:11px;">↗ Watch</a></div>
       </div>
 
       <div class="comp-item">
@@ -1075,7 +1030,7 @@
             </div>
           </div>
         </div>
-        <div class="comp-cap"><strong>Revolut.</strong> Intervention + education. When AI detects fraud patterns, it pauses the flow and explains the risk before letting users proceed.</div>
+        <div class="comp-cap"><strong>Revolut AIR.</strong> Intervention + education. When AI detects fraud patterns, it pauses the flow and explains the risk before letting users proceed.</div>
       </div>
 
       <div class="comp-item">
@@ -1639,10 +1594,10 @@
 <script>
 const stages = [
   { label: 'Notification sent',   icon: 'send',          users: 100000, pct: 100, drop: null,  bg: '#0052ff', txt: '#fff' },
-  { label: 'Notification opened', icon: 'bell',          users: 42000,  pct: 42,  drop: '42%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
-  { label: 'Card viewed',         icon: 'eye',           users: 28000,  pct: 28,  drop: '67%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
-  { label: 'CTA tapped',          icon: 'mouse-pointer', users: 12000,  pct: 12,  drop: '43%', bg: '#f4b0b0', txt: '#0a0b0d' },
-  { label: 'Action completed',    icon: 'check-circle',  users: 8000,   pct: 8,   drop: '67%', bg: '#a8d5b8', txt: '#0a0b0d' },
+  { label: 'Notification opened', icon: 'bell',          users: 45000,  pct: 45,  drop: '45%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'Card viewed',         icon: 'eye',           users: 38000,  pct: 38,  drop: '84%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'CTA tapped',          icon: 'mouse-pointer', users: 30000,  pct: 30,  drop: '79%', bg: '#282b31', txt: 'rgba(255,255,255,0.7)' },
+  { label: 'Action completed',    icon: 'check-circle',  users: 8000,   pct: 8,   drop: '32%', bg: '#f4b0b0', txt: '#0a0b0d' },
 ];
 
 const container = document.getElementById('funnel');
