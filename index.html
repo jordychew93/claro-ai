@@ -858,39 +858,18 @@
       <p>Fred Flintstone (PO) put it simply: Claro.ai is like your digital wife asking about your spending.</p>
     </div>
 
-    <div class="funnel-card">
-      <div class="funnel-hd">
-        <div class="funnel-title">Fred Flintstone's engagement funnel <span style="font-size:11px; font-weight:600; background:rgba(200,120,0,0.1); color:#c87800; border:1px solid rgba(200,120,0,0.2); padding:2px 9px; border-radius:10px; vertical-align:middle; margin-left:8px; font-family:var(--font-sans); letter-spacing:0">Illustrative</span></div>
-        <div class="funnel-src">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
-      </div>
-      <div id="funnel"></div>
-    </div>
-
-    <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin:32px 0 10px;">Current Claro.ai</div>
-    <div class="comp-scroll">
-      <div class="comp-item">
-        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
-            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,72)}catch(e){}"></iframe>
+    <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
+      <div class="accordion-item open" style="border-bottom:none;">
+        <button class="accordion-trigger" style="border-radius:var(--r-xl);">
+          <span style="flex:1;font-size:15px;font-weight:600;color:var(--text);">Fred Flintstone's engagement funnel <span style="font-size:11px;font-weight:600;background:rgba(200,120,0,0.1);color:#c87800;border:1px solid rgba(200,120,0,0.2);padding:2px 9px;border-radius:10px;vertical-align:middle;margin-left:8px;font-family:var(--font-sans);letter-spacing:0">Illustrative</span></span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner" style="color:var(--text);">
+            <div class="funnel-src" style="margin-bottom:20px;">Based on brief assumption of 8% overall engagement · Not sourced from Amplitude</div>
+            <div id="funnel"></div>
           </div>
         </div>
-        <div class="comp-cap"><strong>The Ledger.</strong> Home screen with transaction feed.</div>
-      </div>
-      <div class="comp-item">
-        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
-            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,987)}catch(e){}"></iframe>
-          </div>
-        </div>
-        <div class="comp-cap"><strong>Today's Three.</strong> The recommendation feed screen.</div>
-      </div>
-      <div class="comp-item">
-        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
-          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
-            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,1903)}catch(e){}"></iframe>
-          </div>
-        </div>
-        <div class="comp-cap"><strong>The Briefing.</strong> Weekly spending summary.</div>
       </div>
     </div>
 
@@ -1075,6 +1054,34 @@
     <h2 class="sec-title">Three directions, one problem</h2>
     <div class="sec-body">
       <p>With the problem precisely located — trust failing at the card-viewed stage — three distinct approaches emerged. Each addresses the same root cause from a different angle. The question is which is most defensible given what we know about the user.</p>
+    </div>
+
+    <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin:32px 0 10px;">Current Claro.ai</div>
+    <div class="comp-scroll">
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
+          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,72)}catch(e){}"></iframe>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>The Ledger.</strong> Home screen with transaction feed.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
+          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,987)}catch(e){}"></iframe>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>Today's Three.</strong> The recommendation feed screen.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
+          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,1903)}catch(e){}"></iframe>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>The Briefing.</strong> Weekly spending summary.</div>
+      </div>
     </div>
 
     <div class="concept-grid">
