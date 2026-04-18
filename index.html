@@ -545,16 +545,16 @@
   .funnel-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
   .funnel-src { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); }
 
-  .f-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
-  .f-lbl { font-size: 13px; font-weight: 500; color: var(--text-secondary); width: 188px; flex-shrink: 0; text-align: right; }
-  .f-track { flex: 1; background: var(--surface); border-radius: var(--r-sm); height: 36px; overflow: hidden; }
+  .f-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .f-lbl { font-size: 12px; font-weight: 500; color: var(--text-secondary); display: flex; align-items: center; }
+  .f-track { width: 100%; background: var(--surface); border-radius: var(--r-sm); height: 36px; overflow: hidden; }
   .f-bar {
     height: 100%; border-radius: var(--r-sm);
     display: flex; align-items: center; padding-left: 14px;
     width: 0%; transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
   }
   .f-bar-txt { font-family: var(--font-mono); font-size: 12px; font-weight: 500; white-space: nowrap; }
-  .f-drop { width: 52px; flex-shrink: 0; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
+  .f-drop { display: none; }
   .f-sep { display: none; }
 
   /* DROPOFF ANALYSIS */
@@ -802,8 +802,10 @@
     .matrix-plot { grid-row: 1; grid-column: 1; }
     .alt-grid, .metric-row, .quote-grid { grid-template-columns: 1fr; }
     .do-grid { grid-template-columns: 1fr 1fr; }
-    .f-lbl { width: 120px; font-size: 12px; }
-    .f-sep { margin-left: 136px; }
+    .f-sep { margin: 4px 0 12px; }
+    .sec-nav-inner { padding: 0 8px; }
+    .sec-nav-link { padding: 8px 8px 7px; font-size: 12px; gap: 3px; white-space: normal; flex-direction: column; align-items: center; text-align: center; line-height: 1.3; }
+    .sec-nav-n { font-size: 9px; }
     .ps { padding: 32px 28px; }
     .ps-text { font-size: 19px; }
     .hero-meta { flex-wrap: wrap; gap: 24px; }
@@ -826,7 +828,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Next Ventures 2026</div>
     <h1 class="hero-title">Design <span class="accent">case study</span></h1>
-    <p class="hero-sub" style="margin-bottom: 12px;">I chose <strong>Option 1</strong>, AI Transparency &amp; Trust.</p>
+    <p class="hero-sub" style="margin-bottom: 12px;">I chose <strong>Option 1: AI Transparency &amp; Trust.</strong></p>
     <p class="hero-sub">Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
   </div>
 </div>
@@ -853,7 +855,7 @@
     </div>
     <h2 class="sec-title">Users no trust Claro.ai <span style="font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--text-tertiary);vertical-align:middle;">(caveman language <span style="font-size:16px;">🦕</span>)</span></h2>
     <div class="sec-body">
-      <p>Fred Flintstone (PO) showed me the engagement funnel and user feedback.</p>
+      <p>Fred Flintstone (PO) put it simply: Claro.ai is like your digital wife asking about your spending. Only 8% are acting.</p>
     </div>
 
     <div class="funnel-card">
@@ -864,9 +866,27 @@
       <div id="funnel"></div>
     </div>
 
+    <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin:32px 0 10px;">Current Claro.ai</div>
+    <div class="comp-scroll">
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;padding:0;display:block;">
+          <div style="transform-origin:top left;transform:scale(0.513);width:390px;height:844px;overflow:hidden;pointer-events:none;flex-shrink:0;">
+            <iframe src="docs/claro-home.html" style="width:390px;height:844px;border:none;" onload="try{this.contentWindow.scrollTo(0,952)}catch(e){}"></iframe>
+          </div>
+        </div>
+        <div class="comp-cap"><strong>Today's Three.</strong> The recommendation feed screen.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame">
+          <div class="comp-frame-empty">Claro.ai screen</div>
+        </div>
+        <div class="comp-cap"><strong>Current state.</strong> How the notification looks today.</div>
+      </div>
+    </div>
+
     <div class="assumption">
       <div class="assumption-lbl">
-        <img src="fred-flintstone.webp" alt="Fred Flintstone" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);border:1.5px solid rgba(0,82,255,0.2);">
+        <img src="images/fred.png" alt="Fred Flintstone" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);border:1.5px solid rgba(0,82,255,0.2);">
         Fred Flintstone · Product Owner
       </div>
       <div class="assumption-text">"Whoa, mama! Users don't trust the recommendations."</div>
@@ -880,7 +900,7 @@
     <div class="accordion">
       <div class="accordion-item open">
         <button class="accordion-trigger">
-          <img src="shaggy.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #0052ff;flex-shrink:0;">
+          <img src="images/shaggy.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #0052ff;flex-shrink:0;">
           <span class="accordion-label">Shaggy Rogers <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
@@ -888,7 +908,7 @@
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger">
-          <img src="daphne.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c83030;flex-shrink:0;">
+          <img src="images/daphne.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c83030;flex-shrink:0;">
           <span class="accordion-label">Daphne Blake <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
@@ -896,7 +916,7 @@
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger">
-          <img src="fred.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c87800;flex-shrink:0;">
+          <img src="images/fred.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c87800;flex-shrink:0;">
           <span class="accordion-label">Fred Jones <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
@@ -904,7 +924,7 @@
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger">
-          <img src="velma.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #1a6e40;flex-shrink:0;">
+          <img src="images/velma.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #1a6e40;flex-shrink:0;">
           <span class="accordion-label">Velma Dinkley <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
@@ -912,7 +932,7 @@
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger">
-          <img src="scooby.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #8b5cf6;flex-shrink:0;">
+          <img src="images/scooby.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #8b5cf6;flex-shrink:0;">
           <span class="accordion-label">Scooby-Doo <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);font-weight:400;margin-left:8px;">Feb 2026</span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
@@ -921,7 +941,6 @@
     </div>
 
     <div class="sec-body">
-      <p>The Mystery Machine gang all use Claro and know what it's suggesting. Not one of them acted on it.</p>
       <p>From there, we collected more data, synthesised the findings into key insights, and ran a prioritization exercise to decide where to focus first.</p>
     </div>
 
@@ -968,7 +987,7 @@
     </div>
 
     <div class="sec-body">
-      <p>Five opportunities emerged from the matrix — here's what each one means and why it matters.</p>
+      <p>Five opportunities emerged from the matrix. Here's what each one means and why it matters.</p>
       <div class="accordion">
         <div class="accordion-item open">
           <button class="accordion-trigger">
@@ -1011,37 +1030,6 @@
           <div class="accordion-body"><div class="accordion-body-inner">Show users the outcome of past recommendations they acted on. Closes the loop, but requires longitudinal data tracking.</div></div>
         </div>
       </div>
-      <p style="margin-top:32px;">Based on the prioritization, here's how we'd sequence the work.</p>
-      <div style="margin-top:16px;border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 32px;">
-        <span style="display:block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:4px;">Suggested timeline</span>
-        <div class="timeline">
-          <div class="tl-phase active">
-            <div class="tl-node"></div>
-            <div class="tl-content">
-              <div class="tl-time">Apr 2026</div>
-              <div class="tl-label">Quick wins</div>
-              <div class="tl-desc">Reasoning inline + confidence language</div>
-            </div>
-          </div>
-          <div class="tl-phase">
-            <div class="tl-node"></div>
-            <div class="tl-content">
-              <div class="tl-time">Early May 2026</div>
-              <div class="tl-label">Fill-ins</div>
-              <div class="tl-desc">Improve notification copy</div>
-            </div>
-          </div>
-          <div class="tl-phase">
-            <div class="tl-node"></div>
-            <div class="tl-content">
-              <div class="tl-time">???</div>
-              <div class="tl-label" style="color:#e53935;">Major projects</div>
-              <div class="tl-desc">Dispute mechanism + trust feedback loop</div>
-              <span style="margin-top:4px;font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--text-tertiary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 8px;display:inline-block;">not always shipped</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="sec-body" style="margin-top:56px;">
@@ -1063,25 +1051,8 @@
         </div>
         <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
       </div>
-      <div class="comp-item">
-        <div class="comp-frame">
-          <div class="comp-frame-empty">Drop screen here</div>
-        </div>
-        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
-      </div>
-      <div class="comp-item">
-        <div class="comp-frame">
-          <div class="comp-frame-empty">Drop screen here</div>
-        </div>
-        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
-      </div>
-      <div class="comp-item">
-        <div class="comp-frame">
-          <div class="comp-frame-empty">Drop screen here</div>
-        </div>
-        <div class="comp-cap"><strong>Title.</strong> Description of what this screen shows and why it's relevant.</div>
-      </div>
     </div>
+
 
   </div>
 
@@ -1368,156 +1339,38 @@
 
     <div class="ai-flow">
       <div class="ai-flow-node">
-        <div class="ai-flow-box gemini">
-          <div class="ai-flow-role">Gemini</div>
-          <div class="ai-flow-label">Research, prompts</div>
-          <div class="ai-flow-uses">Research, framing, writing prompts</div>
+        <div class="ai-flow-box claude-code">
+          <div class="ai-flow-role">Claude</div>
+          <div class="ai-flow-label">Read PDF, plan</div>
+          <div class="ai-flow-uses">Read the brief and planned this case study page</div>
         </div>
       </div>
 
       <div class="ai-flow-node">
-        <div class="ai-flow-box figma">
-          <div class="ai-flow-role">Figma Weave</div>
-          <div class="ai-flow-label">AI-gen images</div>
-          <div class="ai-flow-uses">Mockup assets and screen references</div>
-        </div>
-      </div>
-
-      <div class="ai-flow-node">
-        <div class="ai-flow-box stitch">
-          <div class="ai-flow-role">Google Stitch</div>
-          <div class="ai-flow-label">Design</div>
-          <div class="ai-flow-uses">UI design and component specs</div>
+        <div class="ai-flow-box claude-design">
+          <div class="ai-flow-role">Claude Design</div>
+          <div class="ai-flow-label">Imagine design</div>
+          <div class="ai-flow-uses">Assumed the Claro.ai app UI — it doesn't exist</div>
         </div>
       </div>
 
       <div class="ai-flow-node">
         <div class="ai-flow-box claude-code">
           <div class="ai-flow-role">Claude Code</div>
-          <div class="ai-flow-label">Code, deploy</div>
-          <div class="ai-flow-uses">Built and deployed this case study</div>
+          <div class="ai-flow-label">Build, deploy</div>
+          <div class="ai-flow-uses">Built and shipped this page to GitHub Pages</div>
+        </div>
+      </div>
+
+      <div class="ai-flow-node">
+        <div class="ai-flow-box claude-code">
+          <div class="ai-flow-role">Claude Code</div>
+          <div class="ai-flow-label">Refine</div>
+          <div class="ai-flow-uses">Iterated on design system, copy, and layout</div>
         </div>
       </div>
     </div>
 
-    <div class="ai-examples">
-
-      <!-- Gemini -->
-      <div class="ai-ex-card">
-        <div class="ai-ex-hd">
-          <span class="ai-ex-chip gemini">Gemini</span>
-          <span class="ai-ex-caption">Used to research trust patterns and frame the design problem</span>
-        </div>
-        <div class="ai-ex-flow">
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Prompt</div>
-            <div class="ai-ex-mock">
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar med"></div>
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar short"></div>
-            </div>
-          </div>
-          <div class="ai-ex-arrow-col">→</div>
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Research brief</div>
-            <div class="ai-ex-mock output">
-              <div class="ai-ex-bar short"></div>
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar med"></div>
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar short"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Figma Weave -->
-      <div class="ai-ex-card">
-        <div class="ai-ex-hd">
-          <span class="ai-ex-chip figma">Figma Weave</span>
-          <span class="ai-ex-caption">Generated UI mockup assets and illustration references</span>
-        </div>
-        <div class="ai-ex-flow">
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Description</div>
-            <div class="ai-ex-mock">
-              <div class="ai-ex-bar med"></div>
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar short"></div>
-            </div>
-          </div>
-          <div class="ai-ex-arrow-col">→</div>
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Generated image</div>
-            <div class="ai-ex-mock output" style="align-items:center; justify-content:center;">
-              <div class="ai-ex-img-mock">
-                <svg class="ai-ex-img-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Google Stitch -->
-      <div class="ai-ex-card">
-        <div class="ai-ex-hd">
-          <span class="ai-ex-chip stitch">Google Stitch</span>
-          <span class="ai-ex-caption">Turned a design brief into component specs and app screens</span>
-        </div>
-        <div class="ai-ex-flow">
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Design brief</div>
-            <div class="ai-ex-mock">
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar med"></div>
-              <div class="ai-ex-bar short"></div>
-              <div class="ai-ex-bar full"></div>
-            </div>
-          </div>
-          <div class="ai-ex-arrow-col">→</div>
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">UI screens</div>
-            <div class="ai-ex-mock output" style="flex-direction:row; gap:8px; align-items:flex-start;">
-              <div class="ai-ex-phone-mock"></div>
-              <div class="ai-ex-phone-mock" style="margin-top:12px;"></div>
-              <div class="ai-ex-phone-mock"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Claude Code -->
-      <div class="ai-ex-card">
-        <div class="ai-ex-hd">
-          <span class="ai-ex-chip claude">Claude Code</span>
-          <span class="ai-ex-caption">Wrote and shipped this case study page end-to-end</span>
-        </div>
-        <div class="ai-ex-flow">
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Request</div>
-            <div class="ai-ex-mock">
-              <div class="ai-ex-bar med"></div>
-              <div class="ai-ex-bar full"></div>
-              <div class="ai-ex-bar short"></div>
-            </div>
-          </div>
-          <div class="ai-ex-arrow-col">→</div>
-          <div class="ai-ex-side">
-            <div class="ai-ex-side-lbl">Output</div>
-            <div class="ai-ex-mock output">
-              <div class="ai-ex-code-mock">
-                <span style="color:#a259ff">.matrix-grid</span> {<br>
-                &nbsp;&nbsp;<span style="color:#34a853">display</span>: grid;<br>
-                &nbsp;&nbsp;<span style="color:#34a853">gap</span>: 2px;<br>
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
   </div>
 

@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Claro — Home Screen</title>
+<meta name="viewport" content="width=390"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap"/>
+<style>
+:root {
+  /* Coinbase palette */
+  --white:        #ffffff;
+  --surface:      #eef0f3;       /* cool gray secondary */
+  --surface-2:    #f7f7f7;       /* subtle */
+  --blue:         #0052ff;       /* Coinbase Blue — brand only */
+  --blue-hover:   #578bfa;       /* hover state */
+  --blue-soft:    #e8eeff;       /* tinted surface */
+  --blue-link:    #0667d0;       /* secondary links */
+  --text:         #1e2229;       /* dark text — not near-black */
+  --text-2:       #5b616e;       /* secondary text */
+  --text-3:       #8a909c;       /* muted text */
+  --border:       rgba(91,97,110,0.2);
+  --border-strong: rgba(91,97,110,0.4);
+  --red:          #cf4320;       /* alert */
+  --red-soft:     #fdf0ec;
+
+  /* typography */
+  --display: 'Inter Tight', -apple-system, system-ui, sans-serif;
+  --sans:    'Inter', -apple-system, system-ui, sans-serif;
+  --mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* radius */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 56px;
+  --r-full: 100000px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { width: 390px; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  width: 390px;
+}
+
+/* ─── Screen wrapper ─── */
+.screen {
+  width: 390px;
+  height: 844px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.screen-label {
+  width: 390px;
+  padding: 40px 22px 16px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.screen-label .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.screen-label .name {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* ─── Status bar ─── */
+.status-bar {
+  height: 54px;
+  padding: 19px 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  color: var(--text);
+}
+.status-bar .icons { display: flex; gap: 5px; align-items: center; }
+
+/* ─── Scroll body ─── */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+.screen-body::-webkit-scrollbar { width: 0; }
+
+/* ─── Tab bar ─── */
+.tab-bar {
+  height: 82px;
+  padding: 10px 28px 26px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 600; color: var(--text-3);
+  font-family: var(--sans);
+  letter-spacing: 0.01em;
+}
+.tab.active { color: var(--blue); }
+.tab.active svg { stroke: var(--blue); }
+
+/* ─── Layout utils ─── */
+.row    { display: flex; align-items: center; }
+.col    { display: flex; flex-direction: column; }
+.between{ justify-content: space-between; }
+.grow   { flex: 1; }
+
+/* ─── Type ─── */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+.eyebrow-blue {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  line-height: 1.4;
+}
+.label    { font-size: 14px; color: var(--text-2); line-height: 1.5; font-family: var(--sans); }
+.label-sm { font-size: 12px; color: var(--text-3); line-height: 1.4; font-family: var(--sans); }
+.mono     { font-family: var(--mono); font-size: 10.5px; line-height: 1.5; }
+.display  { font-family: var(--display); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
+
+.num-big {
+  font-family: var(--display);
+  font-size: 40px;
+  line-height: 1.00;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.num-md {
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.00;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Pills / tags ─── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  white-space: nowrap;
+  font-family: var(--sans);
+}
+.pill-blue  { background: var(--blue-soft); color: var(--blue);    border-color: rgba(0,82,255,0.15); }
+.pill-red   { background: var(--red-soft);  color: var(--red);     border-color: rgba(207,67,32,0.15); }
+.pill-solid { background: var(--blue);      color: var(--white);   border-color: var(--blue); }
+
+/* ─── Cards ─── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px;
+}
+.card.surface { background: var(--surface); border-color: transparent; }
+.card.blue-tint { background: var(--blue-soft); border-color: rgba(0,82,255,0.12); }
+
+/* ─── Avatar ─── */
+.avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 600; font-size: 13px;
+  color: var(--blue);
+  border: 1px solid rgba(0,82,255,0.15);
+  flex-shrink: 0;
+}
+
+/* ─── Confidence bar ─── */
+.conf { display: flex; align-items: center; gap: 8px; }
+.conf-track {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: var(--surface); position: relative; overflow: hidden;
+}
+.conf-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--blue); border-radius: 2px;
+}
+.conf-fill.warn { background: var(--red); }
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 20px;
+  border-radius: var(--r-pill);
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.01em; cursor: pointer; border: none;
+  transition: background 0.15s ease;
+  white-space: nowrap; line-height: 1.2;
+}
+.btn-primary {
+  background: var(--blue); color: var(--white);
+  border: 1px solid var(--blue);
+}
+.btn-primary:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
+.btn-secondary {
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--blue-hover); color: var(--white); border-color: var(--blue-hover); }
+.btn-ghost {
+  background: transparent; color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--blue-hover); color: var(--white); border-color: var(--blue-hover); }
+.btn-ghost-red {
+  background: transparent; color: var(--red);
+  border: 1px solid rgba(207,67,32,0.3);
+}
+.btn-sm { padding: 8px 14px; font-size: 12px; }
+.btn-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--surface);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-2); flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   SCREEN 2 specific
+───────────────────────────────────────── */
+#s2 .screen-body {
+  background: linear-gradient(180deg, #eef3ff 0%, var(--white) 35%);
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SCREEN 1 — THE LEDGER
+══════════════════════════════════════ -->
+<div class="screen-label">
+  <span class="num">01</span>
+  <span class="name">The Ledger</span>
+</div>
+<div class="screen" id="s1">
+  <!-- status bar -->
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="icons">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l4 4 4-4"/><path d="M9 10l4 4 4-4"/><path d="M17 14l4 4"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <svg width="20" height="14" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="1" width="20" height="10" rx="2"/><rect x="1" y="2" width="16" height="8" rx="1" fill="currentColor" stroke="none"/><path d="M21 5v2" stroke-width="2.5"/></svg>
+    </div>
+  </div>
+
+  <div class="screen-body" style="padding:18px 22px 0;">
+
+    <!-- Top nav -->
+    <div class="row between" style="margin-bottom:20px;">
+      <div class="row" style="gap:8px;">
+        <!-- Claro mark — blue -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/>
+        </svg>
+        <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--blue);">Claro</span>
+      </div>
+      <div class="row" style="gap:12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <div class="avatar">M</div>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="eyebrow" style="margin-bottom:6px;">Tuesday · April 21</div>
+    <div style="font-family:var(--display);font-size:26px;font-weight:600;line-height:1.10;letter-spacing:-0.02em;">
+      Good morning, Mia.<br/>
+      <span style="color:var(--text-2);">You're </span><span style="color:var(--blue);">$312 ahead</span><span style="color:var(--text-2);"> of last month.</span>
+    </div>
+
+    <!-- Balance -->
+    <div style="margin-top:20px;padding:16px;background:var(--surface);border-radius:var(--r-lg);">
+      <div class="row between" style="margin-bottom:6px;">
+        <span class="eyebrow">Available balance</span>
+        <span class="label-sm">3 accounts</span>
+      </div>
+      <div class="row between" style="align-items:flex-end;">
+        <div class="num-big" style="color:var(--text);">$4,284<span style="color:var(--text-3);font-size:24px;">.16</span></div>
+        <svg width="70" height="22" viewBox="0 0 70 22">
+          <polyline points="0,19 8,15 16,17 24,12 32,14 40,8 48,11 56,5 64,8 70,4"
+            fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:var(--border);margin:20px 0 14px;"></div>
+
+    <!-- Ledger heading -->
+    <div class="row between" style="margin-bottom:12px;">
+      <span style="font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-0.01em;">Today's ledger</span>
+      <span class="label-sm">3 items</span>
+    </div>
+
+    <!-- Item 1 — high conf -->
+    <div style="padding:14px 0;border-top:1px solid var(--border);">
+      <div class="row between" style="margin-bottom:8px;">
+        <span class="pill pill-blue">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          High confidence
+        </span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:600;">SAVE · $60/YR</span>
+      </div>
+      <div style="font-size:15px;font-weight:600;line-height:1.35;color:var(--text);">Switch Spotify to a Duo plan with Sam.</div>
+      <div class="label" style="margin-top:3px;">Same music, 50% less. You've co-paid before.</div>
+      <div class="conf" style="margin-top:10px;">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--blue);min-width:28px;font-weight:600;">92%</span>
+        <div class="conf-track"><div class="conf-fill" style="width:92%;"></div></div>
+        <span class="label-sm">High confidence</span>
+      </div>
+      <div class="row" style="margin-top:12px;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm">Do it</button>
+        <button class="btn btn-ghost btn-sm">Show the math</button>
+        <button class="btn btn-ghost btn-sm">Not now</button>
+      </div>
+    </div>
+
+    <!-- Item 2 — medium -->
+    <div style="padding:14px 0;border-top:1px solid var(--border);">
+      <div class="row between" style="margin-bottom:8px;">
+        <span class="pill">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          Worth a look
+        </span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text-3);font-weight:500;">UTILITIES</span>
+      </div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);">Your power bill climbed 14% last month.</div>
+      <div class="label" style="margin-top:3px;">Cold snap explains most of it — but maybe not all.</div>
+      <div class="conf" style="margin-top:10px;">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text-2);min-width:28px;font-weight:600;">68%</span>
+        <div class="conf-track"><div class="conf-fill" style="width:68%;background:var(--blue-hover);"></div></div>
+        <span class="label-sm">Medium</span>
+      </div>
+    </div>
+
+    <!-- Item 3 — low confidence -->
+    <div style="padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+      <div class="row between" style="margin-bottom:8px;">
+        <span class="pill pill-red">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Claro is unsure
+        </span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--red);font-weight:600;">$48.00 · 2:14 AM</span>
+      </div>
+      <div style="font-size:15px;font-weight:600;color:var(--text);">Late-night Uber — was that you?</div>
+      <div class="label" style="margin-top:3px;">First at this hour. Could be legit. Could not.</div>
+      <div class="conf" style="margin-top:10px;">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--red);min-width:28px;font-weight:600;">54%</span>
+        <div class="conf-track"><div class="conf-fill warn" style="width:54%;"></div></div>
+        <span class="label-sm" style="color:var(--red);">Low — unsure</span>
+      </div>
+      <div class="row" style="margin-top:12px;gap:8px;">
+        <button class="btn btn-primary btn-sm">Yes, that was me</button>
+        <button class="btn btn-ghost-red btn-sm">Report</button>
+      </div>
+    </div>
+
+    <!-- What Claro learned -->
+    <div class="card blue-tint" style="margin-top:16px;">
+      <div class="eyebrow-blue" style="margin-bottom:6px;">What Claro learned this week</div>
+      <div class="label">You prefer decisions on Tuesdays. Late-night Ubers under $50 are usually fine.</div>
+      <div class="row" style="margin-top:8px;gap:6px;flex-wrap:wrap;">
+        <span class="pill pill-blue">Tuesdays</span>
+        <span class="pill pill-blue">Ubers &lt; $50</span>
+        <span class="pill pill-blue">+ Teach</span>
+      </div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:center;margin:18px 0 14px;">· end of ledger · come back tomorrow ·</div>
+  </div>
+
+  <!-- tab bar -->
+  <div class="tab-bar">
+    <div class="tab active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+      <span>Spend</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>You</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 2 — TODAY'S THREE
+══════════════════════════════════════ -->
+<div class="screen-label">
+  <span class="num">02</span>
+  <span class="name">Today's Three</span>
+</div>
+<div class="screen" id="s2">
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="icons">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l4 4 4-4"/><path d="M9 10l4 4 4-4"/><path d="M17 14l4 4"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <svg width="20" height="14" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="1" width="20" height="10" rx="2"/><rect x="1" y="2" width="16" height="8" rx="1" fill="currentColor" stroke="none"/><path d="M21 5v2" stroke-width="2.5"/></svg>
+    </div>
+  </div>
+
+  <div class="screen-body" style="padding:18px 22px 0;">
+    <!-- Top -->
+    <div class="row between" style="margin-bottom:20px;">
+      <div class="row" style="gap:8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/>
+        </svg>
+        <span style="font-family:var(--mono);font-size:10.5px;color:var(--text-3);font-weight:500;letter-spacing:0.06em;">TUE · APR 21</span>
+      </div>
+      <div class="avatar">M</div>
+    </div>
+
+    <!-- Header -->
+    <div style="font-family:var(--display);font-size:28px;font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin-bottom:6px;">
+      Three things<br/>worth your attention.
+    </div>
+    <div class="label" style="margin-bottom:20px;">
+      Claro picked these from 214 events.
+      <span style="color:var(--blue);font-weight:600;text-decoration:underline;cursor:pointer;">Why?</span>
+    </div>
+
+    <!-- Progress dots -->
+    <div class="row" style="gap:6px;margin-bottom:10px;">
+      <div style="flex:1;height:3px;border-radius:2px;background:var(--blue);"></div>
+      <div style="flex:1;height:3px;border-radius:2px;background:var(--border);"></div>
+      <div style="flex:1;height:3px;border-radius:2px;background:var(--border);"></div>
+    </div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:right;margin-bottom:12px;font-weight:500;">1 of 3</div>
+
+    <!-- Hero card -->
+    <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:20px;background:var(--white);box-shadow:0 4px 24px -8px rgba(0,82,255,0.12),0 1px 4px rgba(0,0,0,0.06);">
+      <div class="row between" style="margin-bottom:14px;">
+        <span class="pill pill-blue">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          Save $60/yr
+        </span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text-3);font-weight:500;">SUBSCRIPTION</span>
+      </div>
+
+      <div style="font-family:var(--display);font-size:24px;font-weight:600;line-height:1.10;letter-spacing:-0.02em;margin-bottom:14px;">
+        Switch Spotify to <span style="color:var(--blue);">Duo with Sam</span>.
+      </div>
+
+      <!-- receipt -->
+      <div style="background:var(--surface);border-radius:var(--r-md);padding:12px;font-family:var(--mono);font-size:11px;">
+        <div class="row between" style="color:var(--text-2);padding:3px 0;"><span>Now · Individual</span><span>$11.99/mo</span></div>
+        <div class="row between" style="color:var(--text-2);padding:3px 0;"><span>After · Duo (÷2)</span><span>$6.99/mo</span></div>
+        <div style="height:1px;background:var(--border);margin:6px 0;"></div>
+        <div class="row between" style="color:var(--blue);font-weight:600;padding:3px 0;"><span>You save</span><span>$60.00/yr</span></div>
+      </div>
+
+      <!-- confidence -->
+      <div style="margin-top:14px;">
+        <div class="eyebrow-blue" style="margin-bottom:5px;">Why Claro is sure</div>
+        <div class="conf">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--blue);min-width:28px;font-weight:600;">92%</span>
+          <div class="conf-track"><div class="conf-fill" style="width:92%;"></div></div>
+          <span class="label-sm">High confidence</span>
+        </div>
+        <div class="label-sm" style="margin-top:6px;">Sam is on your Family plan already · You've co-paid before · 6 months of data.</div>
+      </div>
+
+      <!-- CTA -->
+      <div class="row" style="margin-top:16px;gap:8px;">
+        <button class="btn btn-primary" style="flex:1;font-size:14px;padding:12px 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          Switch now
+        </button>
+        <button class="btn-circle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </button>
+        <button class="btn-circle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:center;margin-top:12px;">takes about 30 seconds</div>
+    </div>
+
+    <!-- Preview queue -->
+    <div style="margin-top:16px;">
+      <div class="row" style="padding:14px 16px;border-radius:var(--r-lg);background:var(--white);border:1px solid var(--border);margin-bottom:8px;gap:12px;">
+        <div style="width:34px;height:34px;border-radius:10px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5 1.4-11.5 9.1-11.5 9.1.5 1 1.2 2 1.9 2.4.7.4 2 1.5 2 1.5s7.7-8 9.1-11.5c.6-.2 2-1.5 2-3z"/></svg>
+        </div>
+        <div class="col grow">
+          <div class="eyebrow" style="margin-bottom:2px;">Up next</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Move $200 to savings before Friday</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <div class="row" style="padding:14px 16px;border-radius:var(--r-lg);background:var(--red-soft);border:1px solid rgba(207,67,32,0.12);gap:12px;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(207,67,32,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="col grow">
+          <div class="eyebrow" style="color:var(--red);margin-bottom:2px;">Low confidence — your call</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">That 2am Uber · $48.00</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center;margin-top:22px;margin-bottom:12px;">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;margin-bottom:8px;"></div>
+      <div style="font-family:var(--display);font-size:16px;font-weight:500;color:var(--text-2);letter-spacing:-0.01em;">Come back tomorrow.</div>
+      <div class="label-sm" style="margin-top:4px;">Claro only interrupts when it matters.</div>
+    </div>
+  </div>
+
+  <!-- tab bar -->
+  <div class="tab-bar">
+    <div class="tab active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+      <span>Spend</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>You</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 3 — THE BRIEFING
+══════════════════════════════════════ -->
+<div class="screen-label">
+  <span class="num">03</span>
+  <span class="name">The Briefing</span>
+</div>
+<div class="screen" id="s3">
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="icons">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l4 4 4-4"/><path d="M9 10l4 4 4-4"/><path d="M17 14l4 4"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <svg width="20" height="14" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="1" width="20" height="10" rx="2"/><rect x="1" y="2" width="16" height="8" rx="1" fill="currentColor" stroke="none"/><path d="M21 5v2" stroke-width="2.5"/></svg>
+    </div>
+  </div>
+
+  <div class="screen-body" style="padding:18px 18px 0;">
+    <!-- Top bar -->
+    <div class="row between" style="margin-bottom:16px;">
+      <div class="row" style="gap:8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/>
+        </svg>
+        <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;">Morning brief</span>
+      </div>
+      <div class="row" style="gap:10px;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="avatar">M</div>
+      </div>
+    </div>
+
+    <!-- Summary strip -->
+    <div class="card surface" style="padding:14px;margin-bottom:18px;">
+      <div class="row between">
+        <div class="col">
+          <div class="eyebrow" style="margin-bottom:4px;">This week so far</div>
+          <div class="num-md">$312 <span style="color:var(--text-3);font-size:14px;font-weight:400;">ahead</span></div>
+        </div>
+        <div class="col" style="align-items:flex-end;">
+          <svg width="72" height="24" viewBox="0 0 72 24">
+            <polyline points="0,21 8,17 16,18 24,13 32,16 40,10 48,12 56,6 64,9 72,4"
+              fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--blue);margin-top:4px;font-weight:600;">+7.8% vs usual</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:center;margin:0 0 14px;font-weight:500;letter-spacing:0.06em;">TODAY · 9:41</div>
+
+    <!-- Claro bubble 1 -->
+    <div class="row" style="margin-bottom:8px;gap:8px;align-items:flex-start;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="white"/>
+        </svg>
+      </div>
+      <div style="max-width:90%;background:var(--surface);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:12px 14px;">
+        <div style="font-size:14px;line-height:1.5;color:var(--text);">
+          Morning, Mia. Quick one — your Spotify renews <b>Friday</b>. Switching to Duo with Sam saves <b style="color:var(--blue);">$60/yr</b>.
+        </div>
+        <div style="margin-top:10px;background:var(--white);border-radius:var(--r-sm);padding:10px;font-family:var(--mono);font-size:11px;border:1px solid var(--border);">
+          <div class="row between" style="color:var(--text-2);padding:2px 0;"><span>Individual</span><span>$11.99</span></div>
+          <div class="row between" style="color:var(--text-2);padding:2px 0;"><span>Duo</span><span>$6.99</span></div>
+          <div style="height:1px;background:var(--border);margin:5px 0;"></div>
+          <div class="row between" style="color:var(--blue);font-weight:600;padding:2px 0;"><span>You save</span><span>$60/yr</span></div>
+        </div>
+        <div class="row" style="margin-top:10px;gap:6px;">
+          <div class="conf" style="flex:1;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--blue);min-width:28px;font-weight:600;">92%</span>
+            <div class="conf-track" style="max-width:56px;"><div class="conf-fill" style="width:92%;"></div></div>
+          </div>
+          <span class="label-sm">High — 6mo data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- chips 1 -->
+    <div class="row" style="gap:6px;margin-bottom:12px;padding-left:36px;flex-wrap:wrap;">
+      <span class="pill pill-solid">Switch now</span>
+      <span class="pill">Show the math</span>
+      <span class="pill">Ask me Friday</span>
+    </div>
+
+    <!-- User reply -->
+    <div class="row" style="margin-bottom:8px;justify-content:flex-end;">
+      <div style="max-width:90%;background:var(--blue);color:var(--white);border-radius:18px 4px 18px 18px;padding:10px 14px;font-size:14px;font-weight:500;">
+        Ask me Friday
+      </div>
+    </div>
+
+    <!-- Claro ack -->
+    <div class="row" style="margin-bottom:14px;gap:8px;align-items:flex-start;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="white"/>
+        </svg>
+      </div>
+      <div style="max-width:90%;background:var(--surface);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:12px 14px;font-size:14px;line-height:1.5;color:var(--text);">
+        Got it. I'll nudge you <b>Thursday 6pm</b>, before renewal. ✓
+      </div>
+    </div>
+
+    <div style="height:1px;background:var(--border);margin-bottom:14px;"></div>
+
+    <!-- Claro bubble 2 — warn -->
+    <div class="row" style="margin-bottom:8px;gap:8px;align-items:flex-start;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="white"/>
+        </svg>
+      </div>
+      <div style="max-width:90%;background:var(--red-soft);border:1px solid rgba(207,67,32,0.2);border-radius:4px 18px 18px 18px;padding:12px 14px;">
+        <div class="row between" style="margin-bottom:8px;gap:6px;">
+          <span class="pill pill-red">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            I'm not sure
+          </span>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--red);font-weight:600;">$48 · 2:14 AM</span>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:var(--text);">
+          Saw a late-night Uber. First one this hour — could be fine, could not. <b>You'd know better than me.</b>
+        </div>
+        <div class="conf" style="margin-top:10px;">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--red);min-width:28px;font-weight:600;">54%</span>
+          <div class="conf-track"><div class="conf-fill warn" style="width:54%;"></div></div>
+          <span class="label-sm" style="color:var(--red);">Low — unsure</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- chips 2 -->
+    <div class="row" style="gap:6px;margin-bottom:14px;padding-left:36px;flex-wrap:wrap;">
+      <span class="pill pill-solid">✓ That was me</span>
+      <span class="pill pill-red">⚠ Report</span>
+      <span class="pill">? Check later</span>
+    </div>
+
+    <div style="height:1px;background:var(--border);margin-bottom:14px;"></div>
+
+    <!-- Claro bubble 3 -->
+    <div class="row" style="margin-bottom:8px;gap:8px;align-items:flex-start;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/>
+          <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9.5" cy="10" r="1.1" fill="white"/>
+        </svg>
+      </div>
+      <div style="max-width:90%;background:var(--surface);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:12px 14px;">
+        <div style="font-size:14px;line-height:1.5;color:var(--text);">
+          Also — your power bill came in <b>14% higher</b> than usual. Cold March covers most of it.
+        </div>
+        <div class="row" style="margin-top:8px;gap:6px;flex-wrap:wrap;">
+          <span class="pill">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            See breakdown
+          </span>
+          <span class="pill">Ignore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt input -->
+    <div class="row" style="margin-top:16px;padding:11px 16px;border-radius:var(--r-full);border:1px solid var(--border);background:var(--surface);gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+      <span class="label" style="flex:1;color:var(--text-3);">Ask Claro anything about your money…</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:center;margin-top:12px;margin-bottom:12px;font-weight:500;">Claro learns from every reply</div>
+  </div>
+
+  <!-- tab bar -->
+  <div class="tab-bar">
+    <div class="tab active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+      <span>Spend</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask</span>
+    </div>
+    <div class="tab">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>You</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
