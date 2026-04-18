@@ -110,6 +110,20 @@
   .tl-phase.active .tl-label { color: var(--blue); }
   .tl-desc { font-size: 12px; color: var(--text-tertiary); line-height: 1.5; }
 
+  /* ACCORDION */
+  .accordion { border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; margin: 24px 0; }
+  .accordion-item { border-bottom: 1px solid var(--border); }
+  .accordion-item:last-child { border-bottom: none; }
+  .accordion-trigger { width: 100%; background: none; border: none; padding: 16px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left; }
+  .accordion-trigger:hover { background: var(--surface); }
+  .accordion-label { flex: 1; font-size: 14px; font-weight: 600; color: var(--text); }
+  .accordion-chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--text-tertiary); transition: transform 0.25s ease; }
+  .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+  .accordion-body-inner { overflow: hidden; padding: 0 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .accordion-item.open .accordion-body { grid-template-rows: 1fr; }
+  .accordion-item.open .accordion-body-inner { padding-bottom: 16px; }
+
   /* COMPETITOR RESEARCH */
   .comp-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 16px; scrollbar-width: none; align-items: flex-start; margin: 28px 0; }
   .comp-scroll::-webkit-scrollbar { display: none; }
@@ -137,11 +151,51 @@
   .matrix-zone.tr { top: 0; right: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.015); width: 50%; height: 50%; text-align: right; }
   .matrix-zone.bl { bottom: 0; left: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.015); width: 50%; height: 50%; }
   .matrix-zone.br { bottom: 0; right: 0; color: var(--text-tertiary); background: rgba(0,0,0,0.01); width: 50%; height: 50%; text-align: right; }
-  .matrix-dot { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; }
+  @keyframes dot-in { from { opacity: 0; transform: translate(-50%, -50%) scale(0.4); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+  @keyframes lbl-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .matrix-dot { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; opacity: 0; }
+  .matrix-plot.animated .matrix-dot { animation: dot-in 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  .matrix-plot.animated .matrix-dot:nth-child(5) { animation-delay: 0.1s; }
+  .matrix-plot.animated .matrix-dot:nth-child(6) { animation-delay: 0.25s; }
+  .matrix-plot.animated .matrix-dot:nth-child(7) { animation-delay: 0.4s; }
+  .matrix-plot.animated .matrix-dot:nth-child(8) { animation-delay: 0.55s; }
+  .matrix-plot.animated .matrix-dot:nth-child(9) { animation-delay: 0.7s; }
+  .matrix-dot-lbl { opacity: 0; }
+  .matrix-plot.animated .matrix-dot:nth-child(5) .matrix-dot-lbl { animation: lbl-in 0.3s ease forwards; animation-delay: 0.3s; }
+  .matrix-plot.animated .matrix-dot:nth-child(6) .matrix-dot-lbl { animation: lbl-in 0.3s ease forwards; animation-delay: 0.45s; }
+  .matrix-plot.animated .matrix-dot:nth-child(7) .matrix-dot-lbl { animation: lbl-in 0.3s ease forwards; animation-delay: 0.6s; }
+  .matrix-plot.animated .matrix-dot:nth-child(8) .matrix-dot-lbl { animation: lbl-in 0.3s ease forwards; animation-delay: 0.75s; }
+  .matrix-plot.animated .matrix-dot:nth-child(9) .matrix-dot-lbl { animation: lbl-in 0.3s ease forwards; animation-delay: 0.9s; }
   .matrix-dot-circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid; flex-shrink: 0; }
   .matrix-dot-circle.blue { background: rgba(0,82,255,0.15); border-color: var(--blue); }
   .matrix-dot-circle.grey { background: rgba(91,97,110,0.1); border-color: var(--text-tertiary); }
   .matrix-dot-lbl { font-size: 11px; font-weight: 500; color: var(--text); background: white; border: 1px solid var(--border); border-radius: var(--r-pill); padding: 3px 10px; white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
+  /* AI EXAMPLES */
+  .ai-examples { display: flex; flex-direction: column; gap: 12px; margin: 32px 0; }
+  .ai-ex-card { border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .ai-ex-hd { display: flex; align-items: center; gap: 10px; }
+  .ai-ex-chip { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--r-pill); }
+  .ai-ex-chip.gemini { background: rgba(66,133,244,0.1); color: #4285f4; }
+  .ai-ex-chip.figma  { background: rgba(162,89,255,0.1); color: #a259ff; }
+  .ai-ex-chip.stitch { background: rgba(52,168,83,0.1);  color: #34a853; }
+  .ai-ex-chip.claude { background: rgba(0,82,255,0.1);   color: var(--blue); }
+  .ai-ex-caption { font-size: 13px; color: var(--text-secondary); }
+  .ai-ex-flow { display: grid; grid-template-columns: 1fr 20px 1fr; gap: 10px; align-items: center; }
+  .ai-ex-side { display: flex; flex-direction: column; gap: 6px; }
+  .ai-ex-side-lbl { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); }
+  .ai-ex-mock { background: var(--surface); border-radius: var(--r-md); padding: 14px; display: flex; flex-direction: column; gap: 6px; min-height: 80px; }
+  .ai-ex-mock.output { background: white; border: 1px solid var(--border); }
+  .ai-ex-bar { height: 7px; border-radius: 4px; background: var(--border); }
+  .ai-ex-bar.short { width: 55%; }
+  .ai-ex-bar.med   { width: 75%; }
+  .ai-ex-bar.full  { width: 100%; }
+  .ai-ex-img-mock { border-radius: var(--r-md); background: var(--border); aspect-ratio: 4/3; width: 100%; display: flex; align-items: center; justify-content: center; }
+  .ai-ex-img-icon { color: var(--text-tertiary); font-size: 20px; }
+  .ai-ex-phone-mock { border-radius: 14px; background: var(--border); aspect-ratio: 9/16; width: 70px; }
+  .ai-ex-code-mock { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); line-height: 1.7; }
+  .ai-ex-arrow-col { display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-size: 16px; }
+  @media (max-width: 680px) { .ai-ex-flow { grid-template-columns: 1fr; } .ai-ex-arrow-col { display: none; } }
 
   /* HERO */
   .hero {
@@ -673,6 +727,32 @@
   .skeleton { animation: shimmer 1.5s ease-in-out infinite; }
 
   /* AI PROCESS */
+  /* AI FLOWCHART */
+  .ai-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+  .ai-flow-node { display: flex; }
+  @media (max-width: 680px) { .ai-flow { grid-template-columns: 1fr 1fr; } }
+  .ai-flow-box { border-radius: var(--r-lg); padding: 14px 16px; text-align: left; width: 100%; display: flex; flex-direction: column; gap: 6px; }
+  .ai-flow-box.gemini { background: rgba(66,133,244,0.05); border: 1px solid rgba(66,133,244,0.2); }
+  .ai-flow-box.stitch { background: rgba(52,168,83,0.05); border: 1px solid rgba(52,168,83,0.2); }
+  .ai-flow-box.claude-design { background: rgba(229,100,60,0.05); border: 1px solid rgba(229,100,60,0.2); }
+  .ai-flow-box.claude-code { background: rgba(0,82,255,0.05); border: 1px solid rgba(0,82,255,0.2); }
+  .ai-flow-box.figma { background: rgba(162,89,255,0.05); border: 1px solid rgba(162,89,255,0.2); }
+  .ai-flow-box.otter { background: rgba(0,180,120,0.05); border: 1px solid rgba(0,180,120,0.2); }
+  .ai-flow-box.perplexity { background: rgba(32,178,170,0.05); border: 1px solid rgba(32,178,170,0.2); }
+  .ai-flow-box.notion { background: var(--surface); border: 1px solid var(--border); }
+  .ai-flow-role { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .ai-flow-box.gemini .ai-flow-role { color: #4285f4; }
+  .ai-flow-box.stitch .ai-flow-role { color: #34a853; }
+  .ai-flow-box.claude-design .ai-flow-role { color: #e5643c; }
+  .ai-flow-box.claude-code .ai-flow-role { color: var(--blue); }
+  .ai-flow-box.figma .ai-flow-role { color: #a259ff; }
+  .ai-flow-box.otter .ai-flow-role { color: #00b478; }
+  .ai-flow-box.perplexity .ai-flow-role { color: #20b2aa; }
+  .ai-flow-box.notion .ai-flow-role { color: var(--text-tertiary); }
+  .ai-flow-label { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .ai-flow-uses { font-size: 11px; color: var(--text-tertiary); line-height: 1.5; margin-top: 2px; }
+  .ai-flow-arrow { flex-shrink: 0; width: 24px; display: flex; align-items: center; justify-content: center; color: var(--border-strong); font-size: 14px; }
+
   .ai-instance { border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; margin: 28px 0; }
   .ai-instance-hd { display: flex; align-items: center; gap: 12px; padding: 18px 24px; background: var(--surface); border-bottom: 1px solid var(--border); }
   .ai-instance-n { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--blue); background: rgba(0,82,255,0.08); border: 1px solid rgba(0,82,255,0.18); padding: 2px 8px; border-radius: 4px; }
@@ -746,7 +826,8 @@
   <div class="hero-inner">
     <div class="eyebrow">Next Ventures 2026</div>
     <h1 class="hero-title">Design <span class="accent">case study</span></h1>
-    <p class="hero-sub">I chose <strong>Option 1</strong>, AI Transparency &amp; Trust.<br>Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
+    <p class="hero-sub" style="margin-bottom: 12px;">I chose <strong>Option 1</strong>, AI Transparency &amp; Trust.</p>
+    <p class="hero-sub">Claro's AI surfaces recommendations, but fewer than 8% of users act on them. This case study explores why.</p>
   </div>
 </div>
 
@@ -796,26 +877,46 @@
       <p>Johnny Bravo and I ran user interviews and collected some feedback.</p>
     </div>
 
-    <div class="quote-grid">
-      <div class="quote-card" style="border-left:3px solid #0052ff; background:rgba(0,82,255,0.04);">
-        <div class="quote-text">"It's asking me to switch my snack subscription. Like, okay, but <strong>I don't even see how it knows</strong> what I actually use."</div>
-        <div class="quote-src"><img src="shaggy.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Shaggy Rogers</div>
+    <div class="accordion">
+      <div class="accordion-item open">
+        <button class="accordion-trigger">
+          <img src="shaggy.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #0052ff;flex-shrink:0;">
+          <span class="accordion-label">Shaggy Rogers</span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"It's asking me to switch my snack subscription. Like, okay, but <strong>I don't even see how it knows</strong> what I actually use."</div></div>
       </div>
-      <div class="quote-card" style="border-left:3px solid #c83030; background:rgba(200,48,48,0.04);">
-        <div class="quote-text">"It says I can optimise my beauty bill payments. Maybe. But <strong>what data is it even using?</strong> It just tells me to act."</div>
-        <div class="quote-src"><img src="daphne.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Daphne Blake</div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <img src="daphne.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c83030;flex-shrink:0;">
+          <span class="accordion-label">Daphne Blake</span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"It says I can optimise my beauty bill payments. Maybe. But <strong>what data is it even using?</strong> It just tells me to act."</div></div>
       </div>
-      <div class="quote-card" style="border-left:3px solid #c87800; background:rgba(200,120,0,0.04);">
-        <div class="quote-text">"It wants me to set a savings goal. I get it, but <strong>I need a reason before I trust this.</strong> Where's the plan?"</div>
-        <div class="quote-src"><img src="fred.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Fred Jones</div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <img src="fred.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #c87800;flex-shrink:0;">
+          <span class="accordion-label">Fred Jones</span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"It wants me to set a savings goal. I get it, but <strong>I need a reason before I trust this.</strong> Where's the plan?"</div></div>
       </div>
-      <div class="quote-card" style="border-left:3px solid #1a6e40; background:rgba(26,110,64,0.04);">
-        <div class="quote-text">"It flagged an unusual charge in my account. Could be right. But <strong>I need to see the evidence</strong> — the logic just isn't there."</div>
-        <div class="quote-src"><img src="velma.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Velma Dinkley</div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <img src="velma.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #1a6e40;flex-shrink:0;">
+          <span class="accordion-label">Velma Dinkley</span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"It flagged an unusual charge in my account. Could be right. But <strong>I need to see the evidence</strong> — the logic just isn't there."</div></div>
       </div>
-      <div class="quote-card" style="border-left:3px solid #8b5cf6; background:rgba(139,92,246,0.04);">
-        <div class="quote-text">"Scooby-Dooby-Doo! <strong>Why is the app telling me to stop buying Scooby Snacks?!</strong>"</div>
-        <div class="quote-src"><img src="scooby.png" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top;vertical-align:middle;margin-right:10px;border:1.5px solid rgba(0,82,255,0.2);">Scooby-Doo</div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <img src="scooby.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top;border:1.5px solid #8b5cf6;flex-shrink:0;">
+          <span class="accordion-label">Scooby-Doo</span>
+          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner">"Scooby-Dooby-Doo! <strong>Why is the app telling me to stop buying Scooby Snacks?!</strong>"</div></div>
       </div>
     </div>
 
@@ -867,14 +968,51 @@
     </div>
 
     <div class="sec-body">
-      <p>
-        <span style="color:var(--blue);font-weight:600;">Showing reasoning inline</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Quick win</span> — display the data that triggered the recommendation directly on the card, before the CTA. Users shouldn't have to tap "why?" to find out.<br><br>
-        <span style="color:var(--blue);font-weight:600;">Qualitative confidence signals</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Quick win</span> — replace numerical scores like "87% confidence" with human language like "based on 6 months of your spending data." It reduces anxiety and builds trust.<br><br>
-        <span style="font-weight:600;">Notification copy</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Fill-in</span> — improve the push notification language to set better expectations before the user even opens the card.<br><br>
-        <span style="font-weight:600;">Dispute / teach-back action</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Major project</span> — let users flag a recommendation as wrong and teach the AI their preference. High trust impact, but complex to build.<br><br>
-        <span style="font-weight:600;">Trust feedback loop</span> <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;vertical-align:middle;">Major project</span> — show users the outcome of past recommendations they acted on. Closes the loop, but requires longitudinal data tracking.
-      </p>
-      <div style="margin-top:40px;border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 32px;">
+      <p>Five opportunities emerged from the matrix — here's what each one means and why it matters.</p>
+      <div class="accordion">
+        <div class="accordion-item open">
+          <button class="accordion-trigger">
+            <span class="accordion-label">Showing reasoning inline</span>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;">Quick win</span>
+            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+          </button>
+          <div class="accordion-body"><div class="accordion-body-inner">Display the data that triggered the recommendation directly on the card, before the CTA. Users shouldn't have to tap "why?" to find out.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-label">Qualitative confidence signals</span>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;">Quick win</span>
+            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+          </button>
+          <div class="accordion-body"><div class="accordion-body-inner">Replace numerical scores like "87% confidence" with human language like "based on 6 months of your spending data." It reduces anxiety and builds trust.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-label">Notification copy</span>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 7px;">Fill-in</span>
+            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+          </button>
+          <div class="accordion-body"><div class="accordion-body-inner">Improve the push notification language to set better expectations before the user even opens the card.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-label">Dispute / teach-back action</span>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;">Major project</span>
+            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+          </button>
+          <div class="accordion-body"><div class="accordion-body-inner">Let users flag a recommendation as wrong and teach the AI their preference. High trust impact, but complex to build.</div></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <span class="accordion-label">Trust feedback loop</span>
+            <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e53935;background:rgba(229,57,53,0.06);border:1px solid rgba(229,57,53,0.2);border-radius:var(--r-pill);padding:2px 7px;">Major project</span>
+            <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+          </button>
+          <div class="accordion-body"><div class="accordion-body-inner">Show users the outcome of past recommendations they acted on. Closes the loop, but requires longitudinal data tracking.</div></div>
+        </div>
+      </div>
+      <p style="margin-top:32px;">Based on the prioritization, here's how we'd sequence the work.</p>
+      <div style="margin-top:16px;border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 32px;">
         <span style="display:block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:4px;">Suggested timeline</span>
         <div class="timeline">
           <div class="tl-phase active">
@@ -1223,56 +1361,164 @@
       <span class="sec-num">04</span>
       <span class="sec-tag">AI-Assisted Process</span>
     </div>
-    <h2 class="sec-title">How AI was used — and what it got wrong</h2>
+    <h2 class="sec-title">How AI was used here</h2>
     <div class="sec-body">
-      <p>Two instances where Claude directly shaped this work. The full prompts are shown. So is the gap between what the AI produced and what actually ended up in the design.</p>
+      <p>AI was used at every stage of this case study, from research and framing to visuals, copy, and shipping the page.</p>
     </div>
 
-    <div class="ai-instance">
-      <div class="ai-instance-hd">
-        <span class="ai-instance-n">INSTANCE 01</span>
-        <span class="ai-instance-title">Hypothesis generation before designing</span>
+    <div class="ai-flow">
+      <div class="ai-flow-node">
+        <div class="ai-flow-box gemini">
+          <div class="ai-flow-role">Gemini</div>
+          <div class="ai-flow-label">Research, prompts</div>
+          <div class="ai-flow-uses">Research, framing, writing prompts</div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="terminal"></i> Prompt</div>
-        <div class="prompt-box">The brief says "users don't trust the recommendations. Engagement is under 8%." Before I design anything, I want to interrogate this assumption. What are the competing hypotheses for why engagement is low — and what data would help me distinguish between them? Context: personal finance app, AI-generated recommendations, mobile-first, users range from financially aware to avoidant.</div>
+
+      <div class="ai-flow-node">
+        <div class="ai-flow-box figma">
+          <div class="ai-flow-role">Figma Weave</div>
+          <div class="ai-flow-label">AI-gen images</div>
+          <div class="ai-flow-uses">Mockup assets and screen references</div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="cpu"></i> Raw output</div>
-        <div class="output-box">Claude returned four hypotheses: (1) relevance failure — recommendations don't match user needs, (2) timing failure — right recommendation, wrong moment, (3) trust failure — users don't understand the AI's reasoning, (4) UX friction — the interaction is too high-effort. For each, it suggested distinguishing data: click-through rates by recommendation type, session timing, qualitative interview language, funnel drop-off analysis.</div>
+
+      <div class="ai-flow-node">
+        <div class="ai-flow-box stitch">
+          <div class="ai-flow-role">Google Stitch</div>
+          <div class="ai-flow-label">Design</div>
+          <div class="ai-flow-uses">UI design and component specs</div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="alert-circle"></i> Critique</div>
-        <div class="critique-box">Useful structure, but generic — applicable to any product, not specifically to personal finance. The output didn't account for the psychological weight of money decisions. A user who "doesn't trust" a Netflix recommendation skips it. A user who "doesn't trust" a recommendation about their bank account may actively distrust the whole app. Claude treated both as equivalent. The fintech-specific escalation of trust failure was absent entirely.</div>
-      </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="check-circle"></i> What changed</div>
-        <div class="final-box">The four-hypothesis framework became three — relevance, timing, trust — with fintech context applied to each. UX friction was folded into trust failure because in personal finance, friction is usually anxiety, not effort. This became the three alt cards in Section 01. The AI gave me a scaffold; I supplied the domain knowledge.</div>
+
+      <div class="ai-flow-node">
+        <div class="ai-flow-box claude-code">
+          <div class="ai-flow-role">Claude Code</div>
+          <div class="ai-flow-label">Code, deploy</div>
+          <div class="ai-flow-uses">Built and deployed this case study</div>
+        </div>
       </div>
     </div>
 
-    <div class="ai-instance">
-      <div class="ai-instance-hd">
-        <span class="ai-instance-n">INSTANCE 02</span>
-        <span class="ai-instance-title">Pressure-testing the dispute interaction</span>
+    <div class="ai-examples">
+
+      <!-- Gemini -->
+      <div class="ai-ex-card">
+        <div class="ai-ex-hd">
+          <span class="ai-ex-chip gemini">Gemini</span>
+          <span class="ai-ex-caption">Used to research trust patterns and frame the design problem</span>
+        </div>
+        <div class="ai-ex-flow">
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Prompt</div>
+            <div class="ai-ex-mock">
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar med"></div>
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar short"></div>
+            </div>
+          </div>
+          <div class="ai-ex-arrow-col">→</div>
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Research brief</div>
+            <div class="ai-ex-mock output">
+              <div class="ai-ex-bar short"></div>
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar med"></div>
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar short"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="terminal"></i> Prompt</div>
-        <div class="prompt-box">I'm designing the dispute flow for an AI recommendation card in a personal finance app. A user taps "This doesn't seem right." Walk me through every state from that tap to resolution. What does the system show? What does the AI learn? Consider three user types: (a) the user is right and the data is wrong, (b) the user is right but the timing is wrong, (c) the user is wrong but won't accept being told so.</div>
+
+      <!-- Figma Weave -->
+      <div class="ai-ex-card">
+        <div class="ai-ex-hd">
+          <span class="ai-ex-chip figma">Figma Weave</span>
+          <span class="ai-ex-caption">Generated UI mockup assets and illustration references</span>
+        </div>
+        <div class="ai-ex-flow">
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Description</div>
+            <div class="ai-ex-mock">
+              <div class="ai-ex-bar med"></div>
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar short"></div>
+            </div>
+          </div>
+          <div class="ai-ex-arrow-col">→</div>
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Generated image</div>
+            <div class="ai-ex-mock output" style="align-items:center; justify-content:center;">
+              <div class="ai-ex-img-mock">
+                <svg class="ai-ex-img-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="cpu"></i> Raw output</div>
-        <div class="output-box">Claude described a multi-step flow: tap → reason selection → AI shows its full reasoning → user confirms or escalates → model update confirmation reading "Thanks for helping Claro improve." It suggested five reason categories and a "teach the AI" framing throughout.</div>
+
+      <!-- Google Stitch -->
+      <div class="ai-ex-card">
+        <div class="ai-ex-hd">
+          <span class="ai-ex-chip stitch">Google Stitch</span>
+          <span class="ai-ex-caption">Turned a design brief into component specs and app screens</span>
+        </div>
+        <div class="ai-ex-flow">
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Design brief</div>
+            <div class="ai-ex-mock">
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar med"></div>
+              <div class="ai-ex-bar short"></div>
+              <div class="ai-ex-bar full"></div>
+            </div>
+          </div>
+          <div class="ai-ex-arrow-col">→</div>
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">UI screens</div>
+            <div class="ai-ex-mock output" style="flex-direction:row; gap:8px; align-items:flex-start;">
+              <div class="ai-ex-phone-mock"></div>
+              <div class="ai-ex-phone-mock" style="margin-top:12px;"></div>
+              <div class="ai-ex-phone-mock"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="alert-circle"></i> Critique</div>
-        <div class="critique-box">The flow was centred on ML feedback collection, not user resolution. "Thanks for helping Claro improve" treats a frustrated user as a data source rather than someone whose problem needs solving. Five reason categories adds cognitive load at exactly the moment the user is already skeptical. The "AI explains itself in response to a dispute" step is backwards — showing more AI output to a disbelieving user deepens distrust, it doesn't resolve it.</div>
+
+      <!-- Claude Code -->
+      <div class="ai-ex-card">
+        <div class="ai-ex-hd">
+          <span class="ai-ex-chip claude">Claude Code</span>
+          <span class="ai-ex-caption">Wrote and shipped this case study page end-to-end</span>
+        </div>
+        <div class="ai-ex-flow">
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Request</div>
+            <div class="ai-ex-mock">
+              <div class="ai-ex-bar med"></div>
+              <div class="ai-ex-bar full"></div>
+              <div class="ai-ex-bar short"></div>
+            </div>
+          </div>
+          <div class="ai-ex-arrow-col">→</div>
+          <div class="ai-ex-side">
+            <div class="ai-ex-side-lbl">Output</div>
+            <div class="ai-ex-mock output">
+              <div class="ai-ex-code-mock">
+                <span style="color:#a259ff">.matrix-grid</span> {<br>
+                &nbsp;&nbsp;<span style="color:#34a853">display</span>: grid;<br>
+                &nbsp;&nbsp;<span style="color:#34a853">gap</span>: 2px;<br>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ai-block">
-        <div class="ai-block-lbl"><i data-feather="check-circle"></i> What changed</div>
-        <div class="final-box">The dispute flow was rebuilt around user resolution. Three reason options, not five. The AI doesn't counter-explain — it acknowledges and closes. The confirmation reads "Got it, we'll update your recommendations" not a training-data thank-you. Model feedback happens invisibly. The result is the dispute state in Section 05.</div>
-      </div>
+
     </div>
+
   </div>
 
   <!-- 05 Light Validation -->
@@ -1450,6 +1696,25 @@ stages.forEach((s, i) => {
 });
 
 feather.replace();
+
+// Matrix animation on scroll into view
+const matrixPlot = document.querySelector('.matrix-plot');
+if (matrixPlot) {
+  const obs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) { matrixPlot.classList.add('animated'); obs.disconnect(); }
+  }, { threshold: 0.3 });
+  obs.observe(matrixPlot);
+}
+
+// Accordion
+document.querySelectorAll('.accordion-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    item.closest('.accordion').querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
 
 // Active section nav highlight
 const secLinks = document.querySelectorAll('.sec-nav-link');
