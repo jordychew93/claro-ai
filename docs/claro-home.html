@@ -40,13 +40,15 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { width: 390px; }
+html { width: 390px; scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar { display: none; }
 body {
   font-family: var(--sans);
   color: var(--text);
   background: var(--surface);
   -webkit-font-smoothing: antialiased;
   width: 390px;
+  overflow-x: hidden;
 }
 
 /* ─── Screen wrapper ─── */
