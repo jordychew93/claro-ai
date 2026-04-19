@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Claro — Detail Screens</title>
+<meta name="viewport" content="width=900"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap"/>
+<style>
+:root {
+  --white:         #ffffff;
+  --surface:       #eef0f3;
+  --surface-2:     #f7f7f7;
+  --blue:          #0052ff;
+  --blue-hover:    #578bfa;
+  --blue-soft:     #e8eeff;
+  --text:          #1e2229;
+  --text-2:        #5b616e;
+  --text-3:        #8a909c;
+  --border:        rgba(91,97,110,0.2);
+  --border-strong: rgba(91,97,110,0.4);
+  --red:           #cf4320;
+  --red-soft:      #fdf0ec;
+
+  --display: 'Inter Tight', -apple-system, system-ui, sans-serif;
+  --sans:    'Inter', -apple-system, system-ui, sans-serif;
+  --mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 56px;
+  --r-full: 100000px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: #e8eaed;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding: 48px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Page header ── */
+.page-header {
+  width: 860px;
+  margin-bottom: 36px;
+}
+.page-header h1 {
+  font-family: var(--display);
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.page-header h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-2);
+}
+.page-header p {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-top: 7px;
+  line-height: 1.55;
+  max-width: 500px;
+}
+.page-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+.page-meta span { color: var(--blue); }
+
+/* ── Tweaks panel ── */
+#tweaks {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 16px 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 168px;
+}
+.tweaks-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+.tweaks-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+.seg {
+  display: flex;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  padding: 2px;
+  gap: 2px;
+}
+.seg button {
+  flex: 1;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+  white-space: nowrap;
+  line-height: 1;
+}
+.seg button.active {
+  background: var(--white);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* ── Screens row ── */
+.screens-row {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+.screen-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Screen label ── */
+.screen-label {
+  width: 390px;
+  padding: 0 4px 16px;
+}
+.screen-label .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+.screen-label .name {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.screen-label .desc {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ── Screen frame ── */
+.screen {
+  width: 390px;
+  height: 844px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 48px;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.10),
+    0 0 0 8px rgba(0,0,0,0.06),
+    0 24px 64px rgba(0,0,0,0.20);
+}
+
+/* ── Status bar ── */
+.status-bar {
+  height: 54px;
+  padding: 18px 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  color: var(--text);
+}
+.status-bar .icons { display: flex; gap: 5px; align-items: center; }
+
+/* ── Screen body ── */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.screen-body::-webkit-scrollbar { width: 0; }
+
+/* ── Tab bar ── */
+.tab-bar {
+  height: 82px;
+  padding: 10px 28px 26px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 600; color: var(--text-3);
+  font-family: var(--sans); letter-spacing: 0.01em;
+}
+.tab.active { color: var(--blue); }
+
+/* ── Utils ── */
+.row    { display: flex; align-items: center; }
+.col    { display: flex; flex-direction: column; }
+.between{ justify-content: space-between; }
+.grow   { flex: 1; }
+
+/* ── Type ── */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-3); line-height: 1.4;
+}
+.eyebrow-blue { color: var(--blue); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--sans); line-height: 1.4; }
+.label    { font-size: 14px; color: var(--text-2); line-height: 1.5; font-family: var(--sans); }
+.label-sm { font-size: 12px; color: var(--text-3); line-height: 1.4; font-family: var(--sans); }
+.num-big  { font-family: var(--display); font-size: 38px; line-height: 1.0; letter-spacing: -0.03em; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── Pills ── */
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 11px; font-weight: 600; color: var(--text-2);
+  white-space: nowrap; font-family: var(--sans);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.pill-blue  { background: var(--blue-soft); color: var(--blue);    border-color: rgba(0,82,255,0.15); }
+.pill-red   { background: var(--red-soft);  color: var(--red);     border-color: rgba(207,67,32,0.15); }
+.pill-solid { background: var(--blue);      color: var(--white);   border-color: var(--blue); }
+
+/* ── Confidence bar ── */
+.conf { display: flex; align-items: center; gap: 8px; }
+.conf-track {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: var(--surface); position: relative; overflow: hidden;
+}
+.conf-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  border-radius: 2px;
+  transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+/* ── Avatar ── */
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--blue-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 600; font-size: 13px;
+  color: var(--blue); border: 1px solid rgba(0,82,255,0.15);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 20px; border-radius: var(--r-pill);
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.01em; cursor: pointer; border: none;
+  transition: all 0.15s ease; white-space: nowrap; line-height: 1.2;
+}
+.btn-primary   { background: var(--blue);    color: var(--white); }
+.btn-ghost     { background: transparent;    color: var(--text-2); border: 1px solid var(--border); }
+.btn-text      { background: transparent;    color: var(--text-3); border: none; font-size: 13px; }
+.btn-full      { width: 100%; }
+
+/* ─────────────────────────────────────────
+   2A — BOTTOM SHEET LAYER
+───────────────────────────────────────── */
+.sheet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,11,13,0.52);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(1px);
+}
+.sheet-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.bottom-sheet {
+  background: var(--white);
+  border-radius: 24px 24px 0 0;
+  padding-bottom: 34px;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+.sheet-handle {
+  width: 36px; height: 4px;
+  border-radius: 2px;
+  background: var(--border-strong);
+  margin: 12px auto 0;
+}
+.sheet-body { padding: 18px 22px 0; }
+
+/* ─────────────────────────────────────────
+   2B — FULL PAGE
+───────────────────────────────────────── */
+.nav-bar {
+  height: 46px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.95);
+  position: relative;
+  z-index: 5;
+}
+.nav-back {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.nav-title {
+  font-family: var(--display);
+  font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+}
+
+.section-heading {
+  font-family: var(--display);
+  font-size: 14px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+  margin-bottom: 10px;
+}
+
+/* Source rows */
+.source-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.source-row:last-child { border-bottom: none; }
+.source-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px; background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.source-meta { font-size: 11px; color: var(--text-3); margin-top: 2px; line-height: 1.35; }
+
+/* Alternatives */
+.alt-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.alt-row:last-child { border-bottom: none; }
+.alt-rank {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--text-3);
+  flex-shrink: 0; font-family: var(--mono);
+}
+.alt-rank.rec { background: var(--blue-soft); color: var(--blue); }
+
+/* Decision log */
+.log-entry {
+  display: flex; gap: 10px;
+  padding: 6px 0; position: relative;
+}
+.log-entry + .log-entry::before {
+  content: ''; position: absolute;
+  left: 6px; top: -6px; height: 6px; width: 1px;
+  background: var(--border);
+}
+.log-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid var(--border); background: var(--white);
+  flex-shrink: 0; margin-top: 3px; position: relative; z-index: 1;
+  transition: border-color 0.25s, background 0.25s;
+}
+.log-dot.active { background: var(--blue); border-color: var(--blue); }
+.log-time { font-family: var(--mono); font-size: 10px; color: var(--text-3); font-weight: 500; margin-bottom: 2px; }
+.log-text { font-size: 12.5px; color: var(--text-2); line-height: 1.4; }
+
+/* Divider */
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* Receipt block */
+.receipt {
+  background: var(--surface); border-radius: var(--r-md);
+  padding: 12px; font-family: var(--mono); font-size: 11.5px;
+}
+.receipt-row { display: flex; justify-content: space-between; padding: 3px 0; color: var(--text-2); }
+.receipt-row.total { color: var(--blue); font-weight: 600; margin-top: 2px; }
+.receipt-divider { height: 1px; background: var(--border-strong); margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     TWEAKS PANEL
+══════════════════════════════════════ -->
+<div id="tweaks">
+  <div class="tweaks-title">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+    Tweaks
+  </div>
+
+  <div>
+    <div class="tweaks-section-label">Confidence</div>
+    <div class="seg" id="conf-seg">
+      <button data-conf="high"   class="active" onclick="setConf('high')">High</button>
+      <button data-conf="medium"             onclick="setConf('medium')">Med</button>
+      <button data-conf="low"                onclick="setConf('low')">Low</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="tweaks-section-label">Bottom sheet</div>
+    <div class="seg" id="sheet-seg">
+      <button data-sheet="open"   class="active" onclick="setSheet('open')">Open</button>
+      <button data-sheet="closed"               onclick="setSheet('closed')">Closed</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE HEADER
+══════════════════════════════════════ -->
+<div class="page-header">
+  <h1>Claro — <em>detail view</em>, two directions.</h1>
+  <p>Both screens surface the same recommendation. 2A preserves feed context with a bottom sheet. 2B audits the full decision trail on its own page.</p>
+  <div class="page-meta">PROJECT // CLARO · OPTION <span>2</span> · FIDELITY // HIGH · PLATFORM // iOS 390×844</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SCREENS ROW
+══════════════════════════════════════ -->
+<div class="screens-row">
+
+  <!-- ══════════════════════════════════
+       2A — BOTTOM SHEET
+  ══════════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2A</span><span class="name">Bottom Sheet</span>
+      <div class="desc">Rises over the feed · receipt + confidence inline · quick CTA</div>
+    </div>
+
+    <div class="screen" id="s2a">
+
+      <!-- Status bar -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <!-- Feed behind the sheet -->
+      <div class="screen-body" style="padding: 14px 22px 0;">
+
+        <div class="row between" style="margin-bottom:16px;">
+          <div class="row" style="gap:8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/>
+              <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/>
+            </svg>
+            <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--blue);">Claro</span>
+          </div>
+          <div class="row" style="gap:10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <div class="avatar">M</div>
+          </div>
+        </div>
+
+        <div class="eyebrow" style="margin-bottom:5px;">Tuesday · April 21</div>
+        <div style="font-family:var(--display);font-size:23px;font-weight:600;line-height:1.12;letter-spacing:-0.02em;">
+          Good morning, Mia.<br/>
+          <span style="color:var(--text-2);">You're </span><span style="color:var(--blue);">$312 ahead</span><span style="color:var(--text-2);"> of last month.</span>
+        </div>
+
+        <div style="margin-top:14px;padding:13px;background:var(--surface);border-radius:var(--r-lg);">
+          <div class="row between" style="margin-bottom:4px;">
+            <span class="eyebrow">Available balance</span>
+            <span class="label-sm">3 accounts</span>
+          </div>
+          <div class="row between" style="align-items:flex-end;">
+            <div class="num-big">$4,284<span style="color:var(--text-3);font-size:22px;">.16</span></div>
+            <svg width="68" height="20" viewBox="0 0 68 20">
+              <polyline points="0,18 8,14 16,16 24,11 32,13 40,7 48,10 56,4 64,7 68,3"
+                fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="divider" style="margin:14px 0 10px;"></div>
+
+        <div class="row between" style="margin-bottom:10px;">
+          <span style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;">Today's ledger</span>
+          <span class="label-sm">3 items</span>
+        </div>
+
+        <!-- Active item (tapped) -->
+        <div style="padding:11px 0;border-top:1px solid var(--border);">
+          <div class="row between" style="margin-bottom:6px;">
+            <span class="pill pill-blue" id="feed-pill">
+              <span id="feed-pill-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span id="feed-pill-text">High confidence</span>
+            </span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:600;">SAVE · $60/YR</span>
+          </div>
+          <div style="font-size:15px;font-weight:600;line-height:1.35;color:var(--text);">Switch Spotify to a Duo plan with Sam.</div>
+          <div class="label" style="margin-top:2px;font-size:13px;">Same music, 50% less. You've co-paid before.</div>
+        </div>
+
+        <!-- Item 2 -->
+        <div style="padding:11px 0;border-top:1px solid var(--border);">
+          <div class="row between" style="margin-bottom:6px;">
+            <span class="pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              Worth a look
+            </span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--text-3);font-weight:500;">UTILITIES</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Your power bill climbed 14% last month.</div>
+        </div>
+
+      </div><!-- /screen-body -->
+
+      <!-- ══ BOTTOM SHEET OVERLAY ══ -->
+      <div class="sheet-overlay" id="sheet-overlay">
+        <div class="bottom-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-body">
+
+            <!-- Sheet header -->
+            <div class="row between" style="margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);font-weight:500;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:5px;">Spotify · Subscription</div>
+                <div style="font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.12;">
+                  Switch to <span style="color:var(--blue);">Duo with Sam</span>.
+                </div>
+              </div>
+              <button onclick="setSheet('closed')" style="width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+
+            <!-- Receipt -->
+            <div class="receipt" style="margin-bottom:13px;">
+              <div class="receipt-row"><span>Now · Individual</span><span>$11.99/mo</span></div>
+              <div class="receipt-row"><span>After · Duo (÷2)</span><span>$6.99/mo</span></div>
+              <div class="receipt-divider"></div>
+              <div class="receipt-row total"><span>You save</span><span>$60.00/yr</span></div>
+            </div>
+
+            <!-- Confidence block -->
+            <div style="padding:12px;border-radius:var(--r-md);margin-bottom:16px;transition:border-color 0.25s;" id="sheet-conf-block" style="border:1px solid var(--border);">
+              <div class="row between" style="margin-bottom:8px;">
+                <span class="eyebrow-blue" id="sheet-conf-label">Why Claro is sure</span>
+                <span class="pill pill-blue" id="sheet-pill">
+                  <span id="sheet-pill-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  <span id="sheet-pill-text">92% · High</span>
+                </span>
+              </div>
+              <div class="conf" style="margin-bottom:8px;">
+                <div class="conf-track" style="height:4px;">
+                  <div class="conf-fill" id="sheet-conf-fill" style="width:92%;background:var(--blue);"></div>
+                </div>
+              </div>
+              <div class="label-sm" id="sheet-conf-reasons">Sam is on your Family plan already · You've co-paid before · 6 months of data.</div>
+            </div>
+
+            <!-- CTAs -->
+            <button class="btn btn-primary btn-full" style="font-size:15px;padding:14px;margin-bottom:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span id="sheet-cta-primary">Switch now</span>
+            </button>
+            <div class="row" style="gap:8px;">
+              <button class="btn btn-ghost" style="flex:1;font-size:13px;padding:11px 14px;">Show the math</button>
+              <button class="btn btn-ghost" style="flex:1;font-size:13px;padding:11px 14px;" id="sheet-cta-dismiss">Not now</button>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);text-align:center;margin-top:10px;padding-bottom:4px;">takes about 30 seconds</div>
+
+          </div><!-- /sheet-body -->
+        </div><!-- /bottom-sheet -->
+      </div><!-- /sheet-overlay -->
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+          <span>Home</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+          <span>Spend</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Ask</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>You</span>
+        </div>
+      </div>
+
+    </div><!-- /screen 2A -->
+  </div><!-- /screen-col -->
+
+
+  <!-- ══════════════════════════════════
+       2B — FULL PAGE
+  ══════════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2B</span><span class="name">Full Page</span>
+      <div class="desc">Audit trail · sources · alternatives · decision log · 3-button resolution</div>
+    </div>
+
+    <div class="screen" id="s2b">
+
+      <!-- Status bar -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <!-- Nav bar -->
+      <div class="nav-bar">
+        <div class="nav-back">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+        <div class="nav-title">Recommendation</div>
+      </div>
+
+      <!-- Scrollable body -->
+      <div class="screen-body" style="padding:18px 22px 28px;">
+
+        <!-- Hero -->
+        <div style="margin-bottom:16px;">
+          <div class="row" style="gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="pill pill-blue" id="page-pill">
+              <span id="page-pill-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span id="page-pill-text">High confidence</span>
+            </span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--text-3);font-weight:500;letter-spacing:0.05em;">SUBSCRIPTION · SPOTIFY</span>
+          </div>
+          <div style="font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15;margin-bottom:5px;">
+            Switch to <span style="color:var(--blue);">Duo with Sam</span>.
+          </div>
+          <div style="font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-0.03em;color:var(--blue);line-height:1.0;margin-bottom:6px;">
+            Save $60/yr
+          </div>
+          <div class="label" style="font-size:13px;" id="page-hero-sub">Claro is 92% confident. Renewal in 3 days.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- The math -->
+        <div style="margin-bottom:16px;">
+          <div class="section-heading">The math</div>
+          <div class="receipt">
+            <div class="receipt-row"><span>Now · Individual</span><span>$11.99/mo</span></div>
+            <div class="receipt-row"><span>After · Duo (÷2 with Sam)</span><span>$6.99/mo</span></div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row total"><span>Monthly saving</span><span>$5.00/mo</span></div>
+            <div class="receipt-row total"><span>Annual saving</span><span>$60.00/yr</span></div>
+          </div>
+        </div>
+
+        <!-- Confidence + sources -->
+        <div style="margin-bottom:16px;padding:13px;border-radius:var(--r-md);transition:border-color 0.25s;" id="page-conf-block">
+          <div class="row between" style="margin-bottom:10px;">
+            <div style="font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:-0.01em;" id="page-conf-heading">Why Claro is confident</div>
+            <span style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--blue);transition:color 0.25s;" id="page-conf-pct">92%</span>
+          </div>
+          <div class="conf" style="margin-bottom:12px;">
+            <div class="conf-track" style="height:5px;">
+              <div class="conf-fill" id="page-conf-fill" style="width:92%;background:var(--blue);height:5px;"></div>
+            </div>
+            <span class="label-sm" id="page-conf-level">High</span>
+          </div>
+          <div id="page-sources">
+            <!-- Sources injected by JS -->
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Alternatives -->
+        <div style="margin-bottom:16px;">
+          <div class="section-heading">What else Claro considered</div>
+          <div style="background:var(--surface);border-radius:var(--r-md);padding:4px 12px;">
+            <div class="alt-row">
+              <div class="alt-rank rec">✓</div>
+              <div class="col grow">
+                <div style="font-size:13px;font-weight:600;color:var(--blue);">Duo plan with Sam</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">$6.99/mo · saves $60/yr</div>
+              </div>
+              <span class="pill pill-blue" style="font-size:10px;padding:3px 8px;">Best</span>
+            </div>
+            <div class="alt-row">
+              <div class="alt-rank">2</div>
+              <div class="col grow">
+                <div style="font-size:13px;font-weight:600;color:var(--text);">Annual individual plan</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">$9.99/mo · saves ~$24/yr</div>
+              </div>
+            </div>
+            <div class="alt-row">
+              <div class="alt-rank">3</div>
+              <div class="col grow">
+                <div style="font-size:13px;font-weight:500;color:var(--text-2);">Keep current plan</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">$11.99/mo · baseline</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Decision log -->
+        <div style="margin-bottom:22px;">
+          <div class="section-heading">How Claro got here</div>
+          <div style="padding-left:2px;">
+            <div class="log-entry">
+              <div class="log-dot active"></div>
+              <div class="col">
+                <div class="log-time">APR 22 · 9:41 AM</div>
+                <div class="log-text">Spotify renewal detected — 3 days out, auto-renew on.</div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-dot active"></div>
+              <div class="col">
+                <div class="log-time">APR 22 · 9:41 AM</div>
+                <div class="log-text">Checked Sam via linked contact. Family plan, 2 slots open.</div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-dot active"></div>
+              <div class="col">
+                <div class="log-time">APR 22 · 9:41 AM</div>
+                <div class="log-text">Compared Duo vs Individual pricing. $5/mo delta confirmed.</div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-dot"></div>
+              <div class="col">
+                <div class="log-time">OCT 2024</div>
+                <div class="log-text">You and Sam split Netflix. Pattern: co-pay on subscriptions.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-button resolution -->
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="btn btn-primary btn-full" style="font-size:15px;padding:14px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <span id="page-cta-primary">Do it — switch now</span>
+          </button>
+          <button class="btn btn-ghost btn-full" style="font-size:14px;padding:12px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Show me all alternatives
+          </button>
+          <button class="btn btn-text btn-full" style="padding:10px;" id="page-cta-dismiss">
+            Not now — remind me Thursday
+          </button>
+        </div>
+
+      </div><!-- /screen-body -->
+    </div><!-- /screen 2B -->
+  </div><!-- /screen-col -->
+
+</div><!-- /screens-row -->
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT — TWEAKS
+══════════════════════════════════════ -->
+<script>
+const CONF = {
+  high: {
+    pct: 92,
+    pillClass: 'pill pill-blue',
+    pillText: 'High confidence',
+    pillTextShort: '92% · High',
+    pillIcon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    barColor: 'var(--blue)',
+    pctColor: 'var(--blue)',
+    confBlockBorder: '1px solid rgba(0,82,255,0.18)',
+    confBlockBg: 'rgba(0,82,255,0.03)',
+    sheetLabel: 'Why Claro is sure',
+    sheetReasons: "Sam is on your Family plan already · You've co-paid before · 6 months of data.",
+    pageConfHeading: 'Why Claro is confident',
+    pageLevel: 'High',
+    pageHeroSub: 'Claro is 92% confident. Renewal in 3 days.',
+    sheetCtaPrimary: 'Switch now',
+    pageCtaPrimary: 'Do it — switch now',
+    pageDismiss: 'Not now — remind me Thursday',
+    sources: `
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">6 months of Spotify charges</div>
+          <div class="source-meta">$11.99/mo, never missed · transaction history</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Sam is on your Family plan</div>
+          <div class="source-meta">Linked contact · 2 open Duo slots</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Renewal: this Friday</div>
+          <div class="source-meta">Auto-charged Apr 25 · 3 days to act</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>`,
+  },
+
+  medium: {
+    pct: 68,
+    pillClass: 'pill',
+    pillText: 'Worth a look',
+    pillTextShort: '68% · Medium',
+    pillIcon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
+    barColor: 'var(--blue-hover)',
+    pctColor: 'var(--text-2)',
+    confBlockBorder: '1px solid var(--border)',
+    confBlockBg: 'transparent',
+    sheetLabel: 'Claro thinks this might help',
+    sheetReasons: "Based on current pricing · Sam's availability unverified · no prior subscription splits on record.",
+    pageConfHeading: "Why Claro is uncertain",
+    pageLevel: 'Medium',
+    pageHeroSub: "Claro is 68% confident. Worth a quick check.",
+    sheetCtaPrimary: 'Looks good — switch',
+    pageCtaPrimary: 'Looks good — switch',
+    pageDismiss: 'Remind me later',
+    sources: `
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">6 months of Spotify charges</div>
+          <div class="source-meta">$11.99/mo, consistent · confirmed</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Sam's account — unverified</div>
+          <div class="source-meta">Contact found · plan status unknown</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Renewal: this Friday</div>
+          <div class="source-meta">Auto-charged Apr 25 · confirmed</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>`,
+  },
+
+  low: {
+    pct: 54,
+    pillClass: 'pill pill-red',
+    pillText: 'Claro is unsure',
+    pillTextShort: '54% · Low',
+    pillIcon: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+    barColor: 'var(--red)',
+    pctColor: 'var(--red)',
+    confBlockBorder: '1px solid rgba(207,67,32,0.2)',
+    confBlockBg: 'rgba(207,67,32,0.02)',
+    sheetLabel: "Claro isn't sure — you decide",
+    sheetReasons: "Sam's plan status unclear · no prior subscription splits · renewal date uncertain.",
+    pageConfHeading: "Claro isn't confident",
+    pageLevel: 'Low',
+    pageHeroSub: "Claro is only 54% confident. Review before acting.",
+    sheetCtaPrimary: "I'll do it anyway",
+    pageCtaPrimary: "I'll decide — switch",
+    pageDismiss: 'Skip this one',
+    sources: `
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Only 2 months of Spotify data</div>
+          <div class="source-meta">Limited history — pattern unclear</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Sam's account — unknown</div>
+          <div class="source-meta">No linked contact · plan unconfirmed</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="source-row">
+        <div class="source-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="col grow">
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Renewal date unclear</div>
+          <div class="source-meta">Could not confirm auto-renew status</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>`,
+  }
+};
+
+function setConf(level) {
+  const d = CONF[level];
+
+  // Seg control
+  document.querySelectorAll('#conf-seg button').forEach(b =>
+    b.classList.toggle('active', b.dataset.conf === level));
+
+  // ── Feed pill (2A background) ──
+  const fp = document.getElementById('feed-pill');
+  fp.className = d.pillClass;
+  document.getElementById('feed-pill-icon').innerHTML = d.pillIcon;
+  document.getElementById('feed-pill-text').textContent = d.pillText;
+
+  // ── Sheet pill ──
+  const sp = document.getElementById('sheet-pill');
+  sp.className = d.pillClass;
+  document.getElementById('sheet-pill-icon').innerHTML = d.pillIcon;
+  document.getElementById('sheet-pill-text').textContent = d.pillTextShort;
+
+  // ── Sheet conf block ──
+  document.getElementById('sheet-conf-label').textContent = d.sheetLabel;
+  const sf = document.getElementById('sheet-conf-fill');
+  sf.style.width = d.pct + '%';
+  sf.style.backgroundColor = d.barColor;
+  document.getElementById('sheet-conf-reasons').textContent = d.sheetReasons;
+  const scb = document.getElementById('sheet-conf-block');
+  scb.style.border = d.confBlockBorder;
+  scb.style.background = d.confBlockBg;
+  document.getElementById('sheet-cta-primary').textContent = d.sheetCtaPrimary;
+
+  // ── Page pill ──
+  const pp = document.getElementById('page-pill');
+  pp.className = d.pillClass;
+  document.getElementById('page-pill-icon').innerHTML = d.pillIcon;
+  document.getElementById('page-pill-text').textContent = d.pillText;
+
+  // ── Page hero ──
+  document.getElementById('page-hero-sub').textContent = d.pageHeroSub;
+
+  // ── Page conf block ──
+  document.getElementById('page-conf-heading').textContent = d.pageConfHeading;
+  const pcpct = document.getElementById('page-conf-pct');
+  pcpct.textContent = d.pct + '%';
+  pcpct.style.color = d.pctColor;
+  const pf = document.getElementById('page-conf-fill');
+  pf.style.width = d.pct + '%';
+  pf.style.backgroundColor = d.barColor;
+  document.getElementById('page-conf-level').textContent = d.pageLevel;
+  const pcb = document.getElementById('page-conf-block');
+  pcb.style.border = d.confBlockBorder;
+  pcb.style.background = d.confBlockBg;
+
+  // ── Sources ──
+  document.getElementById('page-sources').innerHTML = d.sources;
+
+  // ── CTAs ──
+  document.getElementById('page-cta-primary').textContent = d.pageCtaPrimary;
+  document.getElementById('page-cta-dismiss').textContent = d.pageDismiss;
+}
+
+function setSheet(state) {
+  document.querySelectorAll('#sheet-seg button').forEach(b =>
+    b.classList.toggle('active', b.dataset.sheet === state));
+  document.getElementById('sheet-overlay').classList.toggle('hidden', state === 'closed');
+}
+
+// Init
+setConf('high');
+setSheet('open');
+document.getElementById('sheet-conf-block').style.border = '1px solid rgba(0,82,255,0.18)';
+document.getElementById('page-conf-block').style.border = '1px solid rgba(0,82,255,0.18)';
+</script>
+
+</body>
+</html>
