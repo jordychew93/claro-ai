@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Claro — Detail Screens</title>
-<meta name="viewport" content="width=900"/>
+<meta name="viewport" content="width=1360"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap"/>
@@ -838,6 +838,140 @@ body {
 
       </div><!-- /screen-body -->
     </div><!-- /screen 2B -->
+  </div><!-- /screen-col -->
+
+
+  <!-- ══════════════════════════════════════
+       2C — PURE ACTION SHEET
+  ══════════════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2C</span><span class="name">Action Sheet</span>
+      <div class="desc">Nudge only · no data · no confidence · just a decision</div>
+    </div>
+
+    <div class="screen" id="s2c">
+
+      <!-- Status bar -->
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <!-- Feed behind sheet (same home feed) -->
+      <div class="screen-body" style="padding:14px 22px 0;">
+        <div class="row between" style="margin-bottom:16px;">
+          <div class="row" style="gap:8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/>
+              <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/>
+            </svg>
+            <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--blue);">Claro</span>
+          </div>
+          <div class="row" style="gap:10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <div class="avatar">M</div>
+          </div>
+        </div>
+        <div class="eyebrow" style="margin-bottom:5px;">Tuesday · April 21</div>
+        <div style="font-family:var(--display);font-size:23px;font-weight:600;line-height:1.12;letter-spacing:-0.02em;">
+          Good morning, Mia.<br/>
+          <span style="color:var(--text-2);">You're </span><span style="color:var(--blue);">$312 ahead</span><span style="color:var(--text-2);"> of last month.</span>
+        </div>
+        <div style="margin-top:14px;padding:13px;background:var(--surface);border-radius:var(--r-lg);">
+          <span class="eyebrow">Available balance</span>
+          <div style="font-family:var(--display);font-size:36px;font-weight:600;letter-spacing:-0.03em;margin-top:3px;">$4,284<span style="color:var(--text-3);font-size:22px;">.16</span></div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:14px 0 10px;"></div>
+        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;">Today's ledger</div>
+        <div style="padding:10px 0;border-top:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;">Switch Spotify to a Duo plan with Sam.</div>
+          <div style="font-size:12px;color:var(--text-3);">Same music, 50% less.</div>
+        </div>
+        <div style="padding:10px 0;border-top:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;">Your power bill climbed 14%.</div>
+          <div style="font-size:12px;color:var(--text-3);">Cold snap explains most of it.</div>
+        </div>
+      </div>
+
+      <!-- Overlay -->
+      <div style="position:absolute;inset:0;background:rgba(10,11,13,0.48);z-index:20;display:flex;flex-direction:column;justify-content:flex-end;backdrop-filter:blur(1px);">
+
+        <!-- Pure action sheet -->
+        <div style="background:var(--white);border-radius:24px 24px 0 0;padding-bottom:40px;">
+
+          <!-- Handle -->
+          <div style="width:36px;height:4px;border-radius:2px;background:rgba(91,97,110,0.35);margin:12px auto 0;"></div>
+
+          <!-- Claro icon centered -->
+          <div style="display:flex;justify-content:center;margin:20px 0 0;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/>
+                <path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="9.5" cy="10" r="1.1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Suggestion -->
+          <div style="padding:18px 28px 0;text-align:center;">
+            <div style="font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--text);margin-bottom:8px;">
+              Switch Spotify to Duo<br/>with Sam and save $60?
+            </div>
+            <div style="font-size:14px;color:var(--text-2);line-height:1.5;">
+              Renews this Friday — good time to switch.
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="padding:24px 22px 0;display:flex;flex-direction:column;gap:10px;">
+
+            <!-- Primary -->
+            <button style="width:100%;padding:15px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:16px;font-weight:600;cursor:pointer;letter-spacing:0.01em;">
+              Switch now
+            </button>
+
+            <!-- Secondary -->
+            <button style="width:100%;padding:13px;background:transparent;color:var(--text-2);border:1px solid var(--border);border-radius:var(--r-pill);font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;">
+              Remind me before Friday
+            </button>
+
+            <!-- Dismiss -->
+            <button style="width:100%;padding:10px;background:transparent;color:var(--text-3);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;">
+              Skip this one
+            </button>
+
+          </div>
+        </div>
+      </div><!-- /overlay -->
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <div class="tab active">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg>
+          <span>Home</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+          <span>Spend</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Ask</span>
+        </div>
+        <div class="tab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>You</span>
+        </div>
+      </div>
+
+    </div><!-- /screen 2C -->
   </div><!-- /screen-col -->
 
 </div><!-- /screens-row -->
