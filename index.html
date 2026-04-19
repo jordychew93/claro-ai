@@ -869,12 +869,6 @@
       <div class="assumption-text">"Users don't trust the recommendations."</div>
     </div>
 
-    <div class="comp-scroll" style="margin:20px 0 0;">
-      <div class="comp-item">
-        <div class="comp-frame has-img"><img src="images/hifi-screen-1.png" alt="Claro hi-fi screen" style="transform:scale(1.05);transform-origin:top center;"></div>
-        <div class="comp-cap"><strong>Claro.</strong> Maybe it's too much information and confusing.</div>
-      </div>
-    </div>
 
     <div class="sec-body" style="margin-bottom:0;">
       <p>To validate this, we looked at the funnel and some supporting data.</p>
@@ -1057,29 +1051,6 @@
 
     </div>
 
-    <div class="accordion" style="border:1px solid rgba(168,85,247,0.15);border-radius:var(--r-xl);margin:32px 0 0;background:linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(59,130,246,0.05) 50%, rgba(34,197,94,0.05) 100%);overflow:hidden;">
-      <div class="accordion-item" style="border-bottom:none;">
-        <button class="accordion-trigger" style="border-radius:var(--r-xl);background:transparent;">
-          <span style="flex:1;display:flex;align-items:flex-start;gap:10px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex:none;margin-top:2px;"><defs><linearGradient id="ai-grad" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs><path d="M8 1.5C8 1.5 8.5 4.5 10 6C11.5 7.5 14.5 8 14.5 8C14.5 8 11.5 8.5 10 10C8.5 11.5 8 14.5 8 14.5C8 14.5 7.5 11.5 6 10C4.5 8.5 1.5 8 1.5 8C1.5 8 4.5 7.5 6 6C7.5 4.5 8 1.5 8 1.5Z" fill="url(#ai-grad)"/></svg><span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:13px;font-weight:700;color:var(--text);letter-spacing:0.01em;">How I prompted this</span><span style="font-size:12px;color:var(--text-tertiary);font-weight:500;">Framed the brief, built hypothetical research artifacts</span></span></span>
-          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="var(--text-tertiary)" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner" style="color:var(--text-secondary);">
-            <p style="margin:0 0 16px;">Claude read the brief, framed the problem, and generated the hypothetical funnel data, user interview sentiments, and prioritisation matrix.</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Prompt</div></div>
-                <div class="comp-cap"><strong>Prompt</strong> — Framed the brief and asked Claude to generate a plausible funnel, personas, and prioritisation matrix.</div>
-              </div>
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Output</div></div>
-                <div class="comp-cap"><strong>Output</strong> — Hypothetical research artifacts I reviewed and edited before using them as the foundation.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
@@ -1089,9 +1060,9 @@
       <span class="sec-num">02</span>
       <span class="sec-tag">Concept Exploration</span>
     </div>
-    <h2 class="sec-title">We explore ways Claro can gain trust</h2>
+    <h2 class="sec-title">Exploring the approaches</h2>
     <div class="sec-body">
-      <p>Avoid showing all of the data.</p>
+      <p>Show only what the user needs to act.</p>
     </div>
 
     <a href="docs/Claro Wireframes _standalone_.html" target="_blank" style="display:flex;flex-direction:column;width:fit-content;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin:28px 0;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
@@ -1117,31 +1088,11 @@
       </div>
     </a>
 
-    <p style="margin:24px 0 32px;font-size:17px;line-height:1.6;color:var(--text-secondary);">We picked 2 of the 12 generated options below.</p>
 
     <!-- Row 2: Details -->
-    <div style="margin-top:12px;">
-      <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">Details — why this, confidence &amp; sources</div>
-      <div class="comp-scroll" style="margin-top:16px;">
-        <div class="comp-item">
-          <div class="comp-frame has-img"><img src="images/5.png" alt="Bottom sheet detail"></div>
-          <div class="comp-cap"><strong>Bottom sheet.</strong> Reasoning overlays the card. Claro says / You said.</div>
-          <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(26,110,64,0.05);border:none;border-left:3px solid #1a6e40;">
-            <div style="font-size:10px;font-weight:700;color:#1a6e40;margin-bottom:3px;">✓ Picked</div>
-            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">Context stays visible. No navigation needed.</div>
-          </div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-frame has-img"><img src="images/6.png" alt="Full detail page"></div>
-          <div class="comp-cap"><strong>Full detail page.</strong> Sources + alternatives on a dedicated screen.</div>
-          <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(26,110,64,0.05);border:none;border-left:3px solid #1a6e40;">
-            <div style="font-size:10px;font-weight:700;color:#1a6e40;margin-bottom:3px;">✓ Picked</div>
-            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">Depth available without cluttering the card.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div style="margin-top:28px;">
 
+    <p style="margin:0 0 32px;font-size:15px;line-height:1.7;color:var(--text-secondary);">Used Claude Design to explore many different directions quickly, then picked the one worth taking further.</p>
 
     <div class="concept-grid" style="display:none;">
       <div class="concept-card chosen">
@@ -1232,21 +1183,20 @@
         </button>
         <div class="accordion-body">
           <div class="accordion-body-inner" style="color:var(--text-secondary);">
-            <p style="margin:0 0 16px;">Claude Design generated all 12 wireframes from competitor references. I reviewed each direction and picked the patterns worth taking to hi-fi.</p>
+            <p style="margin:0 0 16px;">Claude Design generated all 12 wireframes from competitor references.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
               <div class="comp-item" style="width:100%;">
-                <div class="comp-frame has-img" style="aspect-ratio:16/10;border-radius:12px;"><img src="images/bts-coins.png" alt="Spline editor — Shiny Coins Loop" style="object-fit:cover;border-radius:11px;"></div>
-                <div class="comp-cap"><strong>Ryt Coins</strong> — Boolean clones drive the scattered coin layout. Each clone inherits the same iridescent material, keeping the finish consistent across the looping animation.</div>
-              </div>
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame has-img" style="aspect-ratio:16/10;border-radius:12px;"><img src="images/bts-cards.png" alt="Spline editor — Accordian horizontal" style="object-fit:cover;border-radius:11px;"></div>
-                <div class="comp-cap"><strong>Cascading Cards</strong> — Clone system stacks and offsets each card from a single source object. The challenge was dialling in the camera perspective so the card artwork stays readable at depth.</div>
+                <div class="comp-frame has-img" style="aspect-ratio:16/10;border-radius:12px;"><img src="images/claude-design-01.png" alt="Claude Design — Claro home screen" style="object-fit:cover;border-radius:11px;"></div>
+                <div class="comp-cap"><strong>Claude Design</strong> — Dropped the PDF in and said I was going with option 1. It generated three home screen directions from there. I picked the patterns worth keeping.</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+    </div><!-- close margin-top:28px wrapper -->
 
   </div>
 
@@ -1261,11 +1211,12 @@
       <p>I asked Claude to design the screens.</p>
     </div>
 
-    <a href="docs/Claro Home 2.html" target="_blank" style="display:flex;flex-direction:column;width:fit-content;min-width:320px;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin:28px 0;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0;">
+    <a href="docs/Claro Home 2.html" target="_blank" style="display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
       <div style="background:var(--surface);padding:20px 24px;display:flex;align-items:center;gap:16px;">
         <div style="width:48px;height:48px;border-radius:12px;background:#f0f0ff;border:1px solid rgba(0,82,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;">✦</div>
         <div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">Claro — Detail Screens</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Detail Screens</div>
           <div style="font-size:12px;color:var(--text-tertiary);margin-top:2px;">Generated with Claude Design</div>
         </div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);">View <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
@@ -1277,57 +1228,95 @@
       </div>
     </a>
 
-    <p style="margin:24px 0 0;font-size:17px;line-height:1.6;color:var(--text-secondary);">Below are the AI-gen options.</p>
-
-    <div class="comp-scroll" style="margin:28px 0;">
-      <div class="comp-item">
-        <div class="comp-frame has-img"><img src="images/2c.png" alt="Bottom sheet" style="transform:scale(1.05);transform-origin:top center;"></div>
-        <div class="comp-cap"><strong>Bottom sheet.</strong> Reasoning overlays the card. Claro says / You said.</div>
-      </div>
-      <div class="comp-item">
-        <div class="comp-frame has-img"><img src="images/hifi-screen-2.png" alt="Hi-fi screen 2" style="transform:scale(1.05);transform-origin:top center;"></div>
-        <div class="comp-cap"><strong>Full detail page.</strong> Sources + alternatives on a dedicated screen.</div>
-      </div>
-    </div>
-
-    <p style="margin:24px 0 32px;font-size:17px;line-height:1.6;color:var(--text-secondary);">Then I exported them to Figma.</p>
-
-    <a href="https://www.figma.com/design/pygFPiSRVsU8mgL8IFrbOr/Claro?node-id=19-2&p=f&t=wsLyfRb8XvKth4O1-0" target="_blank" style="display:flex;flex-direction:column;width:fit-content;min-width:320px;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin:28px 0;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
+    <a href="docs/Claro Action Sheets.html" target="_blank" style="display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;transition:box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
       <div style="background:var(--surface);padding:20px 24px;display:flex;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;border-radius:12px;background:#f5f5f5;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="24" height="36" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 28.5C19 25.98 20 23.56 21.78 21.78C23.56 20 25.98 19 28.5 19C31.02 19 33.44 20 35.22 21.78C36.99 23.56 38 25.98 38 28.5C38 31.02 36.99 33.44 35.22 35.22C33.44 36.99 31.02 38 28.5 38C25.98 38 23.56 36.99 21.78 35.22C20 33.44 19 31.02 19 28.5Z" fill="#1ABCFE"/><path d="M0 47.5C0 44.98 1 42.56 2.78 40.78C4.56 39 6.98 38 9.5 38H19V47.5C19 50.02 17.99 52.44 16.22 54.22C14.44 55.99 12.02 57 9.5 57C6.98 57 4.56 55.99 2.78 54.22C1 52.44 0 50.02 0 47.5Z" fill="#0ACF83"/><path d="M19 0V19H28.5C31.02 19 33.44 17.99 35.22 16.22C36.99 14.44 38 12.02 38 9.5C38 6.98 36.99 4.56 35.22 2.78C33.44 1 31.02 0 28.5 0H19Z" fill="#FF7262"/><path d="M0 9.5C0 12.02 1 14.44 2.78 16.22C4.56 17.99 6.98 19 9.5 19H19V0H9.5C6.98 0 4.56 1 2.78 2.78C1 4.56 0 6.98 0 9.5Z" fill="#F24E1E"/><path d="M0 28.5C0 31.02 1 33.44 2.78 35.22C4.56 36.99 6.98 38 9.5 38H19V19H9.5C6.98 19 4.56 20 2.78 21.78C1 23.56 0 25.98 0 28.5Z" fill="#A259FF"/></svg>
-        </div>
+        <div style="width:48px;height:48px;border-radius:12px;background:#f0f0ff;border:1px solid rgba(0,82,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;">✦</div>
         <div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">Claro — Working Figma File</div>
-          <div style="font-size:12px;color:var(--text-tertiary);margin-top:2px;">Components · Flows · Annotations</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Action Sheets</div>
+          <div style="font-size:12px;color:var(--text-tertiary);margin-top:2px;">Generated with Claude Design</div>
         </div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);">Open in Figma <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);">View <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
       </div>
       <div style="padding:12px 24px;background:var(--white);border-top:1px solid var(--border);display:flex;gap:20px;">
-        <span style="font-size:11px;color:var(--text-tertiary);">✦ Recommendation card</span>
-        <span style="font-size:11px;color:var(--text-tertiary);">✦ Dispute flow</span>
-        <span style="font-size:11px;color:var(--text-tertiary);">✦ Trust states</span>
-        <span style="font-size:11px;color:var(--text-tertiary);">✦ Notifications</span>
+        <span style="font-size:11px;color:var(--text-tertiary);">✦ Dispute action</span>
+        <span style="font-size:11px;color:var(--text-tertiary);">✦ AI changes</span>
+        <span style="font-size:11px;color:var(--text-tertiary);">✦ Confirmation states</span>
       </div>
     </a>
+    </div>
 
-    <p style="margin:24px 0 32px;font-size:17px;line-height:1.6;color:var(--text-secondary);">What I've improved.</p>
+
+
+    <!-- Key screens -->
+    <p style="margin:24px 0 8px;font-size:17px;line-height:1.6;color:var(--text);font-weight:600;">Key screens</p>
+    <p style="margin:0 0 32px;font-size:14px;line-height:1.6;color:var(--text-tertiary);">Three screens that carry the most weight in the experience.</p>
 
     <div class="comp-scroll" style="margin:0 0 28px;">
       <div class="comp-item">
-        <div class="comp-frame has-img" style="position:relative;"><img src="images/hifi-screen-1.png" alt="Before" style="transform:scale(1.05);transform-origin:top center;"><span style="position:absolute;top:14px;left:16px;font-size:22px;font-weight:800;color:#e03131;letter-spacing:-0.5px;line-height:1;">Before</span></div>
-        <div class="comp-cap"><strong>Before.</strong> Maybe it's too much information.</div>
+        <div class="comp-frame has-img"><img src="images/key-01.png" alt="Key screen 1" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Recommendation.</strong> One action, one reason. Context stays visible behind the sheet.</div>
       </div>
       <div class="comp-item">
-        <div class="comp-frame has-img" style="position:relative;"><img src="images/hero-claro.png" alt="New Claro" style="transform:scale(1.02);transform-origin:top center;"><span style="position:absolute;top:14px;left:16px;font-size:22px;font-weight:800;color:#e03131;letter-spacing:-0.5px;line-height:1;">After</span></div>
-        <div class="comp-cap">⭐ <strong>New Claro.</strong> Simple delivers.</div>
+        <div class="comp-frame has-img"><img src="images/key-02.png" alt="Key screen 2" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Unusual charge.</strong> High confidence flag with dispute option. User stays in control.</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img"><img src="images/key-03.png" alt="Key screen 3" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Savings plan.</strong> Four moves, fully broken down. User sees exactly how RM 6,000 was built.</div>
       </div>
     </div>
 
-    <div class="accordion" style="border:1px solid rgba(168,85,247,0.15);border-radius:var(--r-xl);margin:32px 0 0;background:linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(59,130,246,0.05) 50%, rgba(34,197,94,0.05) 100%);overflow:hidden;">
+    <p style="margin:40px 0 8px;font-size:17px;line-height:1.6;color:var(--text);font-weight:600;">Flow for a dispute charge, with option to read why</p>
+    <p style="margin:0 0 32px;font-size:14px;line-height:1.6;color:var(--text-tertiary);">User taps into the recommendation, sees the reasoning, and can flag if it's wrong.</p>
+
+    <div class="comp-scroll" style="margin:0 0 28px;">
+      <div class="comp-item">
+        <div class="comp-frame has-img"><img src="images/chase-01.png" alt="Home" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Bottom sheet.</strong> Context stays visible behind it. User doesn't lose their place.</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;height:430px;flex-shrink:0;margin-bottom:42px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;">
+          <video src="video/dispute.mov" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+        </div>
+        <div class="comp-cap"><strong>Detail.</strong> Full breakdown with a confidence level attached. User can see exactly why Claro made the call.</div>
+      </div>
+    </div>
+
+    <!-- AI changes flow -->
+    <p style="margin:40px 0 8px;font-size:17px;line-height:1.6;color:var(--text);font-weight:600;">Inspect how AI came to this conclusion</p>
+    <p style="margin:0 0 32px;font-size:14px;line-height:1.6;color:var(--text-tertiary);">Claro shows its working. User can inspect each move before committing to the plan.</p>
+
+    <div class="comp-scroll" style="margin:0 0 28px;">
+      <div class="comp-item">
+        <div class="comp-frame has-img"><img src="images/6000-01.png" alt="Screen 1" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Recommendation.</strong> Claro surfaces a RM 6,000 savings path. User can accept or walk through it first.</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;height:430px;flex-shrink:0;margin-bottom:42px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img"><img src="images/6000-02.png" alt="Screen 2" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-cap"><strong>Breakdown.</strong> Four moves shown with monthly amounts. User can see exactly how the total was built.</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;height:430px;flex-shrink:0;margin-bottom:42px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="comp-item">
+        <div class="comp-frame has-img" style="overflow:hidden;">
+          <video src="video/6000-video-01.mov" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+        </div>
+        <div class="comp-cap"><strong>Editing the plan.</strong> User adjusts the savings breakdown. Claro recalculates in real time.</div>
+      </div>
+    </div>
+
+
+    <div class="accordion" style="border:1px solid rgba(168,85,247,0.15);border-radius:var(--r-xl);margin:12px 0 0;background:linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(59,130,246,0.05) 50%, rgba(34,197,94,0.05) 100%);overflow:hidden;">
       <div class="accordion-item" style="border-bottom:none;">
         <button class="accordion-trigger" style="border-radius:var(--r-xl);background:transparent;">
-          <span style="flex:1;display:flex;align-items:flex-start;gap:10px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex:none;margin-top:2px;"><defs><linearGradient id="ai-grad" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs><path d="M8 1.5C8 1.5 8.5 4.5 10 6C11.5 7.5 14.5 8 14.5 8C14.5 8 11.5 8.5 10 10C8.5 11.5 8 14.5 8 14.5C8 14.5 7.5 11.5 6 10C4.5 8.5 1.5 8 1.5 8C1.5 8 4.5 7.5 6 6C7.5 4.5 8 1.5 8 1.5Z" fill="url(#ai-grad)"/></svg><span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:13px;font-weight:700;color:var(--text);letter-spacing:0.01em;">How I prompted this</span><span style="font-size:12px;color:var(--text-tertiary);font-weight:500;">Designed hi-fi screens, exported to Figma</span></span></span>
+          <span style="flex:1;display:flex;align-items:flex-start;gap:10px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex:none;margin-top:2px;"><defs><linearGradient id="ai-grad2" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs><path d="M8 1.5C8 1.5 8.5 4.5 10 6C11.5 7.5 14.5 8 14.5 8C14.5 8 11.5 8.5 10 10C8.5 11.5 8 14.5 8 14.5C8 14.5 7.5 11.5 6 10C4.5 8.5 1.5 8 1.5 8C1.5 8 4.5 7.5 6 6C7.5 4.5 8 1.5 8 1.5Z" fill="url(#ai-grad2)"/></svg><span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:13px;font-weight:700;color:var(--text);letter-spacing:0.01em;">How I prompted this</span><span style="font-size:12px;color:var(--text-tertiary);font-weight:500;">Designed hi-fi screens, exported to Figma</span></span></span>
           <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="var(--text-tertiary)" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
         </button>
         <div class="accordion-body">
@@ -1335,12 +1324,8 @@
             <p style="margin:0 0 16px;">Claude Design generated the hi-fi screens from the selected wireframe patterns. I exported to Figma and refined from there.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
               <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Prompt</div></div>
-                <div class="comp-cap"><strong>Prompt</strong> — Asked Claude Design to turn the selected wireframes into hi-fi screens matching the component system.</div>
-              </div>
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Output</div></div>
-                <div class="comp-cap"><strong>Output</strong> — Generated screens exported to Figma, then refined by hand.</div>
+                <div class="comp-frame has-img" style="aspect-ratio:16/10;border-radius:12px;"><img src="images/prompt-01.png" alt="Claude Code — prompt session" style="object-fit:cover;border-radius:11px;"></div>
+                <div class="comp-cap"><strong>Prompt</strong> — Used Claude Code to build and iterate the case study. Edits happened in real time as I reviewed each screen.</div>
               </div>
             </div>
           </div>
@@ -1358,7 +1343,7 @@
     </div>
     <h2 class="sec-title">User testing</h2>
     <div class="sec-body">
-      <p>Test whether users can read, understand, and act on a Claro recommendation without any help.</p>
+      <p>Can a user read, understand, and act on a Claro recommendation without any help? Validated through a 5-second test, hallway usability test, heuristic self-review, and cognitive walkthrough.</p>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:8px;margin:20px 0 28px;background:rgba(0,82,255,0.04);border:1px solid rgba(0,82,255,0.15);border-radius:var(--r-xl);padding:20px 24px;">
@@ -1374,74 +1359,19 @@
       </div>
     </div>
 
-    <!-- Engagement chart -->
-    <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;margin:28px 0;background:var(--white);">
-      <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;">Engagement breakdown — 12 participants</div>
-
-      <!-- Stacked bar -->
-      <div style="display:flex;height:36px;border-radius:10px;overflow:hidden;gap:2px;margin-bottom:20px;">
-        <div style="width:58%;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;border-radius:8px 0 0 8px;">7</div>
-        <div style="width:25%;background:#6b82c4;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;">3</div>
-        <div style="width:17%;background:#e8e8ec;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#9a9aaa;border-radius:0 8px 8px 0;">2</div>
+    <!-- What I'd change -->
+    <p style="margin:40px 0 8px;font-size:17px;line-height:1.6;color:var(--text);font-weight:600;">What I'd change</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin:0 0 32px;">
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:18px 20px;background:var(--white);">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Design the AI states</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">If AI is the core, the loading state should show it. A spinner isn't enough. Design the moment Claro is thinking.</div>
       </div>
-
-      <!-- Legend -->
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#1a1a2e;flex-shrink:0;"></div>
-            <span style="font-size:13px;color:var(--text-secondary);">Accepted</span>
-          </div>
-          <span style="font-size:13px;font-weight:600;color:var(--text);">7 <span style="font-weight:400;color:var(--text-tertiary);font-size:12px;">58%</span></span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#6b82c4;flex-shrink:0;"></div>
-            <span style="font-size:13px;color:var(--text-secondary);">Disputed</span>
-          </div>
-          <span style="font-size:13px;font-weight:600;color:var(--text);">3 <span style="font-weight:400;color:var(--text-tertiary);font-size:12px;">25%</span></span>
-        </div>
-        <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#f0f0f0;border:1px solid #ddd;flex-shrink:0;"></div>
-            <span style="font-size:13px;color:var(--text-secondary);">Tapped away / ignored</span>
-          </div>
-          <span style="font-size:13px;font-weight:600;color:var(--text);">2 <span style="font-weight:400;color:var(--text-tertiary);font-size:12px;">17%</span></span>
-        </div>
-        <div style="margin-top:4px;padding:10px 12px;background:rgba(74,124,89,0.06);border:1px solid rgba(74,124,89,0.2);border-radius:8px;font-size:12px;color:#3a6b48;line-height:1.5;">
-          83% of participants engaged with the recommendation.
-        </div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:18px 20px;background:var(--white);">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">Animate the data connection</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Since AI is pulling from real transaction data, the UI should reflect that — a subtle animation that shows Claro scanning or surfacing your transactions before presenting the recommendation would make the intelligence feel earned, not assumed.</div>
       </div>
     </div>
 
-    <div class="sec-body" style="margin:0 0 8px;">
-      <p>Most users understood the recommendation and took action.</p>
-    </div>
-
-    <div class="accordion" style="border:1px solid rgba(168,85,247,0.15);border-radius:var(--r-xl);margin:32px 0 0;background:linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(59,130,246,0.05) 50%, rgba(34,197,94,0.05) 100%);overflow:hidden;">
-      <div class="accordion-item" style="border-bottom:none;">
-        <button class="accordion-trigger" style="border-radius:var(--r-xl);background:transparent;">
-          <span style="flex:1;display:flex;align-items:flex-start;gap:10px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex:none;margin-top:2px;"><defs><linearGradient id="ai-grad" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs><path d="M8 1.5C8 1.5 8.5 4.5 10 6C11.5 7.5 14.5 8 14.5 8C14.5 8 11.5 8.5 10 10C8.5 11.5 8 14.5 8 14.5C8 14.5 7.5 11.5 6 10C4.5 8.5 1.5 8 1.5 8C1.5 8 4.5 7.5 6 6C7.5 4.5 8 1.5 8 1.5Z" fill="url(#ai-grad)"/></svg><span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:13px;font-weight:700;color:var(--text);letter-spacing:0.01em;">How I prompted this</span><span style="font-size:12px;color:var(--text-tertiary);font-weight:500;">Created personas and user testing scenarios</span></span></span>
-          <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="var(--text-tertiary)" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner" style="color:var(--text-secondary);">
-            <p style="margin:0 0 16px;">Claude generated the hypothetical user testing scenarios and the three personas. I reviewed their feedback and identified the real failure point — the dispute action.</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Prompt</div></div>
-                <div class="comp-cap"><strong>Prompt</strong> — Asked Claude to role-play three distinct personas and walk through the dispute flow end to end.</div>
-              </div>
-              <div class="comp-item" style="width:100%;">
-                <div class="comp-frame" style="aspect-ratio:16/10;border-radius:12px;"><div class="comp-frame-empty">Output</div></div>
-                <div class="comp-cap"><strong>Output</strong> — Simulated testing feedback that surfaced the missed dispute action.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
@@ -1451,9 +1381,9 @@
       <span class="sec-num">05</span>
       <span class="sec-tag">Thoughts</span>
     </div>
-    <h2 class="sec-title">What I'd do differently</h2>
+    <h2 class="sec-title">What I'd do differently with AI tools</h2>
     <div class="sec-body">
-      <p>Here's what I'd go back and fix.</p>
+      <p>Here's what I'd change moving forward.</p>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;">
@@ -1475,7 +1405,7 @@
   </div>
 
   <div class="footer">
-    <div class="footer-r" style="margin-left:auto;">Problem Framing · Confidential</div>
+    <div class="footer-r" style="margin-left:auto;">Claro — Product Designer Case Study · Confidential</div>
   </div>
 
 </div>

@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Claro - Action Sheets</title>
+<meta name="viewport" content="width=1338"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap"/>
+<style>
+:root {
+  --white:         #ffffff;
+  --surface:       #eef0f3;
+  --surface-2:     #f7f7f7;
+  --blue:          #0052ff;
+  --blue-hover:    #578bfa;
+  --blue-soft:     #e8eeff;
+  --text:          #1e2229;
+  --text-2:        #5b616e;
+  --text-3:        #8a909c;
+  --border:        rgba(91,97,110,0.2);
+  --border-strong: rgba(91,97,110,0.4);
+  --red:           #cf4320;
+  --red-soft:      #fdf0ec;
+
+  --display: 'Inter Tight', -apple-system, system-ui, sans-serif;
+  --sans:    'Inter', -apple-system, system-ui, sans-serif;
+  --mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 56px;
+  --r-full: 100000px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: #e8eaed;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding: 48px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Page header ── */
+.page-header {
+  width: 860px;
+  margin-bottom: 36px;
+}
+.page-header h1 {
+  font-family: var(--display);
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.page-header h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-2);
+}
+.page-header p {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-top: 7px;
+  line-height: 1.55;
+  max-width: 500px;
+}
+.page-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+.page-meta span { color: var(--blue); }
+
+/* ── Tweaks panel ── */
+#tweaks {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 16px 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 168px;
+}
+.tweaks-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+.tweaks-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+.seg {
+  display: flex;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  padding: 2px;
+  gap: 2px;
+}
+.seg button {
+  flex: 1;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+  white-space: nowrap;
+  line-height: 1;
+}
+.seg button.active {
+  background: var(--white);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* ── Screens row ── */
+.screens-row {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+.screen-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Screen label ── */
+.screen-label {
+  width: 390px;
+  padding: 0 4px 16px;
+}
+.screen-label .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+.screen-label .name {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.screen-label .desc {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ── Screen frame ── */
+.screen {
+  width: 390px;
+  height: 844px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 48px;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.10),
+    0 0 0 8px rgba(0,0,0,0.06),
+    0 24px 64px rgba(0,0,0,0.20);
+}
+
+/* ── Status bar ── */
+.status-bar {
+  height: 54px;
+  padding: 18px 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  color: var(--text);
+}
+.status-bar .icons { display: flex; gap: 5px; align-items: center; }
+
+/* ── Screen body ── */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.screen-body::-webkit-scrollbar { width: 0; }
+
+/* ── Tab bar ── */
+.tab-bar {
+  height: 82px;
+  padding: 10px 28px 26px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 600; color: var(--text-3);
+  font-family: var(--sans); letter-spacing: 0.01em;
+}
+.tab.active { color: var(--blue); }
+
+/* ── Utils ── */
+.row    { display: flex; align-items: center; }
+.col    { display: flex; flex-direction: column; }
+.between{ justify-content: space-between; }
+.grow   { flex: 1; }
+
+/* ── Type ── */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-3); line-height: 1.4;
+}
+.eyebrow-blue { color: var(--blue); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--sans); line-height: 1.4; }
+.label    { font-size: 14px; color: var(--text-2); line-height: 1.5; font-family: var(--sans); }
+.label-sm { font-size: 12px; color: var(--text-3); line-height: 1.4; font-family: var(--sans); }
+.num-big  { font-family: var(--display); font-size: 38px; line-height: 1.0; letter-spacing: -0.03em; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── Pills ── */
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 11px; font-weight: 600; color: var(--text-2);
+  white-space: nowrap; font-family: var(--sans);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.pill-blue  { background: var(--blue-soft); color: var(--blue);    border-color: rgba(0,82,255,0.15); }
+.pill-red   { background: var(--red-soft);  color: var(--red);     border-color: rgba(207,67,32,0.15); }
+.pill-solid { background: var(--blue);      color: var(--white);   border-color: var(--blue); }
+
+/* ── Confidence bar ── */
+.conf { display: flex; align-items: center; gap: 8px; }
+.conf-track {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: var(--surface); position: relative; overflow: hidden;
+}
+.conf-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  border-radius: 2px;
+  transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+/* ── Avatar ── */
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--blue-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 600; font-size: 13px;
+  color: var(--blue); border: 1px solid rgba(0,82,255,0.15);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 20px; border-radius: var(--r-pill);
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.01em; cursor: pointer; border: none;
+  transition: all 0.15s ease; white-space: nowrap; line-height: 1.2;
+}
+.btn-primary   { background: var(--blue);    color: var(--white); }
+.btn-ghost     { background: transparent;    color: var(--text-2); border: 1px solid var(--border); }
+.btn-text      { background: transparent;    color: var(--text-3); border: none; font-size: 13px; }
+.btn-full      { width: 100%; }
+
+/* ─────────────────────────────────────────
+   2A - BOTTOM SHEET LAYER
+───────────────────────────────────────── */
+.sheet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,11,13,0.52);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(1px);
+}
+.sheet-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.bottom-sheet {
+  background: var(--white);
+  border-radius: 24px 24px 0 0;
+  padding-bottom: 34px;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+.sheet-handle {
+  width: 36px; height: 4px;
+  border-radius: 2px;
+  background: var(--border-strong);
+  margin: 12px auto 0;
+}
+.sheet-body { padding: 18px 22px 0; }
+
+/* ─────────────────────────────────────────
+   2B - FULL PAGE
+───────────────────────────────────────── */
+.nav-bar {
+  height: 46px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.95);
+  position: relative;
+  z-index: 5;
+}
+.nav-back {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.nav-title {
+  font-family: var(--display);
+  font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+}
+
+.section-heading {
+  font-family: var(--display);
+  font-size: 14px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+  margin-bottom: 10px;
+}
+
+/* Source rows */
+.source-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.source-row:last-child { border-bottom: none; }
+.source-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px; background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.source-meta { font-size: 11px; color: var(--text-3); margin-top: 2px; line-height: 1.35; }
+
+/* Alternatives */
+.alt-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.alt-row:last-child { border-bottom: none; }
+.alt-rank {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--text-3);
+  flex-shrink: 0; font-family: var(--mono);
+}
+.alt-rank.rec { background: var(--blue-soft); color: var(--blue); }
+
+/* Decision log */
+.log-entry {
+  display: flex; gap: 10px;
+  padding: 6px 0; position: relative;
+}
+.log-entry + .log-entry::before {
+  content: ''; position: absolute;
+  left: 6px; top: -6px; height: 6px; width: 1px;
+  background: var(--border);
+}
+.log-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid var(--border); background: var(--white);
+  flex-shrink: 0; margin-top: 3px; position: relative; z-index: 1;
+  transition: border-color 0.25s, background 0.25s;
+}
+.log-dot.active { background: var(--blue); border-color: var(--blue); }
+.log-time { font-family: var(--mono); font-size: 10px; color: var(--text-3); font-weight: 500; margin-bottom: 2px; }
+.log-text { font-size: 12.5px; color: var(--text-2); line-height: 1.4; }
+
+/* Divider */
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* Receipt block */
+.receipt {
+  background: var(--surface); border-radius: var(--r-md);
+  padding: 12px; font-family: var(--mono); font-size: 11.5px;
+}
+.receipt-row { display: flex; justify-content: space-between; padding: 3px 0; color: var(--text-2); }
+.receipt-row.total { color: var(--blue); font-weight: 600; margin-top: 2px; }
+.receipt-divider { height: 1px; background: var(--border-strong); margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE HEADER
+══════════════════════════════════════ -->
+<div class="page-header" style="max-width:1684px;margin:0 auto 40px;">
+  <div class="kicker">CLARO · OPTION 2 · FIDELITY // HIGH · PLATFORM // IOS 390×844</div>
+  <h1 class="page-title">Action sheets.</h1>
+  <p class="page-sub">Pure action bottom sheets - no receipt, no confidence block. One decision, two options.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREENS ROW
+══════════════════════════════════════ -->
+<div class="screens-row">
+
+  <!-- ══════════════════════════════════
+       2F — Unusual charge · bottom sheet
+  ══════════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2F</span><span class="name">Unusual charge flagged</span>
+      <div class="desc">Alert · accordion · dispute flow</div>
+    </div>
+
+    <div class="screen" id="s2f">
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <!-- Dimmed feed -->
+      <div class="screen-body" style="padding:14px 22px 0;">
+        <div class="row between" style="margin-bottom:16px;">
+          <div class="row" style="gap:8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/><path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/><circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/></svg>
+            <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--blue);">Claro</span>
+          </div>
+          <div class="avatar">M</div>
+        </div>
+        <div class="eyebrow" style="margin-bottom:5px;">Tuesday · April 21</div>
+        <div style="font-family:var(--display);font-size:23px;font-weight:600;line-height:1.12;letter-spacing:-0.02em;">Good morning, Mia.<br/><span style="color:var(--text-2);">You're </span><span style="color:var(--blue);">RM 312 ahead</span><span style="color:var(--text-2);"> of last month.</span></div>
+        <div style="margin-top:14px;padding:13px;background:var(--surface);border-radius:var(--r-lg);">
+          <div class="row between" style="margin-bottom:4px;"><span class="eyebrow">Available balance</span><span class="label-sm">3 accounts</span></div>
+          <div class="num-big">RM 4,284<span style="color:var(--text-3);font-size:22px;">.16</span></div>
+        </div>
+        <div class="divider" style="margin:14px 0 10px;"></div>
+        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;">Today's ledger</div>
+        <div style="padding:11px 0;border-top:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:600;color:var(--text);">RM 340 · Shopee · Ryt Card ···4821</div>
+          <div class="label" style="margin-top:2px;font-size:13px;">3x your usual monthly spend here.</div>
+        </div>
+      </div>
+
+      <!-- Bottom sheet overlay -->
+      <div id="s2f-sheet" style="position:absolute;inset:0;background:rgba(10,11,13,0.48);z-index:20;display:flex;flex-direction:column;justify-content:flex-end;backdrop-filter:blur(1px);">
+        <div style="background:var(--white);border-radius:24px 24px 0 0;padding-bottom:40px;">
+          <div style="width:36px;height:4px;border-radius:2px;background:rgba(91,97,110,0.35);margin:12px auto 0;"></div>
+
+          <!-- Amber alert icon -->
+          <div style="display:flex;justify-content:center;margin:20px 0 0;">
+            <div style="width:40px;height:40px;border-radius:50%;background:#F59E0B;display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="12" y1="9" x2="12" y2="13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="17" r="1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div style="padding:18px 28px 0;text-align:center;">
+            <div style="font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--text);margin-bottom:8px;">
+              Unusual charge on<br/>your Ryt Card.
+            </div>
+            <div style="font-size:14px;color:var(--text-2);line-height:1.5;">
+              RM 340 at Shopee. This is 3 times your usual spend. Recognize this?
+            </div>
+          </div>
+
+          <!-- Why Claro flagged this — accordion -->
+          <div style="margin:18px 22px 0;border-radius:var(--r-md);border:1px solid rgba(245,158,11,0.25);background:rgba(245,158,11,0.04);overflow:hidden;">
+            <button onclick="(function(btn){var body=btn.nextElementSibling;var open=body.dataset.open==='1';var chev=btn.querySelector('.chev2f');if(open){body.style.maxHeight='0';body.style.opacity='0';body.dataset.open='0';chev.style.transform='rotate(0deg)';}else{body.style.maxHeight=body.scrollHeight+'px';body.style.opacity='1';body.dataset.open='1';chev.style.transform='rotate(180deg)';};})(this)"
+              style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:transparent;border:none;cursor:pointer;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#B45309;">Why Claro flagged this</span>
+                <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:#B45309;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:var(--r-pill);padding:2px 7px;">87% · High</span>
+              </div>
+              <svg class="chev2f" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.25s ease;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div data-open="0" style="max-height:0;overflow:hidden;opacity:0;transition:max-height 0.32s ease,opacity 0.25s ease;">
+              <div style="padding:0 12px 10px;display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <div style="width:4px;height:4px;border-radius:50%;background:#B45309;margin-top:6px;flex-shrink:0;"></div>
+                  <span style="font-size:12px;color:var(--text-2);line-height:1.5;">3 times your usual spend at Shopee. Your last 6 charges averaged RM 112.</span>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <div style="width:4px;height:4px;border-radius:50%;background:#B45309;margin-top:6px;flex-shrink:0;"></div>
+                  <span style="font-size:12px;color:var(--text-2);line-height:1.5;">Charged at 2:14 AM. Outside your normal transaction window.</span>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <div style="width:4px;height:4px;border-radius:50%;background:#B45309;margin-top:6px;flex-shrink:0;"></div>
+                  <span style="font-size:12px;color:var(--text-2);line-height:1.5;">No matching order in your email in the last 48 hours.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="padding:16px 22px 0;display:flex;flex-direction:column;gap:10px;">
+            <button style="width:100%;padding:15px;background:#111827;color:var(--white);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+              Yes, that's me
+            </button>
+            <button onclick="document.getElementById('s2f-dispute').style.transform='translateX(0)';" style="width:100%;padding:13px;background:transparent;color:#DC2626;border:1px solid #FECACA;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+              No, help me dispute it
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dispute screen — slides in from right -->
+      <div id="s2f-dispute" style="position:absolute;top:0;left:0;right:0;bottom:0;background:var(--white);z-index:30;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);">
+
+        <!-- Status bar -->
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="icons">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+            <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+          </div>
+        </div>
+
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:10px;padding:14px 20px 12px;border-bottom:1px solid var(--border);">
+          <button onclick="document.getElementById('s2f-dispute').style.transform='translateX(100%)';" style="width:32px;height:32px;border-radius:50%;background:var(--surface);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div>
+            <div style="font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--text);">Dispute this charge</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:1px;">Ryt Card ···4821</div>
+          </div>
+        </div>
+
+        <!-- Transaction summary -->
+        <div style="margin:16px 20px 0;padding:12px 14px;background:#FEF3C7;border-radius:var(--r-md);border:1px solid rgba(245,158,11,0.3);">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#92400E;">Shopee</div>
+              <div style="font-size:11px;color:#B45309;margin-top:2px;">2 Apr 2026 · 2:14 AM</div>
+            </div>
+            <span style="font-family:var(--mono);font-size:16px;font-weight:700;color:#92400E;">RM 340</span>
+          </div>
+        </div>
+
+        <!-- Steps -->
+        <div style="flex:1;overflow-y:auto;padding:16px 20px 0;">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">What happens next</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <!-- Step 1 -->
+            <div style="display:flex;gap:14px;padding-bottom:18px;position:relative;">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:white;">1</span>
+                </div>
+                <div style="width:1.5px;flex:1;background:var(--border);margin-top:4px;"></div>
+              </div>
+              <div style="padding-top:4px;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Claro flags the transaction</div>
+                <div style="font-size:12px;color:var(--text-3);line-height:1.5;">We mark RM 340 at Shopee as disputed and log the case details.</div>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div style="display:flex;gap:14px;padding-bottom:18px;position:relative;">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:white;">2</span>
+                </div>
+                <div style="width:1.5px;flex:1;background:var(--border);margin-top:4px;"></div>
+              </div>
+              <div style="padding-top:4px;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Block this merchant</div>
+                <div style="font-size:12px;color:var(--text-3);line-height:1.5;">Your Ryt Card will decline any new charges from Shopee until resolved.</div>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div style="display:flex;gap:14px;padding-bottom:4px;">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:white;">3</span>
+                </div>
+              </div>
+              <div style="padding-top:4px;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Submit to your bank</div>
+                <div style="font-size:12px;color:var(--text-3);line-height:1.5;">We file the dispute on your behalf. Resolution typically takes 5-10 business days.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky CTA -->
+        <div style="padding:14px 20px 32px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px;">
+          <button style="width:100%;padding:15px;background:#DC2626;color:white;border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+            Confirm dispute
+          </button>
+          <button onclick="document.getElementById('s2f-dispute').style.transform='translateX(100%)';" style="width:100%;padding:13px;background:transparent;color:var(--text-2);border:1px solid var(--border);border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+            Actually, it was me
+          </button>
+        </div>
+
+      </div><!-- /dispute screen -->
+
+      <div class="tab-bar">
+        <div class="tab active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg><span>Home</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg><span>Spend</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Ask</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>You</span></div>
+      </div>
+    </div><!-- /screen 2F -->
+  </div><!-- /screen-col -->
+
+
+
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2G</span><span class="name">Save $10k this year</span>
+      <div class="desc">Aspirational goal · breakdown of how · ready to start?</div>
+    </div>
+
+    <div class="screen" id="s2g">
+      <div class="status-bar">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+        </div>
+      </div>
+
+      <!-- Dimmed feed -->
+      <div class="screen-body" style="padding:14px 22px 0;">
+        <div class="row between" style="margin-bottom:16px;">
+          <div class="row" style="gap:8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.8"/><path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/><circle cx="9.5" cy="10" r="1.1" fill="var(--blue)"/></svg>
+            <span style="font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--blue);">Claro</span>
+          </div>
+          <div class="avatar">M</div>
+        </div>
+        <div class="eyebrow" style="margin-bottom:5px;">Tuesday · April 21</div>
+        <div style="font-family:var(--display);font-size:23px;font-weight:600;line-height:1.12;letter-spacing:-0.02em;">Good morning, Mia.<br/><span style="color:var(--text-2);">You're </span><span style="color:var(--blue);">$312 ahead</span><span style="color:var(--text-2);"> of last month.</span></div>
+        <div style="margin-top:14px;padding:13px;background:var(--surface);border-radius:var(--r-lg);">
+          <div class="row between" style="margin-bottom:4px;"><span class="eyebrow">Available balance</span><span class="label-sm">3 accounts</span></div>
+          <div class="num-big">$4,284<span style="color:var(--text-3);font-size:22px;">.16</span></div>
+        </div>
+        <div class="divider" style="margin:14px 0 10px;"></div>
+        <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;">Today's ledger</div>
+        <div style="padding:11px 0;border-top:1px solid var(--border);">
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Claro found a RM 6,000 savings path.</div>
+          <div class="label" style="margin-top:2px;font-size:13px;">Based on your last 6 months of spending.</div>
+        </div>
+      </div>
+
+      <!-- Overlay -->
+      <div id="s2g-sheet" style="position:absolute;inset:0;background:rgba(10,11,13,0.48);z-index:20;display:flex;flex-direction:column;justify-content:flex-end;backdrop-filter:blur(1px);transition:opacity 0.25s ease;">
+        <div style="background:var(--white);border-radius:24px 24px 0 0;padding-bottom:32px;">
+          <div style="width:36px;height:4px;border-radius:2px;background:rgba(91,97,110,0.35);margin:12px auto 0;"></div>
+
+          <!-- Icon -->
+          <div style="display:flex;justify-content:center;margin:18px 0 0;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/><path d="M7.5 14c2 1.8 7 1.8 9.5-1" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="9.5" cy="10" r="1.1" fill="white"/></svg>
+            </div>
+          </div>
+
+          <!-- Headline -->
+          <div style="padding:14px 28px 0;text-align:center;">
+            <div style="font-family:var(--display);font-size:24px;font-weight:600;letter-spacing:-0.025em;line-height:1.15;color:var(--text);margin-bottom:4px;">
+              Save <span style="color:var(--blue);">RM 6,000</span> this year.
+            </div>
+            <div style="font-size:13px;color:var(--text-2);line-height:1.5;">
+              Claro mapped four moves based on your spending.
+            </div>
+          </div>
+
+          <!-- Why Claro recommends this — blue accordion -->
+          <div style="margin:14px 22px 0;border-radius:var(--r-md);border:1px solid rgba(0,82,255,0.2);background:rgba(0,82,255,0.03);overflow:hidden;">
+            <button onclick="(function(btn){var body=btn.nextElementSibling;var open=body.dataset.open==='1';var chevron=btn.querySelector('.chev-g');if(open){body.style.maxHeight='0';body.style.opacity='0';body.dataset.open='0';chevron.style.transform='rotate(0deg)';}else{body.style.maxHeight=body.scrollHeight+'px';body.style.opacity='1';body.dataset.open='1';chevron.style.transform='rotate(180deg)';};})(this)"
+              style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:transparent;border:none;cursor:pointer;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue);">Why Claro recommends this</span>
+                <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--blue);background:rgba(0,82,255,0.08);border:1px solid rgba(0,82,255,0.2);border-radius:var(--r-pill);padding:2px 7px;">67% · Medium</span>
+              </div>
+              <svg class="chev-g" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s ease;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div data-open="0" style="max-height:0;overflow:hidden;opacity:0;transition:max-height 0.32s ease,opacity 0.25s ease;">
+              <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:6px;">
+
+                <!-- Row 1 -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:rgba(0,82,255,0.04);border-radius:8px;">
+                  <div>
+                    <div style="font-size:12px;font-weight:600;color:var(--text);">Cut subscriptions</div>
+                    <div style="font-size:11px;color:var(--text-3);margin-top:1px;">Spotify + Netflix + gym · 3 unused</div>
+                  </div>
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);">RM 20/mo × 12</span>
+                </div>
+
+                <!-- Row 2 -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:rgba(0,82,255,0.04);border-radius:8px;">
+                  <div>
+                    <div style="font-size:12px;font-weight:600;color:var(--text);">Lower bills</div>
+                    <div style="font-size:11px;color:var(--text-3);margin-top:1px;">Switch plan tiers, renegotiate</div>
+                  </div>
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);">RM 60/mo × 12</span>
+                </div>
+
+                <!-- Row 3 -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:rgba(0,82,255,0.04);border-radius:8px;">
+                  <div>
+                    <div style="font-size:12px;font-weight:600;color:var(--text);">Trim dining spend</div>
+                    <div style="font-size:11px;color:var(--text-3);margin-top:1px;">You spend RM 480/mo · peers RM 360/mo</div>
+                  </div>
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);">RM 120/mo × 12</span>
+                </div>
+
+                <!-- Row 4 -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:rgba(0,82,255,0.04);border-radius:8px;">
+                  <div>
+                    <div style="font-size:12px;font-weight:600;color:var(--text);">Auto-save on payday</div>
+                    <div style="font-size:11px;color:var(--text-3);margin-top:1px;">Your savings rate is 4% · target 12%</div>
+                  </div>
+                  <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);">RM 300/mo × 12</span>
+                </div>
+
+                <!-- Total -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-top:1px solid rgba(0,82,255,0.12);margin-top:2px;">
+                  <span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);">Total / year</span>
+                  <span style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);">= RM 6,000</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div style="padding:14px 22px 0;display:flex;flex-direction:column;gap:10px;">
+            <button style="width:100%;padding:15px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+              Yes - build my plan
+            </button>
+            <button onclick="document.getElementById('s2g-amend').style.transform='translateX(0)';" style="width:100%;padding:13px;background:transparent;color:var(--text-2);border:1px solid var(--border);border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+              Walk me through it first
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amendment screen — slides in from right -->
+      <div id="s2g-amend" style="position:absolute;top:0;left:0;right:0;bottom:0;background:var(--white);z-index:30;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);">
+
+        <!-- Status bar -->
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="icons">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+            <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="currentColor"/></svg>
+          </div>
+        </div>
+
+        <!-- Nav header -->
+        <div style="display:flex;align-items:center;gap:10px;padding:14px 20px 12px;border-bottom:1px solid var(--border);">
+          <button onclick="document.getElementById('s2g-amend').style.transform='translateX(100%)';" style="width:32px;height:32px;border-radius:50%;background:var(--surface);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div>
+            <div style="font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--text);">Your savings plan</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:1px;">Toggle or adjust each move</div>
+          </div>
+        </div>
+
+        <!-- Scrollable content -->
+        <div style="flex:1;overflow-y:auto;padding:18px 20px 0;">
+
+          <!-- Item 1 -->
+          <div style="background:var(--surface);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;">
+            <div id="s2g-row-0" data-amount="240" data-on="1" style="display:flex;align-items:center;gap:12px;padding:12px 14px;transition:opacity 0.2s;">
+              <div onclick="s2gToggle(0)" style="width:40px;height:24px;border-radius:12px;background:var(--blue);position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;">
+                <div style="width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:3px;right:3px;transition:right 0.2s,left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+              </div>
+              <div onclick="s2gExpand(0)" style="flex:1;min-width:0;cursor:pointer;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);">Cut subscriptions</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">Spotify, Netflix, gym</div>
+              </div>
+              <div onclick="s2gExpand(0)" style="display:flex;align-items:center;gap:4px;cursor:pointer;">
+                <span id="s2g-amt-0" style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);">RM 240/yr</span>
+                <svg id="s2g-chev-0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.25s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div id="s2g-hist-0" style="max-height:0;overflow:hidden;opacity:0;transition:max-height 0.3s ease,opacity 0.25s ease;">
+              <div style="padding:0 14px 10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">Spotify Premium</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Renewed 3 days ago</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 17.90/mo</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">Netflix Standard</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Last watched 41 days ago</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 25/mo</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;">
+                  <div><div style="font-size:12px;color:var(--text);">FitFab Gym</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Last checked in 52 days ago</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 180/mo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div style="background:var(--surface);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;">
+            <div id="s2g-row-1" data-amount="720" data-on="1" style="display:flex;align-items:center;gap:12px;padding:12px 14px;transition:opacity 0.2s;">
+              <div onclick="s2gToggle(1)" style="width:40px;height:24px;border-radius:12px;background:var(--blue);position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;">
+                <div style="width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:3px;right:3px;transition:right 0.2s,left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+              </div>
+              <div onclick="s2gExpand(1)" style="flex:1;min-width:0;cursor:pointer;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);">Lower bills &amp; utilities</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">Switch providers, audit plan tiers</div>
+              </div>
+              <div onclick="s2gExpand(1)" style="display:flex;align-items:center;gap:4px;cursor:pointer;">
+                <span id="s2g-amt-1" style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);">RM 720/yr</span>
+                <svg id="s2g-chev-1" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.25s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div id="s2g-hist-1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height 0.3s ease,opacity 0.25s ease;">
+              <div style="padding:0 14px 10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">Celcom Postpaid</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Unlimited+ plan · standard plan saves RM 30</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 98/mo</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">TNB Electricity</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">3-month average · up 18%</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 156/mo</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;">
+                  <div><div style="font-size:12px;color:var(--text);">Astro</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Basic pack · value pack saves RM 30</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 99/mo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div style="background:var(--surface);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;">
+            <div id="s2g-row-2" data-amount="1440" data-on="1" style="display:flex;align-items:center;gap:12px;padding:12px 14px;transition:opacity 0.2s;">
+              <div onclick="s2gToggle(2)" style="width:40px;height:24px;border-radius:12px;background:var(--blue);position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;">
+                <div style="width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:3px;right:3px;transition:right 0.2s,left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+              </div>
+              <div onclick="s2gExpand(2)" style="flex:1;min-width:0;cursor:pointer;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);">Smarter dining &amp; groceries</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">RM 120/mo above your peer group</div>
+              </div>
+              <div onclick="s2gExpand(2)" style="display:flex;align-items:center;gap:4px;cursor:pointer;">
+                <span id="s2g-amt-2" style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);">RM 1,440/yr</span>
+                <svg id="s2g-chev-2" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.25s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div id="s2g-hist-2" style="max-height:0;overflow:hidden;opacity:0;transition:max-height 0.3s ease,opacity 0.25s ease;">
+              <div style="padding:0 14px 10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">GrabFood</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Last 30 days · 14 orders</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 312</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+                  <div><div style="font-size:12px;color:var(--text);">Restaurants</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Last 30 days · 8 visits</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 168</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;">
+                  <div><div style="font-size:12px;color:var(--text);">Cafes &amp; drinks</div><div style="font-size:11px;color:var(--text-3);margin-top:1px;">Last 30 days</div></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--text-2);">RM 98</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div style="background:var(--surface);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;">
+            <div id="s2g-row-3" data-amount="3600" data-on="1" style="display:flex;align-items:center;gap:12px;padding:12px 14px;transition:opacity 0.2s;">
+              <div onclick="s2gToggle(3)" style="width:40px;height:24px;border-radius:12px;background:var(--blue);position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;">
+                <div style="width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:3px;right:3px;transition:right 0.2s,left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:600;color:var(--text);">Auto-transfer to savings</div>
+                <div style="font-size:11px;color:var(--text-3);margin-top:1px;">RM 300/mo on payday, every month</div>
+              </div>
+              <span id="s2g-amt-3" style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);">RM 3,600/yr</span>
+            </div>
+          </div>
+
+          <!-- Running total -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;margin-top:4px;border-top:1px solid var(--border);">
+            <span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);">Total savings / yr</span>
+            <span id="s2g-total" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--blue);">RM 6,000</span>
+          </div>
+
+        </div>
+
+        <!-- Sticky CTA -->
+        <div style="padding:14px 20px 32px;border-top:1px solid var(--border);">
+          <button style="width:100%;padding:15px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+            Confirm my plan
+          </button>
+        </div>
+
+      </div><!-- /amendment screen -->
+
+      <script>
+        function s2gRecalc() {
+          var total = 0;
+          for (var j = 0; j < 4; j++) {
+            var r = document.getElementById('s2g-row-' + j);
+            if (r && r.dataset.on === '1') total += parseInt(r.dataset.amount) || 0;
+          }
+          document.getElementById('s2g-total').textContent = 'RM ' + total.toLocaleString();
+        }
+
+        function s2gToggle(i) {
+          var row = document.getElementById('s2g-row-' + i);
+          var toggle = row.querySelector('div[onclick]');
+          var circle = toggle.firstElementChild;
+          var on = row.dataset.on === '1';
+          row.dataset.on = on ? '0' : '1';
+          toggle.style.background = on ? 'var(--border)' : 'var(--blue)';
+          circle.style.right = on ? 'auto' : '3px';
+          circle.style.left = on ? '3px' : 'auto';
+          row.style.opacity = on ? '0.45' : '1';
+          var amtEl = document.getElementById('s2g-amt-' + i);
+          if (amtEl) amtEl.style.color = on ? 'var(--text-3)' : 'var(--blue)';
+          var chev = document.getElementById('s2g-chev-' + i);
+          if (chev) chev.style.stroke = on ? 'var(--text-3)' : 'var(--blue)';
+          s2gRecalc();
+        }
+
+        function s2gExpand(i) {
+          var hist = document.getElementById('s2g-hist-' + i);
+          var chev = document.getElementById('s2g-chev-' + i);
+          var open = hist.dataset.open === '1';
+          if (open) {
+            hist.style.maxHeight = '0';
+            hist.style.opacity = '0';
+            hist.dataset.open = '0';
+            chev.style.transform = 'rotate(0deg)';
+          } else {
+            hist.style.maxHeight = hist.scrollHeight + 'px';
+            hist.style.opacity = '1';
+            hist.dataset.open = '1';
+            chev.style.transform = 'rotate(180deg)';
+          }
+        }
+      </script>
+
+      <div class="tab-bar">
+        <div class="tab active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg><span>Home</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg><span>Spend</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Ask</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>You</span></div>
+      </div>
+    </div><!-- /screen 2G -->
+  </div><!-- /screen-col -->
+
+
+  <!-- ══════════════════════════════════
+       2F-FULL — Unusual charge · full screen
+  ══════════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label">
+      <span class="num">2F+</span><span class="name">Unusual charge · full screen</span>
+      <div class="desc">High urgency · takes full screen · accordion open by default</div>
+    </div>
+
+    <div class="screen" id="s2f2">
+      <div class="status-bar" style="color:var(--white);background:#B45309;position:relative;z-index:30;">
+        <span>9:41</span>
+        <div class="icons">
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".6"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".7"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".9"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+          <svg width="15" height="11" viewBox="0 0 24 17" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C6.5 1 17.5 1 22 5.5"/><path d="M5 8.5C8.5 5 15.5 5 19 8.5"/><path d="M8 11.5C10.5 9 13.5 9 16 11.5"/><circle cx="12" cy="15" r="1.2" fill="white" stroke="none"/></svg>
+          <svg width="22" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2.5" stroke="white" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="white"/><path d="M22.5 4.5v3c.8-.4 1.3-1 1.3-1.5s-.5-1.1-1.3-1.5z" fill="white"/></svg>
+        </div>
+      </div>
+
+      <!-- Full-screen overlay flush to top -->
+      <div style="position:absolute;top:54px;left:0;right:0;bottom:0;background:var(--white);z-index:20;display:flex;flex-direction:column;">
+
+        <!-- Amber header band -->
+        <div style="background:#B45309;padding:20px 22px 24px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="12" y1="9" x2="12" y2="13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="17" r="1" fill="white"/>
+              </svg>
+            </div>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.8);">Claro flagged this</span>
+          </div>
+          <div style="font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;color:white;margin-bottom:6px;">Unusual charge on<br/>your Ryt Card card.</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.5;">$340 at Shopee - 3x your usual spend. Recognize this?</div>
+        </div>
+
+        <!-- Scrollable body -->
+        <div style="flex:1;overflow-y:auto;padding:20px 22px;">
+
+          <!-- Confidence badge -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#B45309;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:var(--r-pill);padding:3px 10px;">87% confident</span>
+            <span style="font-size:12px;color:var(--text-3);">This looks unusual</span>
+          </div>
+
+          <!-- Why flagged — open by default -->
+          <div style="margin-bottom:16px;">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;">Why Claro flagged this</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:var(--r-md);">
+                <div style="width:5px;height:5px;border-radius:50%;background:#B45309;margin-top:5px;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;">3x your usual Shopee spend</div>
+                  <div style="font-size:12px;color:var(--text-3);line-height:1.4;">Your last 6 charges averaged $112. This is $340.</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:var(--r-md);">
+                <div style="width:5px;height:5px;border-radius:50%;background:#B45309;margin-top:5px;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;">Charged at 2:14 AM</div>
+                  <div style="font-size:12px;color:var(--text-3);line-height:1.4;">Outside your normal transaction window.</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:var(--r-md);">
+                <div style="width:5px;height:5px;border-radius:50%;background:#B45309;margin-top:5px;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;">No matching order found</div>
+                  <div style="font-size:12px;color:var(--text-3);line-height:1.4;">No Shopee receipt in your email in the last 48 hours.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charge detail -->
+          <div style="background:var(--surface);border-radius:var(--r-md);padding:12px 14px;margin-bottom:4px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:12px;color:var(--text-3);">Merchant</span>
+              <span style="font-size:13px;font-weight:600;color:var(--text);">Shopee</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:12px;color:var(--text-3);">Card</span>
+              <span style="font-size:13px;font-weight:600;color:var(--text);">Ryt Card ···4821</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:8px 0;"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--text-3);">Amount</span>
+              <span style="font-family:var(--mono);font-size:15px;font-weight:700;color:#B45309;">$340.00</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sticky CTAs -->
+        <div style="padding:12px 22px 32px;border-top:1px solid var(--border);background:var(--white);">
+          <button style="width:100%;padding:15px;background:#111827;color:var(--white);border:none;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px;">
+            Yes, that's me
+          </button>
+          <button style="width:100%;padding:13px;background:transparent;color:#DC2626;border:1px solid #FECACA;border-radius:var(--r-pill);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">
+            No, help me dispute it
+          </button>
+        </div>
+
+      </div><!-- /full overlay -->
+
+      <!-- Tab bar hidden behind overlay but keeps frame height -->
+      <div class="tab-bar" style="opacity:0;pointer-events:none;">
+        <div class="tab active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg><span>Home</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg><span>Spend</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Ask</span></div>
+        <div class="tab"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>You</span></div>
+      </div>
+    </div><!-- /screen 2F+ -->
+  </div><!-- /screen-col -->
+
+</div><!-- /screens-row -->
+
+</body>
+</html>
