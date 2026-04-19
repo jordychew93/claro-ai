@@ -51,10 +51,7 @@
     align-items: center;
     justify-content: flex-end;
     border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
+    background: var(--white);
     z-index: 99;
   }
 
@@ -1484,22 +1481,17 @@
 
     <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;">
       <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:20px 24px;background:var(--white);">
-        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;">Research depth</div>
-        <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px;">Real users, not hypothetical ones</div>
-        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">The personas and funnel data were AI-generated to move fast. In a real project I'd run 5–8 interviews before concept exploration to ground the trust hypothesis in evidence, not intuition.</div>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;">First time with AI-generated UI</div>
+        <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px;">🎯 Constrain the prompt</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Without tight constraints, AI generates everything and you evaluate nothing. Next time I'd lock scope early: one flow, one screen state, one question, before opening the prompt.</div>
       </div>
 
       <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:20px 24px;background:var(--white);">
-        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;">Dispute flow</div>
-        <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px;">Make it a first-class action</div>
-        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Two out of three testers missed the dispute action. A ghost button next to the primary CTA would surface it without undermining the recommendation — trust comes from the option to disagree.</div>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;">AI copywriting</div>
+        <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px;">✏️ Still needs a lot of amendments</div>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">I'd set a rule upfront. No em dashes. Simple statements only. AI copy defaults to formal and vague. Every line here needed an edit before it sounded like me.</div>
       </div>
 
-      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:20px 24px;background:var(--white);">
-        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;">Confidence model</div>
-        <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px;">Calibrate before scaling</div>
-        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">"92% confident" is only meaningful if it's accurate 92% of the time. I'd want to see the calibration curve before exposing confidence numbers to users at scale — otherwise the label erodes trust instead of building it.</div>
-      </div>
 
     </div>
 
