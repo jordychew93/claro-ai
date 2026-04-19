@@ -947,7 +947,7 @@
     </div>
 
     <div class="sec-body">
-      <p>We spoke with some of our data engineers and found that the "Why?" already exists. It's just too complicated to show.</p>
+      <p>We listed down improvements and prioritised them below.</p>
     </div>
 
     <div class="accordion" style="border:1px solid var(--border);border-radius:var(--r-xl);margin:28px 0;">
@@ -973,13 +973,13 @@
           <!-- Items: left% = effort axis, top% = inverse of impact -->
           <div class="matrix-dot" style="left:22%;top:18%;">
             <div class="matrix-dot-circle blue"></div>
-            <div class="matrix-dot-lbl" style="color:var(--blue);border-color:rgba(0,82,255,0.3);">Show reasoning inline</div>
+            <div class="matrix-dot-lbl" style="color:var(--blue);border-color:rgba(0,82,255,0.3);">Simplify card</div>
           </div>
-          <div class="matrix-dot" style="left:38%;top:32%;">
-            <div class="matrix-dot-circle blue"></div>
-            <div class="matrix-dot-lbl" style="color:var(--blue);border-color:rgba(0,82,255,0.3);">Qualitative confidence signal</div>
+          <div class="matrix-dot" style="left:62%;top:18%;">
+            <div class="matrix-dot-circle grey"></div>
+            <div class="matrix-dot-lbl">Qualitative confidence signal</div>
           </div>
-          <div class="matrix-dot" style="left:68%;top:22%;">
+          <div class="matrix-dot" style="left:80%;top:30%;">
             <div class="matrix-dot-circle grey"></div>
             <div class="matrix-dot-lbl">Dispute / teach-back action</div>
           </div>
@@ -997,8 +997,8 @@
       <div style="margin-top:20px;padding:14px 16px;background:rgba(0,82,255,0.05);border:1px solid rgba(0,82,255,0.12);border-radius:12px;display:flex;gap:10px;align-items:flex-start;">
         <span style="font-size:15px;flex-shrink:0;">⛑️</span>
         <div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">Since both reasoning and confidence signals exist...</div>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">We can surface that. But is it necessary.</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">There were many things to fix.</div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">We chose to simplify first. Less on screen, more trust.</div>
         </div>
       </div>
     </div>
@@ -1131,13 +1131,14 @@
             <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">Context stays visible. No navigation needed.</div>
           </div>
         </div>
-        <a href="docs/Claro Wireframes _standalone_.html" target="_blank" class="comp-item" style="text-decoration:none;display:flex;flex-direction:column;">
-          <div class="comp-frame" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface);">
-            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="var(--blue)" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v6M5 8h6"/></svg>
-            <span style="font-size:11px;font-weight:600;color:var(--blue);text-align:center;line-height:1.4;">View wireframes</span>
+        <div class="comp-item">
+          <div class="comp-frame has-img"><img src="images/6.png" alt="Full detail page"></div>
+          <div class="comp-cap"><strong>Full detail page.</strong> Sources + alternatives on a dedicated screen.</div>
+          <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(26,110,64,0.05);border:none;border-left:3px solid #1a6e40;">
+            <div style="font-size:10px;font-weight:700;color:#1a6e40;margin-bottom:3px;">✓ Picked</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">Depth available without cluttering the card.</div>
           </div>
-          <div class="comp-cap"></div>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -1314,11 +1315,11 @@
 
     <div class="comp-scroll" style="margin:0 0 28px;">
       <div class="comp-item">
-        <div class="comp-frame has-img"><img src="images/hifi-screen-1.png" alt="Before" style="transform:scale(1.05);transform-origin:top center;"></div>
+        <div class="comp-frame has-img" style="position:relative;"><img src="images/hifi-screen-1.png" alt="Before" style="transform:scale(1.05);transform-origin:top center;"><span style="position:absolute;top:14px;left:16px;font-size:22px;font-weight:800;color:#e03131;letter-spacing:-0.5px;line-height:1;">Before</span></div>
         <div class="comp-cap"><strong>Before.</strong> Maybe it's too much information.</div>
       </div>
       <div class="comp-item">
-        <div class="comp-frame has-img"><img src="images/hero-claro.png" alt="New Claro" style="transform:scale(1.02);transform-origin:top center;"></div>
+        <div class="comp-frame has-img" style="position:relative;"><img src="images/hero-claro.png" alt="New Claro" style="transform:scale(1.02);transform-origin:top center;"><span style="position:absolute;top:14px;left:16px;font-size:22px;font-weight:800;color:#e03131;letter-spacing:-0.5px;line-height:1;">After</span></div>
         <div class="comp-cap">⭐ <strong>New Claro.</strong> Simple delivers.</div>
       </div>
     </div>
